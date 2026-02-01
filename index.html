@@ -54,13 +54,13 @@
         </nav>
         
         <div class="mobile-nav" id="mobile-nav-list">
-                  <a href="#about" onclick="toggleMenu()">Sobre</a>
-               <a href="#journey" onclick="toggleMenu()">Jornada</a>
-                  <a href="#projects" onclick="toggleMenu()">Projetos</a>
-                <a href="#certs" onclick="toggleMenu()">Certificações</a>
+                  <a href="#about" onclick="toggleMenu()" data-en="About">Sobre</a>
+               <a href="#journey" onclick="toggleMenu()" data-en="Journey">Jornada</a>
+                  <a href="#projects" onclick="toggleMenu()" data-en="Projects">Projetos</a>
+                <a href="#certs" onclick="toggleMenu()" data-en="Certifications">Certificações</a>
                 <a href="javascript:void(0)" onclick="toggleLanguage(); toggleMenu();" id="lang-btn-mobile">Inglês (EN)</a>
-                <a href="javascript:void(0)" onclick="triggerHack(); toggleMenu();" style="color: #ff4d4d;">Cuidado</a>
-                <a href="#contact" onclick="toggleMenu()">Contato</a>
+                <a href="javascript:void(0)" onclick="triggerHack(); toggleMenu();" style="color: #ff4d4d;" data-en="Caution">Cuidado</a>
+                <a href="#contact" onclick="toggleMenu()" data-en="Contact">Contato</a>
         </div>
     </header>
 
@@ -70,7 +70,7 @@
             <h1 data-en="I am <span class='code-font'>Matheus Araújo</span>">Eu sou <span id="hacker-name" class="code-font">Matheus Araújo</span></h1>
             <p data-en="Information Systems | Back-end | Cloud Computing">Sistemas de Informação | Back-end | Cloud Computing</p>
             <a href="#about" class="btn" data-en="Learn More">Conhecer Mais</a>
-            <a href="Curriculo_Matheus_Araujo_Macedo.pdf" target="_blank" class="btn" style="margin-left: 10px; background-color: var(--card-bg); border-color: #fff; color: #fff;">
+            <a href="Curriculo_Matheus_Araujo_Macedo.pdf" target="_blank" class="btn" style="margin-left: 10px; background-color: var(--card-bg); border-color: #fff; color: #fff;" data-en="<i class='fas fa-download'></i> Download CV">
             <i class="fas fa-download"></i> Baixar CV
 </a>
         </div>
@@ -136,7 +136,7 @@
 
     <section id="tech-stack">
     <div class="container">
-        <h2 class="section-title" data-aos="fade-up">Minha <span>Stack</span></h2>
+        <h2 class="section-title" data-aos="fade-up" data-en="My <span>Stack</span>">Minha <span>Stack</span></h2>
         <div class="tech-grid">
             <div class="tech-card" data-aos="zoom-in">
                 <i class="fab fa-microsoft" style="color: #0078d4;"></i>
@@ -196,7 +196,7 @@
 
     <section id="journey">
         <div class="container">
-           <h2 class="section-title" data-en="My <span>Journey</span>">Minha <span>Jornada</span></h2>
+            <h2 class="section-title" data-en="My <span>Journey</span>">Minha <span>Jornada</span></h2>
             
             <div class="timeline">
                 
@@ -231,8 +231,8 @@
                     <div class="timeline-dot"></div>
                     <div class="timeline-date">2023</div>
                     <div class="timeline-content">
-                        <h3>Certificações Azure</h3>
-                        <p>Imersão em Cloud Computing. Obtenção das certificações Microsoft Azure (AZ-901, AZ-902, AZ-903).</p>
+                    <h3 data-en="Azure Certifications">Certificações Azure</h3>
+                    <p data-en="Immersion in Cloud Computing. Earned Microsoft Azure certifications (AZ-901, AZ-902, AZ-903).">Imersão em Cloud Computing. Obtenção das certificações Microsoft Azure (AZ-901, AZ-902, AZ-903).</p>
                     </div>
                 </div>
 
@@ -240,8 +240,8 @@
                     <div class="timeline-dot"></div>
                     <div class="timeline-date">2022</div>
                     <div class="timeline-content">
-                        <h3>Inglês</h3>
-                        <p>Início dos estudos de língua inglesa, atingindo nível intermediário para leitura técnica e comunicação.</p>
+                    <h3 data-en="English">Inglês</h3>
+                    <p data-en="Started English studies, reaching an intermediate level for technical reading and communication.">Início dos estudos de língua inglesa, atingindo nível intermediário para leitura técnica e comunicação.</p>
                     </div>
                 </div>
 
@@ -251,28 +251,29 @@
 
     <section id="projects">
         <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Meus <span>Projetos</span></h2>
+            <h2 class="section-title" data-aos="fade-up" data-en="My <span>Projects</span>">Meus <span>Projetos</span></h2>
             <div class="project-card" data-aos="fade-right">
                 <div class="project-image">
                     <i class="fas fa-laptop-code fa-3x"></i>
                 </div>
                 <div class="project-info">
-                    <h3>Projeto TCC - TOTVS/Criatech</h3>
+                    <h3 data-en="TCC Project - TOTVS/Criatech">Projeto TCC - TOTVS/Criatech</h3>
                     <div class="tags">
                         <span class="tech-tag">Web Dev</span>
                         <span class="tech-tag">Front-end</span>
                     </div>
-                    <p style="color: var(--text-secondary);">
+                    <p style="color: var(--text-secondary);" data-en="Development of the project websites presented at the Criatech event. Focused on creating a functional, impactful interface.">
                         Desenvolvimento dos sites do projeto apresentado no evento Criatech. Foco na criação de uma interface funcional e impactante.
                     </p>
                     <br>
-             <button class="btn" style="font-size: 0.8rem; padding: 8px 20px;" 
-    onclick="openModal(
-        'TCC - TOTVS/Criatech', 
-        'Trabalhei no desenvolvimento Front-end para os sites do projeto apresentado no evento Cria Tech da TOTVS. O foco foi criar uma interface funcional, responsiva e com alto impacto visual.',
-        'https://github.com/MatheusAraujoMacedo' 
-    )">
-    Ver Detalhes
+             <button class="btn" style="font-size: 0.8rem; padding: 8px 20px;"
+    onclick="openModal(this)"
+    data-title="TCC - TOTVS/Criatech"
+    data-desc="Trabalhei no desenvolvimento Front-end para os sites do projeto apresentado no evento Cria Tech da TOTVS. O foco foi criar uma interface funcional, responsiva e com alto impacto visual."
+    data-link="https://github.com/MatheusAraujoMacedo"
+    data-en-title="TCC - TOTVS/Criatech"
+    data-en-desc="I worked on the front-end development for the project websites presented at the Cria Tech event by TOTVS. The focus was on a functional, responsive interface with strong visual impact.">
+    <span data-en="View Details">Ver Detalhes</span>
 </button>
                 </div>
 
@@ -286,22 +287,23 @@
                     <i class="fas fa-chart-pie fa-3x"></i>
                 </div>
                 <div class="project-info">
-                    <h3>Dashboard de Finanças</h3>
+                    <h3 data-en="Finance Dashboard">Dashboard de Finanças</h3>
                     <div class="tags">
                         <span class="tech-tag">Front-end</span>
                         <span class="tech-tag">Data Viz</span>
                     </div>
-                    <p style="color: var(--text-secondary);">
+                    <p style="color: var(--text-secondary);" data-en="Personal finance control system with an interactive interface. Features include income/expense tracking, expense categorization, and real-time budget charts.">
                         Sistema de controle financeiro pessoal com interface interativa. Funcionalidades incluem gestão de entradas e saídas, categorização de gastos e visualização gráfica de orçamento em tempo real.
                     </p>
                     <br>
-                    <button class="btn" style="font-size: 0.8rem;" 
-    onclick="openModal(
-        'Dashboard Financeiro', 
-        'Uma aplicação SPA (Single Page Application) focada em controle de gastos. Implementei gráficos interativos com Chart.js e lógica de manipulação de arrays para cálculos em tempo real. O foco foi treinar a manipulação de DOM e Estado.',
-        'https://github.com/MatheusAraujoMacedo'
-    )">
-    Ver Detalhes
+                    <button class="btn" style="font-size: 0.8rem;"
+    onclick="openModal(this)"
+    data-title="Dashboard Financeiro"
+    data-desc="Uma aplicação SPA (Single Page Application) focada em controle de gastos. Implementei gráficos interativos com Chart.js e lógica de manipulação de arrays para cálculos em tempo real. O foco foi treinar a manipulação de DOM e Estado."
+    data-link="https://github.com/MatheusAraujoMacedo"
+    data-en-title="Finance Dashboard"
+    data-en-desc="A single-page application focused on expense tracking. I implemented interactive charts with Chart.js and array manipulation logic for real-time calculations, practicing DOM and state management.">
+    <span data-en="View Details">Ver Detalhes</span>
 </button>
                 </div>
             </div>
@@ -311,7 +313,7 @@
 
     <section id="certs">
         <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Certificações <span>Azure</span></h2>
+            <h2 class="section-title" data-aos="fade-up" data-en="Azure <span>Certifications</span>">Certificações <span>Azure</span></h2>
             <div class="cert-grid">
                 <div class="cert-card" data-aos="flip-left" data-aos-delay="100">
                     <div class="cert-icon"><i class="fab fa-microsoft"></i></div>
@@ -334,7 +336,7 @@
 
     <section id="frontend">
         <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Stack <span>Front-end</span></h2>
+            <h2 class="section-title" data-aos="fade-up" data-en="Front-end <span>Stack</span>">Stack <span>Front-end</span></h2>
             <div class="cert-grid">
                 
                 <div class="cert-card" data-aos="flip-up" data-aos-delay="100">
@@ -367,7 +369,7 @@
 
     <section id="database">
         <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Banco de <span>Dados</span></h2>
+            <h2 class="section-title" data-aos="fade-up" data-en="Database <span>Stack</span>">Banco de <span>Dados</span></h2>
             <div class="cert-grid" style="justify-content: center;">
                 
                 <div class="cert-card" data-aos="flip-up" data-aos-delay="100">
@@ -388,29 +390,29 @@
 
     <section id="extras">
         <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Outras <span>Competências</span></h2>
+            <h2 class="section-title" data-aos="fade-up" data-en="Other <span>Skills</span>">Outras <span>Competências</span></h2>
             
             <div class="cert-grid">
                 
                 <div class="cert-card" style="border-color: #333;" data-aos="fade-right">
                     <div class="cert-icon" style="color: #fff; font-size: 2rem;"><i class="fas fa-language"></i></div>
-                    <h3>Inglês</h3>
-                    <p style="color: var(--accent); font-weight: bold; margin-bottom: 5px;">Nível Intermediário</p>
-                    <p style="color: #666; font-size: 0.8rem;">Leitura técnica e documentação</p>
+                    <h3 data-en="English">Inglês</h3>
+                    <p style="color: var(--accent); font-weight: bold; margin-bottom: 5px;" data-en="Intermediate Level">Nível Intermediário</p>
+                    <p style="color: #666; font-size: 0.8rem;" data-en="Technical reading and documentation">Leitura técnica e documentação</p>
                 </div>
 
                 <div class="cert-card" style="border-color: #333;" data-aos="fade-up">
                     <div class="cert-icon" style="color: #D83B01; font-size: 2rem;"><i class="fas fa-file-excel"></i></div>
-                    <h3>Pacote Office</h3>
-                    <p style="color: var(--accent); font-weight: bold; margin-bottom: 5px;">Competente</p>
-                    <p style="color: #666; font-size: 0.8rem;">Excel, Word e PowerPoint para gestão</p>
+                    <h3 data-en="Office Suite">Pacote Office</h3>
+                    <p style="color: var(--accent); font-weight: bold; margin-bottom: 5px;" data-en="Proficient">Competente</p>
+                    <p style="color: #666; font-size: 0.8rem;" data-en="Excel, Word, and PowerPoint for management">Excel, Word e PowerPoint para gestão</p>
                 </div>
 
                 <div class="cert-card" style="border-color: #333;" data-aos="fade-left">
                     <div class="cert-icon" style="color: #00CC6A; font-size: 2rem;"><i class="fas fa-users"></i></div>
-                    <h3>Comunicação</h3>
-                    <p style="color: var(--accent); font-weight: bold; margin-bottom: 5px;">Apresentação de Projetos</p>
-                    <p style="color: #666; font-size: 0.8rem;">Experiência prática em eventos (TOTVS)</p>
+                    <h3 data-en="Communication">Comunicação</h3>
+                    <p style="color: var(--accent); font-weight: bold; margin-bottom: 5px;" data-en="Project Presentations">Apresentação de Projetos</p>
+                    <p style="color: #666; font-size: 0.8rem;" data-en="Practical experience at events (TOTVS)">Experiência prática em eventos (TOTVS)</p>
                 </div>
 
             </div>
@@ -419,20 +421,20 @@
 
     <section id="github">
         <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Meu <span>Código</span></h2>
+            <h2 class="section-title" data-aos="fade-up" data-en="My <span>Code</span>">Meu <span>Código</span></h2>
             
             <div class="github-native-card" data-aos="zoom-in">
                 <div class="github-icon">
                     <i class="fab fa-github"></i>
                 </div>
-                <h3>Explore meu Repositório</h3>
-                <p>
+                <h3 data-en="Explore my Repository">Explore meu Repositório</h3>
+                <p data-en="Access all my projects, case studies, and open-source contributions.<br><span style='font-size: 0.9rem; color: #666;'>(Azure, Front-end, and TCC code)</span>">
                     Acesse todos os meus projetos, estudos de caso e contribuições open-source.
                     <br>
                     <span style="font-size: 0.9rem; color: #666;">(Códigos de Azure, Front-end e TCC)</span>
                 </p>
                 
-                <a href="https://github.com/MatheusAraujoMacedo" target="_blank" class="github-btn">
+                <a href="https://github.com/MatheusAraujoMacedo" target="_blank" class="github-btn" data-en="View Full Profile <i class='fas fa-arrow-right'></i>">
                     Ver Perfil Completo <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
@@ -442,7 +444,7 @@
 
     <section id="contact-form-section">
         <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Vamos <span>Conversar</span></h2>
+            <h2 class="section-title" data-aos="fade-up" data-en="Let's <span>Talk</span>">Vamos <span>Conversar</span></h2>
             
             <div class="contact-wrapper" data-aos="zoom-in">
                 
@@ -450,20 +452,20 @@
                     
                     <div class="input-group">
                         <input type="text" name="name" required placeholder=" ">
-                        <label>Seu Nome</label>
+                        <label data-en="Your Name">Seu Nome</label>
                     </div>
 
                     <div class="input-group">
                         <input type="email" name="email" required placeholder=" ">
-                        <label>Seu E-mail</label>
+                        <label data-en="Your Email">Seu E-mail</label>
                     </div>
 
                     <div class="input-group">
                         <textarea name="message" rows="5" required placeholder=" "></textarea>
-                        <label>Sua Mensagem</label>
+                        <label data-en="Your Message">Sua Mensagem</label>
                     </div>
 
-                    <button type="submit" class="btn submit-btn">
+                    <button type="submit" class="btn submit-btn" data-en="Send Message <i class='fas fa-paper-plane'></i>">
                         Enviar Mensagem <i class="fas fa-paper-plane"></i>
                     </button>
                 </form>
@@ -471,13 +473,13 @@
         </div>
     </section>
    
-<p class="glow-text">
+<p class="glow-text" data-en="<i class='fas fa-lock'></i> Your data is protected">
     <i class="fas fa-lock"></i> Seus dados estão protegidos
 </p>
 
     <footer id="contact">
         <div class="container">
-            <h2 class="section-title" style="margin-bottom: 2rem; font-size: 1.5rem;">Vamos <span>Conversar?</span></h2>
+            <h2 class="section-title" style="margin-bottom: 2rem; font-size: 1.5rem;" data-en="Let's <span>Talk?</span>">Vamos <span>Conversar?</span></h2>
             
             <div class="contact-info">
                 <div class="contact-item">
@@ -507,7 +509,7 @@
             <div id="modal-techs" class="modal-tech-list">
                 </div>
             <br>
-            <a href="#" id="modal-link" target="_blank" class="btn" style="width: 100%; text-align: center;">Ver no GitHub</a>
+            <a href="#" id="modal-link" target="_blank" class="btn" style="width: 100%; text-align: center;" data-en="View on GitHub">Ver no GitHub</a>
         </div>
     </div>
 
@@ -589,12 +591,17 @@
         const closeModal = document.querySelector('.close-modal');
 
         
-        function openModal(title, description, link) {
+        function openModal(trigger) {
+            const isEnglish = currentLang === 'en';
+            const title = isEnglish ? trigger.dataset.enTitle : trigger.dataset.title;
+            const description = isEnglish ? trigger.dataset.enDesc : trigger.dataset.desc;
+            const link = trigger.dataset.link;
+
             modalTitle.innerText = title;
             modalDesc.innerText = description;
-            modalLink.href = link; 
-            
-            modal.classList.add('show'); 
+            modalLink.href = link;
+
+            modal.classList.add('show');
         }
 
         
@@ -608,10 +615,21 @@
                 modal.classList.remove('show');
             }
         }
-    let hackInterval;
+let hackInterval;
 let currentLang = 'pt';
+const mobileMenuButton = document.getElementById('mobile-menu');
+const mobileNavList = document.getElementById('mobile-nav-list');
 
-// --- Lógica da Brincadeira (Hack) ---
+function toggleMenu() {
+    if (!mobileNavList) return;
+    mobileNavList.classList.toggle('active');
+}
+
+if (mobileMenuButton) {
+    mobileMenuButton.addEventListener('click', toggleMenu);
+}
+
+
 function triggerHack() {
     const screen = document.getElementById('hack-screen');
     const percentEl = document.getElementById('hack-percent');
@@ -637,7 +655,7 @@ function stopHack() {
     document.getElementById('hack-screen').style.display = 'none';
 }
 
-// --- Lógica de Tradução ---
+
 function toggleLanguage() {
     const elements = document.querySelectorAll('[data-en]');
     const btn = document.getElementById('lang-btn');
@@ -645,15 +663,15 @@ function toggleLanguage() {
 
     if (currentLang === 'pt') {
         elements.forEach(el => {
-            el.setAttribute('data-pt', el.innerHTML); // Salva o PT
-            el.innerHTML = el.getAttribute('data-en'); // Coloca o EN
+            el.setAttribute('data-pt', el.innerHTML); 
+            el.innerHTML = el.getAttribute('data-en'); 
         });
         if(btn) btn.innerHTML = '<i class="fas fa-globe"></i> PT';
         if(btnMobile) btnMobile.innerHTML = 'Português (PT)';
         currentLang = 'en';
     } else {
         elements.forEach(el => {
-            el.innerHTML = el.getAttribute('data-pt'); // Restaura o PT
+            el.innerHTML = el.getAttribute('data-pt'); 
         });
         if(btn) btn.innerHTML = '<i class="fas fa-globe"></i> EN';
         if(btnMobile) btnMobile.innerHTML = 'Inglês (EN)';
