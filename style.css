@@ -10,6 +10,7 @@
         body { background-color: var(--bg-color); color: var(--text-primary); font-family: 'Inter', sans-serif; overflow-x: hidden; line-height: 1.6; }
         h1, h2, h3, .code-font { font-family: 'Fira Code', monospace; }
         a { text-decoration: none; color: inherit; transition: 0.3s; }
+        img { max-width: 100%; height: auto; display: block; }
 
         .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
         section { padding: 80px 0; }
@@ -17,7 +18,7 @@
         .section-title span { color: var(--accent); }
 
         
-        .hero { height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; background: radial-gradient(circle at center, rgba(0, 127, 255, 0.05) 0%, rgba(10, 10, 10, 1) 70%); }
+        .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; background: radial-gradient(circle at center, rgba(0, 127, 255, 0.05) 0%, rgba(10, 10, 10, 1) 70%); }
         .hero h1 { font-size: 3rem; margin-bottom: 1rem; }
         
         #hacker-name {
@@ -29,7 +30,7 @@
 
         
         .skills-wrapper { overflow: hidden; white-space: nowrap; padding: 20px 0; background: var(--card-bg); border-top: 1px solid #333; border-bottom: 1px solid #333; }
-        .skills-track { display: inline-block; animation: scroll 20s linear infinite; }
+        .skills-track { display: inline-flex; align-items: center; gap: 0; animation: scroll 20s linear infinite; }
         .skill-item { display: inline-block; margin: 0 30px; font-size: 1.5rem; color: var(--text-secondary); font-family: 'Fira Code', monospace; }
         .skill-item i { margin-right: 10px; color: var(--accent); }
         @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
@@ -59,7 +60,12 @@
         .social-links a:hover { color: var(--accent); transform: scale(1.1); display: inline-block; }
         .copy { margin-top: 40px; color: #555; font-size: 0.9rem; }
 
-        @media (max-width: 768px) { .hero h1 { font-size: 2rem; } .about-content, .project-card { grid-template-columns: 1fr; } .contact-item { display: block; margin: 10px 0; } }
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .about-content, .project-card { grid-template-columns: 1fr; }
+            .contact-item { display: block; margin: 10px 0; }
+            .project-card { padding: 24px; }
+        }
 
         
     .timeline {
@@ -842,4 +848,18 @@
     .about-stats {
         grid-template-columns: 1fr; 
     }
+}
+
+@media (max-width: 600px) {
+    section { padding: 64px 0; }
+    .container { padding: 0 16px; }
+    .hero { padding-top: 90px; padding-bottom: 40px; }
+    .hero p { font-size: 0.95rem; }
+    .btn { width: 100%; max-width: 320px; }
+    .hero .btn { margin-left: 0; display: inline-flex; justify-content: center; }
+    .hero .btn + .btn { margin-top: 12px; }
+    .skill-item { font-size: 1.1rem; margin: 0 20px; }
+    .project-image { height: 160px; }
+    .contact-wrapper { padding: 28px; }
+    .modal-content { padding: 28px; }
 }
