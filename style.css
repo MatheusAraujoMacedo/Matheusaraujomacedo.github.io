@@ -723,50 +723,79 @@
 
 .tech-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
     gap: 25px;
     margin-top: 40px;
 }
 
-.tech-card {
+.flip-card {
+    perspective: 1200px;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    min-height: 170px;
+    transition: transform 0.6s ease;
+    transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner,
+.flip-card:focus-within .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+    position: absolute;
+    inset: 0;
     background: var(--card-bg);
     border: 1px solid rgba(255, 255, 255, 0.05);
-    padding: 30px 20px;
     border-radius: 12px;
+    padding: 24px 18px;
     text-align: center;
-    transition: all 0.4s ease;
-    cursor: default;
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.tech-card i {
+.flip-card-front i {
     font-size: 2.5rem;
-    margin-bottom: 15px;
-    transition: transform 0.3s ease;
-    filter: grayscale(100%); 
+    margin-bottom: 12px;
+    filter: grayscale(100%);
+    transition: transform 0.3s ease, filter 0.3s ease;
 }
 
-.tech-card p {
-    font-size: 0.9rem;
+.flip-card-front p {
+    font-size: 0.95rem;
     color: var(--text-secondary);
-    font-weight: 500;
+    font-weight: 600;
+    letter-spacing: 0.2px;
 }
 
+.flip-card-back {
+    transform: rotateY(180deg);
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
 
-.tech-card:hover {
+.flip-card:hover .flip-card-front,
+.flip-card:focus-within .flip-card-front,
+.flip-card:hover .flip-card-back,
+.flip-card:focus-within .flip-card-back {
     border-color: var(--accent);
-    transform: translateY(-10px);
     box-shadow: 0 10px 20px rgba(0, 127, 255, 0.2);
 }
 
-.tech-card:hover i {
+.flip-card:hover .flip-card-front i,
+.flip-card:focus-within .flip-card-front i {
     filter: grayscale(0%);
-    transform: scale(1.1);
-   
-    filter: drop-shadow(0 0 8px currentColor); 
-}
-
-.tech-card:hover p {
-    color: #fff;
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 8px currentColor);
 }
 .about-content { 
     display: grid; 
@@ -948,11 +977,15 @@ body.white-contrast .service-card:hover {
     background: #f0f0f0;
 }
 
-body.white-contrast .tech-card {
+body.white-contrast .flip-card-front,
+body.white-contrast .flip-card-back {
     border-color: rgba(0, 0, 0, 0.08);
 }
 
-body.white-contrast .tech-card:hover {
+body.white-contrast .flip-card:hover .flip-card-front,
+body.white-contrast .flip-card:focus-within .flip-card-front,
+body.white-contrast .flip-card:hover .flip-card-back,
+body.white-contrast .flip-card:focus-within .flip-card-back {
     box-shadow: 0 10px 20px rgba(11, 95, 255, 0.15);
 }
 
@@ -977,8 +1010,8 @@ body.white-contrast .input-group label {
     color: #666;
 }
 
-body.white-contrast .tech-card:hover p {
-    color: #111;
+body.white-contrast .flip-card-front p {
+    color: var(--text-secondary);
 }
 
 body.white-contrast .copy {
