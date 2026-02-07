@@ -92,6 +92,17 @@
             max-width: 65ch;
         }
         .about-text p + p { margin-top: 12px; }
+        .hero-value {
+            max-width: 52ch;
+            margin: 10px auto 6px;
+            color: var(--text-secondary);
+        }
+        .section-cta {
+            display: flex;
+            justify-content: center;
+            margin-top: 28px;
+        }
+        .section-cta a:hover { text-decoration: none; }
 
         #highlights { padding-top: 40px; }
         .highlights-grid {
@@ -1112,9 +1123,15 @@
 
 .tech-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    grid-template-columns: repeat(3, minmax(180px, 1fr));
     gap: 25px;
     margin-top: 40px;
+}
+@media (max-width: 900px) {
+    .tech-grid { grid-template-columns: repeat(2, minmax(180px, 1fr)); }
+}
+@media (max-width: 600px) {
+    .tech-grid { grid-template-columns: 1fr; }
 }
 
 .flip-card {
@@ -1491,3 +1508,9 @@ body.white-contrast .image-box {
 body.white-contrast .image-box:hover {
     box-shadow: 0 0 0 2px var(--accent), 0 0 30px rgba(10, 78, 212, 0.3);
 }
+        .project-result {
+            margin-top: 10px;
+            color: var(--accent);
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem;
+        }
