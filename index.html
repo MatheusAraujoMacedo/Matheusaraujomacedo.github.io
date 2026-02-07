@@ -22,11 +22,11 @@
 
     <div id="loader">
         <div class="terminal-loader">
-            <div class="text">
-                <span class="prefix">&gt;</span> Inicializando sistema...<br>
-                <span class="prefix">&gt;</span> Carregando módulos Azure...<br>
-                <span class="prefix">&gt;</span> Verificando segurança...<br>
-                <span class="prefix" style="color: var(--accent);">&gt;</span> <span style="color: #fff;">Acesso Liberado.</span>
+            <div class="text boot-seq">
+                <div class="boot-line"><span class="prefix">&gt;</span> Inicializando sistema...</div>
+                <div class="boot-line"><span class="prefix">&gt;</span> Carregando módulos Azure...</div>
+                <div class="boot-line"><span class="prefix">&gt;</span> Verificando segurança...</div>
+                <div class="boot-line"><span class="prefix" style="color: var(--accent);">&gt;</span> <span style="color: #fff;">Acesso Liberado.</span></div>
             </div>
         </div>
     </div>
@@ -35,7 +35,7 @@
         <nav class="container navbar">
            <div class="logo">
     <a href="index.html" style="text-decoration: none; color: inherit;">
-        &lt;Matheus<span style="color: var(--accent)">.Dev</span>/&gt;
+        &lt;Matheus<span style="color: var(--accent)">.Dev</span>/&gt;<span class="logo-cursor" aria-hidden="true">_</span>
     </a>
 </div>
             
@@ -66,9 +66,11 @@
     </header>
 
     <section class="hero">
+        <div class="hero-parallax" aria-hidden="true"></div>
         <div class="container" data-aos="zoom-in">
             <p class="code-font">&lt;Hello World /&gt;</p>
             <h1 data-en="I am <span class='code-font'>Matheus Araújo</span>">Eu sou <span id="hacker-name" class="code-font">Matheus Araújo</span></h1>
+            <p class="typewriter" data-en="> boot: portfolio v2.0 | status: online" data-pt="> boot: portfolio v2.0 | status: online"></p>
             <div class="availability-badge" data-en="Open to opportunities">Aberto a oportunidades</div>
             <p data-en="Information Systems | Back-end | Cloud Computing">Sistemas de Informação | Back-end | Cloud Computing</p>
             <a href="#about" class="btn btn-primary" data-en="Learn More">Conhecer Mais</a>
@@ -80,19 +82,65 @@
 
     <section id="highlights">
         <div class="container">
-            <h2 class="section-title" data-en="Quick <span>Highlights</span>">Destaques <span>Rápidos</span></h2>
+            <h2 class="section-title scan-title" data-en="Quick <span>Highlights</span>">Destaques <span>Rápidos</span></h2>
             <div class="highlights-grid">
-                <div class="highlight-card">
+                <div class="highlight-card" data-aos="fade-up">
                     <h3 data-en="Focus">Foco</h3>
                     <p data-en="Back-end development with secure and scalable solutions.">Desenvolvimento back-end com soluções seguras e escaláveis.</p>
                 </div>
-                <div class="highlight-card">
+                <div class="highlight-card" data-aos="fade-up" data-aos-delay="100">
                     <h3 data-en="Stack">Stack</h3>
                     <p data-en="SQL/MySQL, JavaScript, Azure, HTML/CSS.">SQL/MySQL, JavaScript, Azure, HTML/CSS.</p>
                 </div>
-                <div class="highlight-card">
+                <div class="highlight-card" data-aos="fade-up" data-aos-delay="200">
                     <h3 data-en="Goal">Objetivo</h3>
                     <p data-en="Contribute to real projects and grow fast with the team.">Contribuir em projetos reais e crescer rápido com o time.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="impact">
+        <div class="container">
+            <h2 class="section-title scan-title" data-en="Impact <span>Snapshot</span>">Impacto <span>Em Números</span></h2>
+            <div class="impact-grid">
+                <div class="impact-card" data-aos="fade-up">
+                    <h3 data-en="Projects Delivered">Projetos Entregues</h3>
+                    <p class="impact-number" data-target="2" data-suffix="+">0+</p>
+                    <p data-en="Academic and personal projects.">Projetos acadêmicos e pessoais.</p>
+                </div>
+                <div class="impact-card" data-aos="fade-up" data-aos-delay="100">
+                    <h3 data-en="Event Presentation">Apresentação em Evento</h3>
+                    <p class="impact-number" data-target="1">0</p>
+                    <p data-en="Criatech (TOTVS) capstone presentation.">Apresentação do TCC no Criatech (TOTVS).</p>
+                </div>
+                <div class="impact-card" data-aos="fade-up" data-aos-delay="200">
+                    <h3 data-en="Azure Certifications">Certificações Azure</h3>
+                    <p class="impact-number" data-target="3">0</p>
+                    <p data-en="AZ-901, AZ-902, AZ-903.">AZ-901, AZ-902, AZ-903.</p>
+                </div>
+            </div>
+            <div class="impact-bars" data-aos="fade-up" data-aos-delay="200">
+                <div class="impact-bar">
+                    <div class="bar-header">
+                        <span>SQL/MySQL</span>
+                        <span class="bar-value">0%</span>
+                    </div>
+                    <div class="bar-track"><div class="bar-fill" data-level="80"></div></div>
+                </div>
+                <div class="impact-bar">
+                    <div class="bar-header">
+                        <span>JavaScript</span>
+                        <span class="bar-value">0%</span>
+                    </div>
+                    <div class="bar-track"><div class="bar-fill" data-level="75"></div></div>
+                </div>
+                <div class="impact-bar">
+                    <div class="bar-header">
+                        <span>Azure</span>
+                        <span class="bar-value">0%</span>
+                    </div>
+                    <div class="bar-track"><div class="bar-fill" data-level="70"></div></div>
                 </div>
             </div>
         </div>
@@ -121,15 +169,17 @@
 
     <section id="about">
         <div class="container">
-            <h2 class="section-title" data-en="About <span>Me</span>">Sobre <span>Mim</span></h2>
+            <h2 class="section-title scan-title" data-en="About <span>Me</span>">Sobre <span>Mim</span></h2>
             
             <div class="about-content">
                 
-                <div class="about-image-container" data-aos="fade-right">
+                <div class="about-image-container orbit-wrap" data-aos="fade-right">
                     <div class="image-box">
                         <img src="matheusaraujo.jpeg" alt="Foto de Matheus Araújo">
                         <div class="image-overlay"></div>
                     </div>
+                    <div class="orbit-dot orbit-dot-1"></div>
+                    <div class="orbit-dot orbit-dot-2"></div>
                 </div>
 
                 <div class="about-details" data-aos="fade-left">
@@ -598,6 +648,7 @@
     <a href="#" class="back-to-top" id="backToTop">
         <i class="fas fa-arrow-up"></i>
     </a>
+    <div class="cursor-glow" aria-hidden="true"></div>
 
     <script>
         
@@ -611,6 +662,14 @@
             }
         });
     </script>
+    <script>
+        const heroParallax = document.querySelector('.hero-parallax');
+        window.addEventListener('scroll', () => {
+            if (!heroParallax) return;
+            const offset = window.scrollY * 0.2;
+            heroParallax.style.transform = `translateY(${offset}px)`;
+        }, { passive: true });
+    </script>
     <a href="https://wa.me/5511934069176?text=Olá Matheus, vi seu portfólio e gostaria de conversar!" 
        class="whatsapp-float" 
        target="_blank">
@@ -623,7 +682,7 @@
             
             setTimeout(function() {
                 loader.classList.add("loader-hidden");
-            }, 1000); 
+            }, 1800); 
         });
     </script>
     <script>
@@ -728,6 +787,7 @@ function toggleLanguage() {
         if(btnMobile) btnMobile.innerHTML = 'Inglês (EN)';
         currentLang = 'pt';
     }
+    startTypewriter();
     updateToggleStates();
 }
 
@@ -830,6 +890,87 @@ updateToggleStates();
     </script>
 
     <script>
+        const impactSection = document.getElementById('impact');
+        const impactNumbers = Array.from(document.querySelectorAll('.impact-number'));
+        const impactBars = Array.from(document.querySelectorAll('.bar-fill'));
+        const prefersReducedMotionCounters = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        function animateCounter(el) {
+            const target = Number(el.dataset.target || 0);
+            const suffix = el.dataset.suffix || '';
+            if (Number.isNaN(target)) return;
+            const duration = 1200;
+            const startTime = performance.now();
+
+            function tick(now) {
+                const progress = Math.min((now - startTime) / duration, 1);
+                const value = Math.round(target * progress);
+                el.textContent = `${value}${suffix}`;
+                if (progress < 1) requestAnimationFrame(tick);
+            }
+            requestAnimationFrame(tick);
+        }
+
+        if (impactSection && impactNumbers.length) {
+            if (prefersReducedMotionCounters) {
+                impactNumbers.forEach(el => {
+                    const suffix = el.dataset.suffix || '';
+                    el.textContent = `${el.dataset.target || 0}${suffix}`;
+                });
+                impactBars.forEach(bar => {
+                    const level = Number(bar.dataset.level || 0);
+                    bar.style.width = `${level}%`;
+                    const valueEl = bar.closest('.impact-bar')?.querySelector('.bar-value');
+                    if (valueEl) valueEl.textContent = `${level}%`;
+                });
+            } else {
+                const impactObserver = new IntersectionObserver((entries, obs) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            impactNumbers.forEach(animateCounter);
+                            impactBars.forEach(bar => {
+                                const level = Number(bar.dataset.level || 0);
+                                bar.style.width = `${level}%`;
+                                const valueEl = bar.closest('.impact-bar')?.querySelector('.bar-value');
+                                if (valueEl) valueEl.textContent = `${level}%`;
+                            });
+                            obs.disconnect();
+                        }
+                    });
+                }, { threshold: 0.4 });
+                impactObserver.observe(impactSection);
+            }
+        }
+    </script>
+
+    <script>
+        const typewriterEl = document.querySelector('.typewriter');
+        function startTypewriter() {
+            if (!typewriterEl) return;
+            const text = currentLang === 'en' ? typewriterEl.getAttribute('data-en') : typewriterEl.getAttribute('data-pt');
+            if (!text) return;
+            typewriterEl.textContent = '';
+            let i = 0;
+            const speed = 20;
+            const typeInterval = setInterval(() => {
+                typewriterEl.textContent += text.charAt(i);
+                i += 1;
+                if (i >= text.length) clearInterval(typeInterval);
+            }, speed);
+        }
+        startTypewriter();
+    </script>
+    <script>
+        const glow = document.querySelector('.cursor-glow');
+        const prefersReducedMotionGlow = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (glow && !prefersReducedMotionGlow) {
+            window.addEventListener('mousemove', (e) => {
+                glow.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+            });
+        }
+    </script>
+
+    <script>
         const sections = Array.from(document.querySelectorAll('section[id]'));
         const navLinks = Array.from(document.querySelectorAll('.nav-links a[href^=\"#\"]'));
         const mobileLinks = Array.from(document.querySelectorAll('#mobile-nav-list a[href^=\"#\"]'));
@@ -852,6 +993,19 @@ updateToggleStates();
             const firstSection = sections[0]?.id;
             if (firstSection) setActiveLink(firstSection);
         });
+    </script>
+
+    <script>
+        const sectionTitles = Array.from(document.querySelectorAll('.section-title'));
+        sectionTitles.forEach(title => title.classList.add('scan-title'));
+        const titleObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('scan-active');
+                }
+            });
+        }, { threshold: 0.6 });
+        sectionTitles.forEach(title => titleObserver.observe(title));
     </script>
 
 <div vw class="enabled">
