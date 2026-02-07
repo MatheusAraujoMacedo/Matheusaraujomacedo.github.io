@@ -97,6 +97,17 @@
             margin: 10px auto 6px;
             color: var(--text-secondary);
         }
+        .hero-tldr {
+            list-style: none;
+            padding: 0;
+            margin: 10px auto 14px;
+            max-width: 52ch;
+            color: var(--text-secondary);
+            display: grid;
+            gap: 6px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem;
+        }
         .section-cta {
             display: flex;
             justify-content: center;
@@ -221,6 +232,45 @@
             transform: translateX(220%) rotate(20deg);
             opacity: 1;
         }
+
+@media (max-width: 768px) {
+    .project-card:hover,
+    .cert-card:hover,
+    .service-card:hover,
+    .github-native-card:hover,
+    .timeline-content:hover,
+    .stat-box:hover,
+    .contact-wrapper:hover,
+    .modal-content:hover,
+    .highlight-card:hover,
+    .impact-card:hover {
+        transform: none;
+        border-color: inherit;
+        box-shadow: none;
+    }
+    .project-card:hover::after,
+    .cert-card:hover::after,
+    .service-card:hover::after,
+    .github-native-card:hover::after,
+    .timeline-content:hover::after,
+    .stat-box:hover::after,
+    .contact-wrapper:hover::after,
+    .modal-content:hover::after,
+    .highlight-card:hover::after,
+    .impact-card:hover::after {
+        opacity: 0;
+        transform: rotate(20deg);
+    }
+    .scroll-animate {
+        transform: translateY(-8px) scale(1.08);
+        border-color: var(--accent);
+        box-shadow: 0 22px 46px rgba(0, 127, 255, 0.28);
+    }
+    .scroll-animate::after {
+        transform: translateX(220%) rotate(20deg);
+        opacity: 1;
+    }
+}
         .impact-card h3 {
             font-family: 'Fira Code', monospace;
             margin-bottom: 8px;
@@ -1349,6 +1399,13 @@
     }
     .cursor-glow { display: none; }
 }
+body.low-motion * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+}
+body.low-motion .cursor-glow { display: none; }
 
 body.white-contrast {
     --bg-color: #f0f2f6;
