@@ -528,6 +528,11 @@
         font-size: 0.95rem;
         transition: 0.3s;
         white-space: nowrap;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 10px;
+        border-radius: 6px;
     }
 
     .nav-links a:hover {
