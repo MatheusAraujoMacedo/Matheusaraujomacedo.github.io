@@ -5,58 +5,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Matheus Araújo | Portfólio</title>
+    <meta name="description" content="Portfólio de Matheus Araújo Macedo — Desenvolvedor Back-end, Cloud Azure e SQL.">
 
     <link rel="stylesheet" href="style.css">
     <link rel="icon"
         href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💻</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;600&display=swap"
-        rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
-
 </head>
 
 <body>
     <a class="skip-link" href="#about" data-en="Skip to content">Pular para conteúdo</a>
 
-    <div id="loader">
-        <div class="terminal-loader">
-            <div class="text boot-seq">
-                <div class="boot-line"><span class="prefix">&gt;</span> Inicializando sistema...</div>
-                <div class="boot-line"><span class="prefix">&gt;</span> Carregando módulos Azure...</div>
-                <div class="boot-line"><span class="prefix">&gt;</span> Verificando segurança...</div>
-                <div class="boot-line"><span class="prefix" style="color: var(--accent);">&gt;</span> <span
-                        style="color: #fff;">Acesso Liberado.</span></div>
-            </div>
-        </div>
-    </div>
-
+    <!-- Header -->
     <header id="header">
         <nav class="container navbar">
             <div class="logo">
-                <a href="index.html" style="text-decoration: none; color: inherit;">
-                    &lt;Matheus<span style="color: var(--accent)">.Dev</span>/&gt;<span class="logo-cursor"
-                        aria-hidden="true">_</span>
-                </a>
+                <a href="index.html">&lt;Matheus<span class="accent">.Dev</span>/&gt;</a>
             </div>
 
             <ul class="nav-links">
                 <li><a href="#about" data-en="About">Sobre</a></li>
-                <li><a href="#journey" data-en="Journey">Jornada</a></li>
+                <li><a href="#stack" data-en="Stack">Stack</a></li>
                 <li><a href="#projects" data-en="Projects">Projetos</a></li>
+                <li><a href="#journey" data-en="Journey">Jornada</a></li>
                 <li><a href="#certs" data-en="Certifications">Certificações</a></li>
                 <li><a href="javascript:void(0)" onclick="toggleLanguage()" id="lang-btn"
                         aria-label="Toggle Language"><i class="fas fa-globe"></i> EN</a></li>
                 <li><a href="javascript:void(0)" onclick="toggleContrast()" id="contrast-btn"
                         data-en="<i class='fas fa-adjust'></i> Contrast" aria-label="Toggle Contrast"><i
                             class="fas fa-adjust"></i> Contraste</a></li>
-                <li><a href="#contact-form-section" class="nav-btn" data-en="Contact">Contato</a></li>
+                <li><a href="#contact" class="nav-btn" data-en="Contact">Contato</a></li>
             </ul>
 
             <div class="menu-toggle" id="mobile-menu">
@@ -66,370 +47,255 @@
 
         <div class="mobile-nav" id="mobile-nav-list">
             <a href="#about" onclick="toggleMenu()" data-en="About">Sobre</a>
-            <a href="#journey" onclick="toggleMenu()" data-en="Journey">Jornada</a>
+            <a href="#stack" onclick="toggleMenu()" data-en="Stack">Stack</a>
             <a href="#projects" onclick="toggleMenu()" data-en="Projects">Projetos</a>
+            <a href="#journey" onclick="toggleMenu()" data-en="Journey">Jornada</a>
             <a href="#certs" onclick="toggleMenu()" data-en="Certifications">Certificações</a>
             <a href="javascript:void(0)" onclick="toggleLanguage(); toggleMenu();" id="lang-btn-mobile">Inglês (EN)</a>
             <a href="javascript:void(0)" onclick="toggleContrast(); toggleMenu();" id="contrast-btn-mobile"
                 data-en="Contrast">Contraste</a>
-            <a href="#contact-form-section" onclick="toggleMenu()" data-en="Contact">Contato</a>
+            <a href="#contact" onclick="toggleMenu()" data-en="Contact">Contato</a>
         </div>
     </header>
 
+    <!-- Hero -->
     <section class="hero">
-        <div class="hero-parallax" aria-hidden="true"></div>
-        <div class="container" data-aos="zoom-in">
-            <p class="code-font">&lt;Hello World /&gt;</p>
-            <h1 data-en="I am <span class='code-font'>Matheus Araújo</span>">Eu sou <span id="hacker-name"
-                    class="code-font" onmouseover="startHackerEffect()">Matheus Araújo</span></h1>
-            <p class="typewriter" data-en="> boot: portfolio v2.0 | status: online"
-                data-pt="> boot: portfolio v2.0 | status: online"></p>
-            <p class="hero-value"
-                data-en="I build secure, scalable back-end solutions and cloud foundations for reliable projects.">Eu
-                construo soluções back-end seguras e escaláveis, com base em cloud para projetos confiáveis.</p>
-            <ul class="hero-tldr">
-                <li data-en="Focus: Back-end & Cloud">Foco: Back-end & Cloud</li>
-                <li data-en="Stack: SQL/MySQL, JS, Azure">Stack: SQL/MySQL, JS, Azure</li>
-                <li data-en="Goal: Reliable solutions">Objetivo: soluções confiáveis</li>
-            </ul>
-            <div class="availability-badge" data-en="Open to opportunities">Aberto a oportunidades</div>
-            <p data-en="Information Systems | Back-end | Cloud Computing">Sistemas de Informação | Back-end | Cloud
-                Computing</p>
-            <a href="#about" class="btn btn-primary" data-en="Learn More">Conhecer Mais</a>
-            <a href="Curriculo_Matheus_Araujo_Macedo.pdf" target="_blank" class="btn btn-secondary"
-                data-en="<i class='fas fa-download'></i> Download CV">
-                <i class="fas fa-download"></i> Baixar CV
-            </a>
-        </div>
-    </section>
-
-    <section id="highlights">
-        <div class="container">
-            <h2 class="section-title scan-title" data-en="Quick <span>Highlights</span>">Destaques <span>Rápidos</span>
-            </h2>
-            <div class="highlights-grid">
-                <div class="highlight-card" data-aos="fade-up">
-                    <h3 data-en="Focus">Foco</h3>
-                    <p data-en="Back-end development with secure and scalable solutions.">Desenvolvimento back-end com
-                        soluções seguras e escaláveis.</p>
+        <div class="container hero-content">
+            <div class="hero-text">
+                <p class="hero-greeting" data-en="Hello, I'm">Olá, eu sou</p>
+                <h1>Matheus Araújo<span class="accent">.</span></h1>
+                <p class="hero-role" data-en="Back-end Developer & Cloud Computing">Desenvolvedor Back-end & Cloud
+                    Computing</p>
+                <p class="hero-desc"
+                    data-en="I build secure, scalable solutions with SQL, JavaScript and Microsoft Azure.">
+                    Eu construo soluções seguras e escaláveis com SQL, JavaScript e Microsoft Azure.</p>
+                <div class="hero-badges">
+                    <span class="badge" data-en="Open to opportunities">Aberto a oportunidades</span>
+                    <span class="badge badge-outline" data-en="Information Systems">Sistemas de Informação</span>
                 </div>
-                <div class="highlight-card" data-aos="fade-up" data-aos-delay="100">
-                    <h3 data-en="Stack">Stack</h3>
-                    <p data-en="SQL/MySQL, JavaScript, Azure, HTML/CSS.">SQL/MySQL, JavaScript, Azure, HTML/CSS.</p>
+                <div class="hero-actions">
+                    <a href="Curriculo_Matheus_Araujo_Macedo.pdf" target="_blank" class="btn btn-primary"
+                        data-en="<i class='fas fa-download'></i> Download CV">
+                        <i class="fas fa-download"></i> Baixar CV
+                    </a>
+                    <a href="#contact" class="btn btn-secondary" data-en="Contact Me">Falar Comigo</a>
                 </div>
-                <div class="highlight-card" data-aos="fade-up" data-aos-delay="200">
-                    <h3 data-en="Goal">Objetivo</h3>
-                    <p data-en="Contribute to real projects and grow fast with the team.">Contribuir em projetos reais e
-                        crescer rápido com o time.</p>
+            </div>
+            <div class="hero-image-wrapper">
+                <div class="hero-image parallax-element" data-speed="0.08">
+                    <img src="matheusaraujo.jpeg" alt="Foto de Matheus Araújo">
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="impact">
-        <div class="container">
-            <h2 class="section-title scan-title" data-en="Impact <span>Snapshot</span>">Impacto <span>Em Números</span>
-            </h2>
-            <div class="impact-grid">
-                <div class="impact-card" data-aos="fade-up">
-                    <h3 data-en="Projects Delivered">Projetos Entregues</h3>
-                    <p class="impact-number" data-target="2" data-suffix="+">0+</p>
-                    <p data-en="Academic and personal projects.">Projetos acadêmicos e pessoais.</p>
-                </div>
-                <div class="impact-card" data-aos="fade-up" data-aos-delay="100">
-                    <h3 data-en="Event Presentation">Apresentação em Evento</h3>
-                    <p class="impact-number" data-target="1">0</p>
-                    <p data-en="Criatech (TOTVS) capstone presentation.">Apresentação do TCC no Criatech (TOTVS).</p>
-                </div>
-                <div class="impact-card" data-aos="fade-up" data-aos-delay="200">
-                    <h3 data-en="Azure Certifications">Certificações Azure</h3>
-                    <p class="impact-number" data-target="3">0</p>
-                    <p data-en="AZ-901, AZ-902, AZ-903.">AZ-901, AZ-902, AZ-903.</p>
-                </div>
-            </div>
-            <div class="impact-bars" data-aos="fade-up" data-aos-delay="200">
-                <div class="impact-bar">
-                    <div class="bar-header">
-                        <span>SQL/MySQL</span>
-                        <span class="bar-value">0%</span>
-                    </div>
-                    <div class="bar-track">
-                        <div class="bar-fill" data-level="80"></div>
-                    </div>
-                </div>
-                <div class="impact-bar">
-                    <div class="bar-header">
-                        <span>JavaScript</span>
-                        <span class="bar-value">0%</span>
-                    </div>
-                    <div class="bar-track">
-                        <div class="bar-fill" data-level="75"></div>
-                    </div>
-                </div>
-                <div class="impact-bar">
-                    <div class="bar-header">
-                        <span>Azure</span>
-                        <span class="bar-value">0%</span>
-                    </div>
-                    <div class="bar-track">
-                        <div class="bar-fill" data-level="70"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <div class="skills-wrapper">
-        <div class="skills-track">
-            <span class="skill-item"><i class="fab fa-microsoft"></i>Azure</span>
-            <span class="skill-item"><i class="fas fa-server"></i>Back-end</span>
-            <span class="skill-item"><i class="fas fa-shield-alt"></i>Cybersecurity</span>
-            <span class="skill-item"><i class="fab fa-html5"></i>HTML5</span>
-            <span class="skill-item"><i class="fab fa-css3-alt"></i>CSS3</span>
-            <span class="skill-item"><i class="fab fa-js"></i>JavaScript</span>
-            <span class="skill-item"><i class="fas fa-database"></i>SQL</span>
-            <span class="skill-item"><i class="fab fa-git-alt"></i>Git</span>
-            <span class="skill-item"><i class="fab fa-microsoft"></i>Azure</span>
-            <span class="skill-item"><i class="fas fa-server"></i>Back-end</span>
-            <span class="skill-item"><i class="fas fa-shield-alt"></i>Cybersecurity</span>
-            <span class="skill-item"><i class="fab fa-html5"></i>HTML5</span>
-            <span class="skill-item"><i class="fab fa-css3-alt"></i>CSS3</span>
-            <span class="skill-item"><i class="fab fa-js"></i>JavaScript</span>
-            <span class="skill-item"><i class="fas fa-database"></i>SQL</span>
-            <span class="skill-item"><i class="fab fa-git-alt"></i>Git</span>
-        </div>
-    </div>
-
+    <!-- About -->
     <section id="about">
         <div class="container">
-            <h2 class="section-title scan-title" data-en="About <span>Me</span>">Sobre <span>Mim</span></h2>
-
-            <div class="about-content">
-
-                <div class="about-image-container orbit-wrap" data-aos="fade-right">
-                    <div class="image-box">
-                        <img src="matheusaraujo.jpeg" alt="Foto de Matheus Araújo">
-                        <div class="image-overlay"></div>
-                    </div>
-                    <div class="orbit-dot orbit-dot-1"></div>
-                    <div class="orbit-dot orbit-dot-2"></div>
+            <h2 class="section-title" data-en="About <span class='accent'>Me</span>">Sobre <span
+                    class="accent">Mim</span></h2>
+            <div class="about-grid">
+                <div class="about-text reveal">
+                    <p
+                        data-en="I am Matheus Araújo Macedo, an Information Systems student passionate about technology. My focus is back-end development with secure, scalable and well-structured solutions. I have a solid foundation in Web Development (HTML, CSS, JavaScript) and earned 3 Microsoft Azure certifications. I also presented a capstone project at the Criatech event by TOTVS.">
+                        Sou o Matheus Araújo Macedo, estudante de Sistemas de Informação e apaixonado por tecnologia.
+                        Meu foco é desenvolvimento back-end com soluções seguras, escaláveis e bem estruturadas.
+                        Tenho uma base sólida em Desenvolvimento Web (HTML, CSS, JavaScript) e conquistei 3
+                        certificações Microsoft Azure. Também apresentei meu TCC no evento Criatech da TOTVS.</p>
                 </div>
-
-                <div class="about-details" data-aos="fade-left">
-                    <div class="about-text">
-                        <p
-                            data-en="I am Matheus Araújo Macedo, an Information Systems student and passionate about technology since early on. Today my focus is back-end development, with a strong interest in secure, scalable, and well-structured solutions. I like to understand how things work under the hood — from logic and databases to cloud and code organization.">
-                            Sou o Matheus Araújo Macedo, estudante de Sistemas de Informação e apaixonado por tecnologia
-                            desde cedo. Meu foco hoje é desenvolvimento back-end, com interesse em soluções seguras,
-                            escaláveis e bem estruturadas. Gosto de entender como as coisas funcionam por baixo do capô
-                            — de lógica e banco de dados até cloud e organização de código.</p>
-                        <p
-                            data-en="I built a solid foundation in Web Development (HTML, CSS, JavaScript, and React) in the IOS course. I also took part in a capstone project that was presented at TOTVS's Criatech event.">
-                            Construí uma base sólida em Desenvolvimento Web (HTML, CSS, JavaScript e React) no curso do
-                            IOS. Também participei de um TCC apresentado no evento Criatech da TOTVS.</p>
-                        <p
-                            data-en="Recently, I have been directing my studies toward a more “core” back-end path, with SQL/MySQL and cloud fundamentals (Microsoft Azure) to combine performance, security, and quality. I also have affinity with networks and hardware (assembly, upgrades, and maintenance), which gives me a broader view of the environment where applications run. My goal is to keep evolving, take part in real projects, and contribute to teams where I can learn fast and deliver value.">
-                            Recentemente, venho direcionando meus estudos para um back-end mais “raiz”, com SQL/MySQL e
-                            fundamentos de cloud (Microsoft Azure) para unir performance, segurança e qualidade. Tenho
-                            afinidade com redes e hardware (montagem, upgrades e manutenção), o que me dá uma visão mais
-                            completa do ambiente onde as aplicações rodam. Meu objetivo é evoluir como dev, participar
-                            de projetos reais e contribuir com times onde eu possa aprender rápido e entregar valor.</p>
-                    </div>
-
-                    <div class="about-stats">
-                        <div class="stat-box">
-                            <h3 data-en="<i class='fas fa-graduation-cap'></i> Education"><i
-                                    class="fas fa-graduation-cap"></i> Formação</h3>
-                            <p data-en="Studying Information Systems (Impacta)">Cursando Sistemas de Informação
-                                (Impacta)</p>
+                <div class="about-highlights reveal">
+                    <div class="highlight-item">
+                        <i class="fas fa-graduation-cap"></i>
+                        <div>
+                            <h4 data-en="Education">Formação</h4>
+                            <p data-en="Information Systems (Impacta)">Sistemas de Informação (Impacta)</p>
                         </div>
-                        <div class="stat-box">
-                            <h3 data-en="<i class='fas fa-award'></i> Highlight"><i class="fas fa-award"></i> Destaque
-                            </h3>
-                            <p data-en="TCC Presentation at Criatech event (TOTVS)">Apresentação TCC no evento Criatech
-                                (TOTVS)</p>
-
+                    </div>
+                    <div class="highlight-item">
+                        <i class="fas fa-award"></i>
+                        <div>
+                            <h4 data-en="Highlight">Destaque</h4>
+                            <p data-en="TCC at Criatech (TOTVS)">TCC no Criatech (TOTVS)</p>
+                        </div>
+                    </div>
+                    <div class="highlight-item">
+                        <i class="fas fa-certificate"></i>
+                        <div>
+                            <h4 data-en="Certifications">Certificações</h4>
+                            <p data-en="3x Microsoft Azure">3x Microsoft Azure</p>
                         </div>
                     </div>
                 </div>
-
-            </div>
-            <div class="section-cta">
-                <a href="#contact-form-section" class="btn btn-primary" data-en="Let's Talk">Vamos Conversar</a>
             </div>
         </div>
     </section>
 
-
-    <section id="tech-stack">
+    <!-- Stack -->
+    <section id="stack">
         <div class="container">
-            <h2 class="section-title" data-aos="fade-up" data-en="My <span>Stack</span>">Minha <span>Stack</span></h2>
-            <div class="tech-grid">
-                <div class="flip-card" data-aos="zoom-in">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <i class="fab fa-microsoft" style="color: #0078d4;"></i>
-                            <p>Azure</p>
-                        </div>
-                        <div class="flip-card-back">
-                            <p data-en="Cloud platform for hosting, storage, and scalable apps.">Plataforma cloud para
-                                hospedar, armazenar e escalar aplicações.</p>
-                            <span class="skill-level" data-en="Level: Intermediate">Nivel: Intermediario</span>
-                        </div>
-                    </div>
+            <h2 class="section-title" data-en="My <span class='accent'>Stack</span>">Minha <span
+                    class="accent">Stack</span></h2>
+            <div class="stack-grid">
+                <div class="stack-card reveal">
+                    <i class="fab fa-microsoft" style="color: #0078d4;"></i>
+                    <span>Azure</span>
                 </div>
-
-                <div class="flip-card" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <i class="fab fa-js" style="color: #f7df1e;"></i>
-                            <p>JavaScript</p>
-                        </div>
-                        <div class="flip-card-back">
-                            <p data-en="Language for dynamic interfaces, logic, and APIs.">Linguagem para interfaces
-                                dinâmicas, lógica e APIs.</p>
-                            <span class="skill-level" data-en="Level: Intermediate">Nivel: Intermediario</span>
-                        </div>
-                    </div>
+                <div class="stack-card reveal">
+                    <i class="fas fa-database" style="color: #00758f;"></i>
+                    <span>SQL Server</span>
                 </div>
-
-                <div class="flip-card" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <i class="fas fa-database" style="color: #00758f;"></i>
-                            <p>SQL Server</p>
-                        </div>
-                        <div class="flip-card-back">
-                            <p data-en="Relational database for structured and secure data.">Banco de dados relacional
-                                para dados estruturados e seguros.</p>
-                            <span class="skill-level" data-en="Level: Intermediate">Nivel: Intermediario</span>
-                        </div>
-                    </div>
+                <div class="stack-card reveal">
+                    <i class="fab fa-js" style="color: #f7df1e;"></i>
+                    <span>JavaScript</span>
                 </div>
-
-                <div class="flip-card" data-aos="zoom-in" data-aos-delay="300">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <i class="fab fa-docker" style="color: #2496ed;"></i>
-                            <p>DevOps</p>
-                        </div>
-                        <div class="flip-card-back">
-                            <p data-en="Automation, CI/CD, and delivery of reliable systems.">Automação, CI/CD e entrega
-                                de sistemas confiáveis.</p>
-                            <span class="skill-level" data-en="Level: Beginner">Nivel: Iniciante</span>
-                        </div>
-                    </div>
+                <div class="stack-card reveal">
+                    <i class="fab fa-python" style="color: #3776ab;"></i>
+                    <span>Python</span>
                 </div>
-
-                <div class="flip-card" data-aos="zoom-in" data-aos-delay="400">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <i class="fab fa-html5" style="color: #e34f26;"></i>
-                            <p>HTML/CSS</p>
-                        </div>
-                        <div class="flip-card-back">
-                            <p data-en="Structure and styling for modern, responsive pages.">Estrutura e estilo para
-                                páginas modernas e responsivas.</p>
-                            <span class="skill-level" data-en="Level: Intermediate">Nivel: Intermediario</span>
-                        </div>
-                    </div>
+                <div class="stack-card reveal">
+                    <i class="fab fa-html5" style="color: #e34f26;"></i>
+                    <span>HTML/CSS</span>
                 </div>
-
-                <div class="flip-card" data-aos="zoom-in" data-aos-delay="500">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <i class="fab fa-linux" style="color: #f5f5f5;"></i>
-                            <p>Linux</p>
-                        </div>
-                        <div class="flip-card-back">
-                            <p data-en="Server environment, CLI tools, and automation.">Ambiente de servidores, linha de
-                                comando e automação.</p>
-                            <span class="skill-level" data-en="Level: Beginner">Nivel: Iniciante</span>
-                        </div>
-                    </div>
+                <div class="stack-card reveal">
+                    <i class="fab fa-git-alt" style="color: #f05032;"></i>
+                    <span>Git</span>
+                </div>
+                <div class="stack-card reveal">
+                    <i class="fab fa-docker" style="color: #2496ed;"></i>
+                    <span>DevOps</span>
+                </div>
+                <div class="stack-card reveal">
+                    <i class="fab fa-linux" style="color: #fff;"></i>
+                    <span>Linux</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="services">
+    <!-- Projects -->
+    <section id="projects">
         <div class="container">
-            <h2 class="section-title" data-en="How I Can <span>Contribute</span>">Como Posso <span>Contribuir</span>
-            </h2>
+            <h2 class="section-title" data-en="My <span class='accent'>Projects</span>">Meus <span
+                    class="accent">Projetos</span></h2>
+            <div class="projects-grid">
 
-            <div class="services-grid">
-
-                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="service-icon"><i class="fas fa-laptop-code"></i></div>
-                    <h3 data-en="Web Development">Desenvolvimento Web</h3>
-                    <p
-                        data-en="Creation of institutional websites, landing pages, and modern interfaces using HTML, CSS, React, and responsiveness best practices.">
-                        Criação de sites institucionais, landing pages...</p>
+                <div class="project-card reveal">
+                    <div class="project-visual parallax-element" data-speed="0.05">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <div class="project-body">
+                        <h3 data-en="TCC Project - TOTVS/Criatech">Projeto TCC - TOTVS/Criatech</h3>
+                        <div class="tags">
+                            <span class="tag">Web Dev</span>
+                            <span class="tag">Front-end</span>
+                        </div>
+                        <p
+                            data-en="Development of the project websites presented at the Criatech event. Focus on responsive, high-impact interfaces.">
+                            Desenvolvimento dos sites do projeto apresentado no evento Criatech. Foco em interfaces
+                            responsivas e de alto impacto.</p>
+                        <button class="btn btn-sm" onclick="openModal(this)" data-title="TCC - TOTVS/Criatech"
+                            data-desc="Trabalhei no desenvolvimento Front-end para os sites do projeto apresentado no evento Cria Tech da TOTVS. O foco foi criar uma interface funcional, responsiva e com alto impacto visual."
+                            data-link="https://github.com/MatheusAraujoMacedo" data-en-title="TCC - TOTVS/Criatech"
+                            data-en-desc="I worked on the front-end development for the project websites presented at the Cria Tech event by TOTVS. The focus was on a functional, responsive interface with strong visual impact.">
+                            <span data-en="View Details">Ver Detalhes</span>
+                        </button>
+                    </div>
                 </div>
 
-                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="service-icon"><i class="fas fa-database"></i></div>
-                    <h3 data-en="Back-end & Data">Back-end & Dados</h3>
-                    <p
-                        data-en="Server logic structuring and SQL/MySQL database modeling, ensuring integrity and performance in applications.">
-                        Estruturação de lógica de servidor e modelagem de bancos de dados...</p>
+                <div class="project-card reveal">
+                    <div class="project-visual parallax-element" data-speed="0.05">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <div class="project-body">
+                        <h3 data-en="Finance Dashboard">Dashboard de Finanças</h3>
+                        <div class="tags">
+                            <span class="tag">Front-end</span>
+                            <span class="tag">Data Viz</span>
+                        </div>
+                        <p
+                            data-en="Personal finance control system with interactive interface, expense categorization, and real-time budget charts.">
+                            Sistema de controle financeiro pessoal com interface interativa, categorização de gastos e
+                            visualização gráfica de orçamento em tempo real.</p>
+                        <button class="btn btn-sm" onclick="openModal(this)" data-title="Dashboard Financeiro"
+                            data-desc="Uma aplicação SPA focada em controle de gastos. Implementei gráficos interativos com Chart.js e lógica para cálculos em tempo real."
+                            data-link="https://github.com/MatheusAraujoMacedo" data-en-title="Finance Dashboard"
+                            data-en-desc="A single-page application focused on expense tracking. I implemented interactive charts with Chart.js and array manipulation logic for real-time calculations.">
+                            <span data-en="View Details">Ver Detalhes</span>
+                        </button>
+                    </div>
                 </div>
 
-                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="service-icon"><i class="fas fa-cloud-upload-alt"></i></div>
-                    <h3 data-en="Cloud & DevOps">Cloud & DevOps</h3>
-                    <p
-                        data-en="Application of Microsoft Azure knowledge to configure secure and scalable environments, focusing on DevOps culture.">
-                        Aplicação de conhecimentos em Microsoft Azure...</p>
+                <div class="project-card reveal">
+                    <div class="project-visual parallax-element" data-speed="0.05">
+                        <i class="fas fa-wallet"></i>
+                    </div>
+                    <div class="project-body">
+                        <h3 data-en="Finance Manager">Gestor Financeiro FOHB</h3>
+                        <div class="tags">
+                            <span class="tag">Back-end</span>
+                            <span class="tag">Python</span>
+                            <span class="tag">Cloud Deploy</span>
+                        </div>
+                        <p
+                            data-en="Full-stack application for financial management using Python, Flask and PostgreSQL. Deployed to Render with secure environment variables.">
+                            Aplicação full-stack para gestão financeira utilizando Python, Flask e PostgreSQL. Deploy no
+                            Render com variáveis de ambiente para segurança.</p>
+                        <button class="btn btn-sm" onclick="openModal(this)" data-title="Gestor Financeiro FOHB"
+                            data-desc="Sistema de controle de finanças construído com Python e Flask. Utiliza PostgreSQL em produção na nuvem (Render) com rotas protegidas e deploy contínuo."
+                            data-link="https://gestor-financeiro-fohb.onrender.com/" data-en-title="Finance Manager"
+                            data-en-desc="Finance control system built with Python and Flask. Uses PostgreSQL in a cloud production environment (Render) with protected routes and continuous deployment.">
+                            <span data-en="View Details">Ver Detalhes</span>
+                        </button>
+                    </div>
                 </div>
 
             </div>
         </div>
     </section>
 
+    <!-- Journey -->
     <section id="journey">
         <div class="container">
-            <h2 class="section-title" data-en="My <span>Journey</span>">Minha <span>Jornada</span></h2>
-
+            <h2 class="section-title" data-en="My <span class='accent'>Journey</span>">Minha <span
+                    class="accent">Jornada</span></h2>
             <div class="timeline">
-
-                <div class="timeline-item left-side" data-aos="fade-right">
+                <div class="timeline-item timeline-left reveal">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-date">2026 (Atual)</div>
                     <div class="timeline-content">
+                        <span class="timeline-date">2026 (Atual)</span>
                         <h3 data-en="Degree & DevOps">Graduação & DevOps</h3>
                         <p
                             data-en="Starting Bachelor's in Information Systems at Faculdade Impacta and DevOps culture preparatory course.">
-                            Início do Bacharelado em Sistemas de Informação...</p>
+                            Início do Bacharelado em Sistemas de Informação na Faculdade Impacta e curso preparatório de
+                            cultura DevOps.</p>
                     </div>
                 </div>
-
-                <div class="timeline-item right-side" data-aos="fade-left">
+                <div class="timeline-item timeline-right reveal">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-date">2025</div>
                     <div class="timeline-content">
+                        <span class="timeline-date">2025</span>
                         <h3 data-en="Data Specialization">Especialização em Dados</h3>
                         <p
                             data-en="Focus on additional SQL and MySQL courses to strengthen back-end and data manipulation skills.">
-                            Foco em cursos adicionais de SQL e MySQL...</p>
+                            Foco em cursos adicionais de SQL e MySQL para fortalecer habilidades de back-end e
+                            manipulação de dados.</p>
                     </div>
                 </div>
-
-                <div class="timeline-item left-side" data-aos="fade-right">
+                <div class="timeline-item timeline-left reveal">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-date">2024</div>
                     <div class="timeline-content">
+                        <span class="timeline-date">2024</span>
                         <h3 data-en="Web Dev & Cria Tech">Web Dev & Cria Tech</h3>
                         <p
                             data-en="Conclusion of Web Development technical course (IOS). Highlight with TCC presentation at the Cria Tech event (TOTVS).">
-                            Conclusão do técnico em Desenvolvimento Web...</p>
+                            Conclusão do técnico em Desenvolvimento Web (IOS). Destaque com apresentação do TCC no
+                            evento Cria Tech (TOTVS).</p>
                     </div>
                 </div>
-
-                <div class="timeline-item right-side" data-aos="fade-left">
+                <div class="timeline-item timeline-right reveal">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-date">2023</div>
                     <div class="timeline-content">
+                        <span class="timeline-date">2023</span>
                         <h3 data-en="Azure Certifications">Certificações Azure</h3>
                         <p
                             data-en="Immersion in Cloud Computing. Earned Microsoft Azure certifications (AZ-901, AZ-902, AZ-903).">
@@ -437,11 +303,10 @@
                             AZ-903).</p>
                     </div>
                 </div>
-
-                <div class="timeline-item left-side" data-aos="fade-right">
+                <div class="timeline-item timeline-left reveal">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-date">2022</div>
                     <div class="timeline-content">
+                        <span class="timeline-date">2022</span>
                         <h3 data-en="English">Inglês</h3>
                         <p
                             data-en="Started English studies, reaching an intermediate level for technical reading and communication.">
@@ -449,292 +314,87 @@
                             comunicação.</p>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
 
-    <section id="projects">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up" data-en="My <span>Projects</span>">Meus <span>Projetos</span>
-            </h2>
-            <div class="project-card" data-aos="fade-right">
-                <div class="project-image">
-                    <i class="fas fa-laptop-code fa-3x"></i>
-                </div>
-                <div class="project-info">
-                    <h3 data-en="TCC Project - TOTVS/Criatech">Projeto TCC - TOTVS/Criatech</h3>
-                    <div class="tags">
-                        <span class="tech-tag">Web Dev</span>
-                        <span class="tech-tag">Front-end</span>
-                    </div>
-                    <p style="color: var(--text-secondary);"
-                        data-en="Development of the project websites presented at the Criatech event. Focused on creating a functional, impactful interface.">
-                        Desenvolvimento dos sites do projeto apresentado no evento Criatech. Foco na criação de uma
-                        interface funcional e impactante.
-                    </p>
-                    <p class="project-result" data-en="Result: Delivered responsive pages ready for presentation.">
-                        Resultado: páginas responsivas prontas para apresentação.</p>
-                    <br>
-                    <button class="btn" style="font-size: 0.8rem; padding: 8px 20px;" onclick="openModal(this)"
-                        data-title="TCC - TOTVS/Criatech"
-                        data-desc="Trabalhei no desenvolvimento Front-end para os sites do projeto apresentado no evento Cria Tech da TOTVS. O foco foi criar uma interface funcional, responsiva e com alto impacto visual."
-                        data-link="https://github.com/MatheusAraujoMacedo" data-en-title="TCC - TOTVS/Criatech"
-                        data-en-desc="I worked on the front-end development for the project websites presented at the Cria Tech event by TOTVS. The focus was on a functional, responsive interface with strong visual impact.">
-                        <span data-en="View Details">Ver Detalhes</span>
-                    </button>
-                </div>
-
-
-
-            </div>
-
-
-            <div class="project-card" data-aos="fade-left">
-                <div class="project-image">
-                    <i class="fas fa-chart-pie fa-3x"></i>
-                </div>
-                <div class="project-info">
-                    <h3 data-en="Finance Dashboard">Dashboard de Finanças</h3>
-                    <div class="tags">
-                        <span class="tech-tag">Front-end</span>
-                        <span class="tech-tag">Data Viz</span>
-                    </div>
-                    <p style="color: var(--text-secondary);"
-                        data-en="Personal finance control system with an interactive interface. Features include income/expense tracking, expense categorization, and real-time budget charts.">
-                        Sistema de controle financeiro pessoal com interface interativa. Funcionalidades incluem gestão
-                        de entradas e saídas, categorização de gastos e visualização gráfica de orçamento em tempo real.
-                    </p>
-                    <p class="project-result" data-en="Result: Interactive dashboard with real-time calculations.">
-                        Resultado: dashboard interativo com cálculos em tempo real.</p>
-                    <br>
-                    <button class="btn" style="font-size: 0.8rem;" onclick="openModal(this)"
-                        data-title="Dashboard Financeiro"
-                        data-desc="Uma aplicação SPA (Single Page Application) focada em controle de gastos. Implementei gráficos interativos com Chart.js e lógica de manipulação de arrays para cálculos em tempo real. O foco foi treinar a manipulação de DOM e Estado."
-                        data-link="https://github.com/MatheusAraujoMacedo" data-en-title="Finance Dashboard"
-                        data-en-desc="A single-page application focused on expense tracking. I implemented interactive charts with Chart.js and array manipulation logic for real-time calculations, practicing DOM and state management.">
-                        <span data-en="View Details">Ver Detalhes</span>
-                    </button>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <section class="section-cta">
-        <div class="container">
-            <a href="#contact-form-section" class="btn btn-primary" data-en="Let's Talk">Vamos Conversar</a>
-        </div>
-    </section>
-
+    <!-- Certifications -->
     <section id="certs">
         <div class="container">
-            <h2 class="section-title" data-aos="fade-up" data-en="Azure <span>Certifications</span>">Certificações
-                <span>Azure</span>
-            </h2>
-            <div class="cert-grid">
-                <div class="cert-card" data-aos="flip-left" data-aos-delay="100">
-                    <div class="cert-icon"><i class="fab fa-microsoft"></i></div>
+            <h2 class="section-title" data-en="Azure <span class='accent'>Certifications</span>">Certificações <span
+                    class="accent">Azure</span></h2>
+            <div class="certs-grid">
+                <div class="cert-card reveal">
+                    <i class="fab fa-microsoft"></i>
                     <h3>AZ-901</h3>
-                    <p style="color: #666; font-size: 0.9rem;">Fundamentals</p>
+                    <p>Fundamentals</p>
                 </div>
-                <div class="cert-card" data-aos="flip-left" data-aos-delay="200">
-                    <div class="cert-icon"><i class="fas fa-cloud"></i></div>
+                <div class="cert-card reveal">
+                    <i class="fas fa-cloud"></i>
                     <h3>AZ-902</h3>
-                    <p style="color: #666; font-size: 0.9rem;">Cloud Computing</p>
+                    <p>Cloud Computing</p>
                 </div>
-                <div class="cert-card" data-aos="flip-left" data-aos-delay="300">
-                    <div class="cert-icon"><i class="fas fa-network-wired"></i></div>
+                <div class="cert-card reveal">
+                    <i class="fas fa-network-wired"></i>
                     <h3>AZ-903</h3>
-                    <p style="color: #666; font-size: 0.9rem;">Services</p>
+                    <p>Services</p>
                 </div>
-            </div>
-            <div class="section-cta">
-                <a href="#contact-form-section" class="btn btn-primary" data-en="Contact Me">Falar Comigo</a>
             </div>
         </div>
     </section>
 
-    <section id="frontend">
+    <!-- Other Skills -->
+    <section id="skills">
         <div class="container">
-            <h2 class="section-title" data-aos="fade-up" data-en="Front-end <span>Stack</span>">Stack
-                <span>Front-end</span>
-            </h2>
-            <div class="cert-grid">
-
-                <div class="cert-card" data-aos="flip-up" data-aos-delay="100">
-                    <div class="cert-icon" style="color: #E34F26;"><i class="fab fa-html5"></i></div>
-                    <h3>HTML5</h3>
-                    <p style="color: #888; font-size: 0.9rem;" data-en="Semantic Structure">Estrutura Semântica</p>
-                </div>
-
-                <div class="cert-card" data-aos="flip-up" data-aos-delay="200">
-                    <div class="cert-icon" style="color: #1572B6;"><i class="fab fa-css3-alt"></i></div>
-                    <h3>CSS3</h3>
-                    <p style="color: #888; font-size: 0.9rem;" data-en="Styling & Responsiveness">Estilo &
-                        Responsividade</p>
-                </div>
-
-                <div class="cert-card" data-aos="flip-up" data-aos-delay="300">
-                    <div class="cert-icon" style="color: #F7DF1E;"><i class="fab fa-js"></i></div>
-                    <h3>JavaScript</h3>
-                    <p style="color: #888; font-size: 0.9rem;" data-en="Logic & Interactivity">Lógica & Interatividade
-                    </p>
-                </div>
-
-                <div class="cert-card" data-aos="flip-up" data-aos-delay="400">
-                    <div class="cert-icon" style="color: #61DAFB;"><i class="fab fa-react"></i></div>
-                    <h3>React</h3>
-                    <p style="color: #888; font-size: 0.9rem;" data-en="Componentization">Componentização</p>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <section id="database">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up" data-en="Database <span>Stack</span>">Banco de
-                <span>Dados</span>
-            </h2>
-            <div class="cert-grid" style="justify-content: center;">
-
-                <div class="cert-card" data-aos="flip-up" data-aos-delay="100">
-                    <div class="cert-icon" style="color: #007FFF;"><i class="fas fa-code"></i></div>
-                    <h3>SQL</h3>
-                    <p style="color: #888; font-size: 0.9rem;" data-en="Query Language">Linguagem de Consulta</p>
-                </div>
-
-                <div class="cert-card" data-aos="flip-up" data-aos-delay="200">
-                    <div class="cert-icon" style="color: #00758F;"><i class="fas fa-database"></i></div>
-                    <h3>MySQL</h3>
-                    <p style="color: #888; font-size: 0.9rem;" data-en="Data Management">Gerenciamento de Dados</p>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <section id="extras">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up" data-en="Other <span>Skills</span>">Outras
-                <span>Competências</span>
-            </h2>
-
-            <div class="cert-grid">
-
-                <div class="cert-card" style="border-color: #333;" data-aos="fade-right">
-                    <div class="cert-icon" style="color: #fff; font-size: 2rem;"><i class="fas fa-language"></i></div>
+            <h2 class="section-title" data-en="Other <span class='accent'>Skills</span>">Outras <span
+                    class="accent">Competências</span></h2>
+            <div class="wave-grid">
+                <div class="wave-card reveal">
+                    <div class="wave-card-icon"><i class="fas fa-language"></i></div>
                     <h3 data-en="English">Inglês</h3>
-                    <p style="color: var(--accent); font-weight: bold; margin-bottom: 5px;"
-                        data-en="Intermediate Level">Nível Intermediário</p>
-                    <p style="color: #666; font-size: 0.8rem;" data-en="Technical reading and documentation">Leitura
-                        técnica e documentação</p>
+                    <span class="wave-card-level" data-en="Intermediate Level">Nível Intermediário</span>
+                    <p data-en="Technical reading and documentation">Leitura técnica e documentação</p>
                 </div>
-
-                <div class="cert-card" style="border-color: #333;" data-aos="fade-up">
-                    <div class="cert-icon" style="color: #D83B01; font-size: 2rem;"><i class="fas fa-file-excel"></i>
-                    </div>
+                <div class="wave-card reveal">
+                    <div class="wave-card-icon"><i class="fas fa-file-excel"></i></div>
                     <h3 data-en="Office Suite">Pacote Office</h3>
-                    <p style="color: var(--accent); font-weight: bold; margin-bottom: 5px;" data-en="Proficient">
-                        Competente</p>
-                    <p style="color: #666; font-size: 0.8rem;" data-en="Excel, Word, and PowerPoint for management">
-                        Excel, Word e PowerPoint para gestão</p>
+                    <span class="wave-card-level" data-en="Proficient">Competente</span>
+                    <p data-en="Excel, Word, and PowerPoint for management">Excel, Word e PowerPoint para gestão</p>
                 </div>
-
-                <div class="cert-card" style="border-color: #333;" data-aos="fade-left">
-                    <div class="cert-icon" style="color: #00CC6A; font-size: 2rem;"><i class="fas fa-users"></i></div>
+                <div class="wave-card reveal">
+                    <div class="wave-card-icon"><i class="fas fa-users"></i></div>
                     <h3 data-en="Communication">Comunicação</h3>
-                    <p style="color: var(--accent); font-weight: bold; margin-bottom: 5px;"
-                        data-en="Project Presentations">Apresentação de Projetos</p>
-                    <p style="color: #666; font-size: 0.8rem;" data-en="Practical experience at events (TOTVS)">
-                        Experiência prática em eventos (TOTVS)</p>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <section id="github">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up" data-en="My <span>Code</span>">Meu <span>Código</span></h2>
-
-            <div class="github-native-card" data-aos="zoom-in">
-                <div class="github-icon">
-                    <i class="fab fa-github"></i>
-                </div>
-                <h3 data-en="Explore my Repository">Explore meu Repositório</h3>
-                <p
-                    data-en="Access all my projects, case studies, and open-source contributions.<br><span style='font-size: 0.9rem; color: #666;'>(Azure, Front-end, and TCC code)</span>">
-                    Acesse todos os meus projetos, estudos de caso e contribuições open-source.
-                    <br>
-                    <span style="font-size: 0.9rem; color: #666;">(Códigos de Azure, Front-end e TCC)</span>
-                </p>
-
-                <a href="https://github.com/MatheusAraujoMacedo" target="_blank" class="github-btn"
-                    data-en="View Full Profile <i class='fas fa-arrow-right'></i>">
-                    Ver Perfil Completo <i class="fas fa-arrow-right"></i>
-                </a>
-            </div>
-
-        </div>
-    </section>
-
-    <section id="infra">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up" data-en="Infrastructure & <span>DevOps</span>">Infraestrutura &
-                <span>DevOps</span>
-            </h2>
-            <div class="infra-grid">
-                <div class="infra-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="infra-icon"><i class="fab fa-github"></i></div>
-                    <h3 data-en="GitHub Pages">GitHub Pages</h3>
-                    <p data-en="Static hosting with fast delivery and seamless integration with the source code.">
-                        Hospedagem estática com entrega rápida e integração direta com o código-fonte.</p>
-                </div>
-                <div class="infra-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="infra-icon"><i class="fas fa-code-branch"></i></div>
-                    <h3 data-en="Git & Version Control">Git & Controle de Versão</h3>
-                    <p data-en="Efficient branch management and versioning to ensure code integrity and history.">Gestão
-                        eficiente de branches e versionamento para garantir integridade e histórico do código.</p>
-                </div>
-                <div class="infra-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="infra-icon"><i class="fas fa-terminal"></i></div>
-                    <h3 data-en="DevOps Culture">Cultura DevOps</h3>
-                    <p data-en="Applying CI/CD principles and automation to maintain a reliable and scalable project.">
-                        Aplicação de princípios de CI/CD e automação para manter um projeto confiável e escalável.</p>
+                    <span class="wave-card-level" data-en="Project Presentations">Apresentação de Projetos</span>
+                    <p data-en="Practical experience at events (TOTVS)">Experiência prática em eventos (TOTVS)</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contact-form-section">
+    <!-- Contact -->
+    <section id="contact">
         <div class="container">
-            <h2 class="section-title" data-aos="fade-up" data-en="Let's <span>Talk</span>">Vamos <span>Conversar</span>
-            </h2>
+            <h2 class="section-title" data-en="Let's <span class='accent'>Talk</span>">Vamos <span
+                    class="accent">Conversar</span></h2>
 
-            <div class="contact-wrapper" data-aos="zoom-in">
+            <div class="contact-wrapper reveal">
                 <p class="form-helper" data-en="I usually reply within 24–48 hours.">Costumo responder em até 24–48
                     horas.</p>
 
                 <form action="https://formspree.io/f/xbdyagwp" method="POST" class="contact-form" id="contact-form">
-
                     <div class="input-group">
-                        <input type="text" name="name" required placeholder=" ">
-                        <label data-en="Your Name">Seu Nome</label>
+                        <input type="text" name="name" required placeholder=" " id="input-name">
+                        <label for="input-name" data-en="Your Name">Seu Nome</label>
                     </div>
-
                     <div class="input-group">
-                        <input type="email" name="email" required placeholder=" ">
-                        <label data-en="Your Email">Seu E-mail</label>
+                        <input type="email" name="email" required placeholder=" " id="input-email">
+                        <label for="input-email" data-en="Your Email">Seu E-mail</label>
                     </div>
-
                     <div class="input-group">
-                        <textarea name="message" rows="5" required placeholder=" "></textarea>
-                        <label data-en="Your Message">Sua Mensagem</label>
+                        <textarea name="message" rows="5" required placeholder=" " id="input-message"></textarea>
+                        <label for="input-message" data-en="Your Message">Sua Mensagem</label>
                     </div>
-
-                    <button type="submit" class="btn submit-btn"
+                    <button type="submit" class="btn btn-primary submit-btn"
                         data-en="Send Message <i class='fas fa-paper-plane'></i>">
                         Enviar Mensagem <i class="fas fa-paper-plane"></i>
                     </button>
@@ -744,213 +404,152 @@
         </div>
     </section>
 
-    <p class="glow-text" data-en="<i class='fas fa-lock'></i> Your data is protected">
-        <i class="fas fa-lock"></i> Seus dados estão protegidos
-    </p>
-
-    <footer id="contact">
+    <!-- Footer -->
+    <footer>
         <div class="container">
-            <h2 class="section-title" style="margin-bottom: 2rem; font-size: 1.5rem;"
-                data-en="Let's <span>Talk?</span>">Vamos <span>Conversar?</span></h2>
-
-            <div class="contact-info">
-                <div class="contact-item">
-                    <i class="fas fa-envelope"></i> matheusaraujoo776@gmail.com
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>&lt;Matheus<span class="accent">.Dev</span>/&gt;</h3>
+                    <p data-en="Back-end Developer & Cloud Computing">Desenvolvedor Back-end & Cloud Computing</p>
                 </div>
-                <div class="contact-item">
-                    <i class="fas fa-phone"></i> (11) 93406-9176
+                <div class="footer-contact">
+                    <a href="mailto:matheusaraujoo776@gmail.com"><i class="fas fa-envelope"></i>
+                        matheusaraujoo776@gmail.com</a>
+                    <a href="tel:+5511934069176"><i class="fas fa-phone"></i> (11) 93406-9176</a>
+                </div>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/matheus-araujoo-" target="_blank" title="LinkedIn"><i
+                            class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/MatheusAraujoMacedo" target="_blank" title="GitHub"><i
+                            class="fab fa-github"></i></a>
+                    <a href="mailto:matheusaraujoo776@gmail.com" title="E-mail"><i
+                            class="fas fa-envelope-open-text"></i></a>
+                    <a href="https://wa.me/5511934069176" target="_blank" title="WhatsApp"><i
+                            class="fab fa-whatsapp"></i></a>
                 </div>
             </div>
-
-            <div class="social-links">
-                <a href="https://www.linkedin.com/in/matheus-araujoo-" target="_blank" title="LinkedIn"><i
-                        class="fab fa-linkedin"></i></a>
-                <a href="https://github.com/MatheusAraujoMacedo" target="_blank" title="GitHub"><i
-                        class="fab fa-github"></i></a>
-                <a href="mailto:matheusaraujoo776@gmail.com" title="Enviar E-mail"><i
-                        class="fas fa-envelope-open-text"></i></a>
-                <a href="https://wa.me/5511934069176" target="_blank" title="WhatsApp"><i
-                        class="fab fa-whatsapp"></i></a>
-            </div>
-
-            <p class="copy code-font">&copy; 2026 Matheus Araújo Macedo</p>
+            <p class="copy">&copy; 2026 Matheus Araújo Macedo</p>
         </div>
     </footer>
 
-    <button id="terminal-toggle" class="terminal-float" onclick="toggleTerminal()" title="Abrir Terminal">
-        <i class="fas fa-terminal"></i>
-    </button>
+    <!-- Back to top -->
+    <a href="#" class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></a>
 
-    <div id="terminal-modal" class="terminal-modal">
-        <div class="terminal-window">
-            <div class="terminal-header">
-                <div class="terminal-dots">
-                    <span class="dot red"></span>
-                    <span class="dot yellow"></span>
-                    <span class="dot green"></span>
-                </div>
-                <div class="terminal-title">matheus-dev-terminal</div>
-                <button class="terminal-close" onclick="toggleTerminal()">&times;</button>
-            </div>
-            <div class="terminal-body" id="terminal-body">
-                <div class="terminal-line"><span class="terminal-prompt">matheus@portfolio:~$</span> <span
-                        class="terminal-text">type 'help' to see available commands.</span></div>
-            </div>
-            <div class="terminal-footer">
-                <span class="terminal-prompt">matheus@portfolio:~$</span>
-                <input type="text" id="terminal-input" autocomplete="off" spellcheck="false" title="Comando de terminal"
-                    placeholder="digite um comando...">
-            </div>
-        </div>
-    </div>
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/5511934069176?text=Olá Matheus, vi seu portfólio e gostaria de conversar!"
+        class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
+    <!-- Project Modal -->
     <div id="project-modal" class="modal">
         <div class="modal-content">
             <span class="close-modal">&times;</span>
             <h2 id="modal-title">Título do Projeto</h2>
-            <p id="modal-desc">Descrição completa do projeto vai aqui...</p>
-            <div id="modal-techs" class="modal-tech-list">
-            </div>
+            <p id="modal-desc">Descrição completa do projeto...</p>
             <br>
-            <a href="#" id="modal-link" target="_blank" class="btn" style="width: 100%; text-align: center;"
+            <a href="#" id="modal-link" target="_blank" class="btn btn-primary modal-link-btn"
                 data-en="View on GitHub">Ver no GitHub</a>
         </div>
     </div>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://unpkg.com/@studio-freight/lenis/bundled/lenis.min.js"></script>
+    <!-- VLibras -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
     <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+
+    <script>
+        // =============================================
+        // PARALLAX SCROLL ANIMATION
+        // =============================================
+        const parallaxElements = document.querySelectorAll('.parallax-element');
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        AOS.init({ duration: prefersReducedMotion ? 0 : 700, once: true });
-    </script>
-    <script>
-        const prefersReducedMotionLenis = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        let lenisInstance = null;
 
-        window.addEventListener('load', () => {
-            if (prefersReducedMotionLenis) return;
-            initLenis();
-        });
-    </script>
-    <a href="#" class="back-to-top" id="backToTop">
-        <i class="fas fa-arrow-up"></i>
-    </a>
-    <div class="cursor-glow" aria-hidden="true"></div>
+        function updateParallax() {
+            if (prefersReducedMotion) return;
+            parallaxElements.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                const speed = parseFloat(el.dataset.speed) || 0.05;
+                const center = window.innerHeight / 2;
+                const elementCenter = rect.top + rect.height / 2;
+                const offset = (elementCenter - center) * speed;
+                el.style.transform = `translateY(${offset}px)`;
+            });
+        }
 
-    <script>
+        window.addEventListener('scroll', updateParallax, { passive: true });
+        window.addEventListener('resize', updateParallax, { passive: true });
+        updateParallax();
 
+        // =============================================
+        // REVEAL ON SCROLL (subtle fade in)
+        // =============================================
+        const revealElements = document.querySelectorAll('.reveal');
+
+        if (!prefersReducedMotion) {
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('revealed');
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+            revealElements.forEach(el => revealObserver.observe(el));
+        } else {
+            revealElements.forEach(el => el.classList.add('revealed'));
+        }
+
+        // =============================================
+        // BACK TO TOP
+        // =============================================
         const backToTopButton = document.getElementById('backToTop');
-
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                backToTopButton.classList.add('show');
-            } else {
-                backToTopButton.classList.remove('show');
-            }
+            backToTopButton.classList.toggle('show', window.scrollY > 300);
         });
-    </script>
-    <script>
-        const heroParallax = document.querySelector('.hero-parallax');
-        window.addEventListener('scroll', () => {
-            if (!heroParallax) return;
-            const offset = window.scrollY * 0.2;
-            heroParallax.style.transform = `translateY(${offset}px)`;
-        }, { passive: true });
-    </script>
-    <a href="https://wa.me/5511934069176?text=Olá Matheus, vi seu portfólio e gostaria de conversar!"
-        class="whatsapp-float" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-    <script>
 
-        window.addEventListener("load", function () {
-            const loader = document.getElementById("loader");
+        // =============================================
+        // ACTIVE NAV LINK
+        // =============================================
+        const sections = Array.from(document.querySelectorAll('section[id]'));
+        const navLinks = Array.from(document.querySelectorAll('.nav-links a[href^="#"]'));
+        const mobileLinks = Array.from(document.querySelectorAll('#mobile-nav-list a[href^="#"]'));
 
-            setTimeout(function () {
-                loader.classList.add("loader-hidden");
-            }, 1800);
-        });
-    </script>
-    <script>
-        const hackerNameElement = document.getElementById('hacker-name');
-        const finalName = "Matheus Araújo";
-        const hackerChars = '0101011001ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        let isHackerRunning = false;
-
-        function startHackerEffect() {
-            if (isHackerRunning) return;
-            isHackerRunning = true;
-            let iterations = 0;
-
-            const interval = setInterval(() => {
-                hackerNameElement.innerText = finalName
-                    .split('')
-                    .map((letter, index) => {
-                        if (index < iterations) {
-                            return finalName[index];
-                        }
-                        return hackerChars[Math.floor(Math.random() * hackerChars.length)];
-                    })
-                    .join('');
-
-                if (iterations >= finalName.length) {
-                    clearInterval(interval);
-                    isHackerRunning = false;
-                }
-
-                iterations += 1 / 3;
-
-            }, 60);
+        function setActiveLink(id) {
+            navLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === `#${id}`));
+            mobileLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === `#${id}`));
         }
 
-        setTimeout(startHackerEffect, 2500);
-    </script>
-    <script>
+        const navObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) setActiveLink(entry.target.id);
+            });
+        }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
 
-        const modal = document.getElementById('project-modal');
-        const modalTitle = document.getElementById('modal-title');
-        const modalDesc = document.getElementById('modal-desc');
-        const modalLink = document.getElementById('modal-link');
-        const closeModal = document.querySelector('.close-modal');
+        sections.forEach(section => navObserver.observe(section));
 
-
-        function openModal(trigger) {
-            const isEnglish = currentLang === 'en';
-            const title = isEnglish ? trigger.dataset.enTitle : trigger.dataset.title;
-            const description = isEnglish ? trigger.dataset.enDesc : trigger.dataset.desc;
-            const link = trigger.dataset.link;
-
-            modalTitle.innerText = title;
-            modalDesc.innerText = description;
-            modalLink.href = link;
-
-            modal.classList.add('show');
-        }
-
-
-        closeModal.onclick = function () {
-            modal.classList.remove('show');
-        }
-
-
-        window.onclick = function (event) {
-            if (event.target == modal) {
-                modal.classList.remove('show');
-            }
-        }
-        let currentLang = localStorage.getItem('portfolio-lang') || 'pt';
-
+        // =============================================
+        // MOBILE MENU
+        // =============================================
         const mobileMenuButton = document.getElementById('mobile-menu');
         const mobileNavList = document.getElementById('mobile-nav-list');
 
         function toggleMenu() {
-            if (!mobileNavList) return;
-            mobileNavList.classList.toggle('active');
+            if (mobileNavList) mobileNavList.classList.toggle('active');
         }
 
-        if (mobileMenuButton) {
-            mobileMenuButton.addEventListener('click', toggleMenu);
-        }
+        if (mobileMenuButton) mobileMenuButton.addEventListener('click', toggleMenu);
+
+        // =============================================
+        // LANGUAGE TOGGLE
+        // =============================================
+        let currentLang = localStorage.getItem('portfolio-lang') || 'pt';
 
         function toggleLanguage() {
             const elements = document.querySelectorAll('[data-en]');
@@ -974,24 +573,15 @@
                 currentLang = 'pt';
             }
             localStorage.setItem('portfolio-lang', currentLang);
-            startTypewriter();
             updateToggleStates();
         }
 
+        // =============================================
+        // CONTRAST TOGGLE
+        // =============================================
         function toggleContrast() {
             document.body.classList.toggle('white-contrast');
             localStorage.setItem('portfolio-contrast', document.body.classList.contains('white-contrast'));
-            updateToggleStates();
-        }
-
-        function applyStoredPreferences() {
-            if (currentLang === 'en') {
-                currentLang = 'pt';
-                toggleLanguage();
-            }
-            if (localStorage.getItem('portfolio-contrast') === 'true') {
-                document.body.classList.add('white-contrast');
-            }
             updateToggleStates();
         }
 
@@ -1003,28 +593,43 @@
             const isEnglish = currentLang === 'en';
             const isContrast = document.body.classList.contains('white-contrast');
 
-            if (btn) {
-                btn.classList.toggle('toggle-active', isEnglish);
-                btn.setAttribute('aria-pressed', String(isEnglish));
-            }
-            if (btnMobile) {
-                btnMobile.classList.toggle('toggle-active', isEnglish);
-                btnMobile.setAttribute('aria-pressed', String(isEnglish));
-            }
-            if (contrastBtn) {
-                contrastBtn.classList.toggle('toggle-active', isContrast);
-                contrastBtn.setAttribute('aria-pressed', String(isContrast));
-            }
-            if (contrastBtnMobile) {
-                contrastBtnMobile.classList.toggle('toggle-active', isContrast);
-                contrastBtnMobile.setAttribute('aria-pressed', String(isContrast));
-            }
+            if (btn) { btn.classList.toggle('toggle-active', isEnglish); btn.setAttribute('aria-pressed', String(isEnglish)); }
+            if (btnMobile) { btnMobile.classList.toggle('toggle-active', isEnglish); btnMobile.setAttribute('aria-pressed', String(isEnglish)); }
+            if (contrastBtn) { contrastBtn.classList.toggle('toggle-active', isContrast); contrastBtn.setAttribute('aria-pressed', String(isContrast)); }
+            if (contrastBtnMobile) { contrastBtnMobile.classList.toggle('toggle-active', isContrast); contrastBtnMobile.setAttribute('aria-pressed', String(isContrast)); }
+        }
+
+        function applyStoredPreferences() {
+            if (currentLang === 'en') { currentLang = 'pt'; toggleLanguage(); }
+            if (localStorage.getItem('portfolio-contrast') === 'true') { document.body.classList.add('white-contrast'); }
+            updateToggleStates();
         }
 
         document.addEventListener('DOMContentLoaded', applyStoredPreferences);
-    </script>
 
-    <script>
+        // =============================================
+        // MODAL
+        // =============================================
+        const modal = document.getElementById('project-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalDesc = document.getElementById('modal-desc');
+        const modalLink = document.getElementById('modal-link');
+        const closeModalBtn = document.querySelector('.close-modal');
+
+        function openModal(trigger) {
+            const isEnglish = currentLang === 'en';
+            modalTitle.innerText = isEnglish ? trigger.dataset.enTitle : trigger.dataset.title;
+            modalDesc.innerText = isEnglish ? trigger.dataset.enDesc : trigger.dataset.desc;
+            modalLink.href = trigger.dataset.link;
+            modal.classList.add('show');
+        }
+
+        closeModalBtn.onclick = () => modal.classList.remove('show');
+        window.onclick = (e) => { if (e.target === modal) modal.classList.remove('show'); };
+
+        // =============================================
+        // CONTACT FORM
+        // =============================================
         const contactForm = document.getElementById('contact-form');
         const formStatus = document.getElementById('form-status');
         const submitBtn = contactForm?.querySelector('.submit-btn');
@@ -1047,17 +652,11 @@
                             : 'Preencha todos os campos antes de enviar.';
                         formStatus.dataset.state = 'error';
                     }
-                    if (!nameValue) nameField?.focus();
-                    else if (!emailValid) emailField?.focus();
-                    else messageField?.focus();
                     return;
                 }
 
                 if (submitBtn) submitBtn.disabled = true;
-                if (formStatus) {
-                    formStatus.textContent = 'Enviando mensagem...';
-                    formStatus.dataset.state = 'loading';
-                }
+                if (formStatus) { formStatus.textContent = 'Enviando mensagem...'; formStatus.dataset.state = 'loading'; }
 
                 try {
                     const response = await fetch(contactForm.action, {
@@ -1065,252 +664,19 @@
                         body: new FormData(contactForm),
                         headers: { 'Accept': 'application/json' }
                     });
-
                     if (response.ok) {
                         contactForm.reset();
-                        if (formStatus) {
-                            formStatus.textContent = 'Mensagem enviada com sucesso. Obrigado!';
-                            formStatus.dataset.state = 'success';
-                        }
+                        if (formStatus) { formStatus.textContent = 'Mensagem enviada com sucesso. Obrigado!'; formStatus.dataset.state = 'success'; }
                     } else {
-                        if (formStatus) {
-                            formStatus.textContent = 'Não foi possível enviar. Tente novamente em instantes.';
-                            formStatus.dataset.state = 'error';
-                        }
+                        if (formStatus) { formStatus.textContent = 'Não foi possível enviar. Tente novamente.'; formStatus.dataset.state = 'error'; }
                     }
                 } catch (error) {
-                    if (formStatus) {
-                        formStatus.textContent = 'Erro de conexão. Verifique sua internet e tente novamente.';
-                        formStatus.dataset.state = 'error';
-                    }
+                    if (formStatus) { formStatus.textContent = 'Erro de conexão. Verifique sua internet.'; formStatus.dataset.state = 'error'; }
                 } finally {
                     if (submitBtn) submitBtn.disabled = false;
                 }
             });
         }
-    </script>
-
-    <script>
-        const impactSection = document.getElementById('impact');
-        const impactNumbers = Array.from(document.querySelectorAll('.impact-number'));
-        const impactBars = Array.from(document.querySelectorAll('.bar-fill'));
-        const prefersReducedMotionCounters = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-        function animateCounter(el) {
-            const target = Number(el.dataset.target || 0);
-            const suffix = el.dataset.suffix || '';
-            if (Number.isNaN(target)) return;
-            const duration = 1200;
-            const startTime = performance.now();
-
-            function tick(now) {
-                const progress = Math.min((now - startTime) / duration, 1);
-                const value = Math.round(target * progress);
-                el.textContent = `${value}${suffix}`;
-                if (progress < 1) requestAnimationFrame(tick);
-            }
-            requestAnimationFrame(tick);
-        }
-
-        if (impactSection && impactNumbers.length) {
-            if (prefersReducedMotionCounters) {
-                impactNumbers.forEach(el => {
-                    const suffix = el.dataset.suffix || '';
-                    el.textContent = `${el.dataset.target || 0}${suffix}`;
-                });
-                impactBars.forEach(bar => {
-                    const level = Number(bar.dataset.level || 0);
-                    bar.style.width = `${level}%`;
-                    const valueEl = bar.closest('.impact-bar')?.querySelector('.bar-value');
-                    if (valueEl) valueEl.textContent = `${level}%`;
-                });
-            } else {
-                const impactObserver = new IntersectionObserver((entries, obs) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            impactNumbers.forEach(animateCounter);
-                            impactBars.forEach(bar => {
-                                const level = Number(bar.dataset.level || 0);
-                                bar.style.width = `${level}%`;
-                                const valueEl = bar.closest('.impact-bar')?.querySelector('.bar-value');
-                                if (valueEl) valueEl.textContent = `${level}%`;
-                            });
-                            obs.disconnect();
-                        }
-                    });
-                }, { threshold: 0.4 });
-                impactObserver.observe(impactSection);
-            }
-        }
-    </script>
-
-    <script>
-        const typewriterEl = document.querySelector('.typewriter');
-        function startTypewriter() {
-            if (!typewriterEl) return;
-            const text = currentLang === 'en' ? typewriterEl.getAttribute('data-en') : typewriterEl.getAttribute('data-pt');
-            if (!text) return;
-            typewriterEl.textContent = '';
-            let i = 0;
-            const speed = 20;
-            const typeInterval = setInterval(() => {
-                typewriterEl.textContent += text.charAt(i);
-                i += 1;
-                if (i >= text.length) clearInterval(typeInterval);
-            }, speed);
-        }
-        startTypewriter();
-    </script>
-    <script>
-        const prefersReducedMotionScroll = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        const isMobile = window.matchMedia('(max-width: 768px)').matches;
-        const hoverTargets = [
-            '.project-card',
-            '.cert-card',
-            '.service-card',
-            '.github-native-card',
-            '.timeline-content',
-            '.stat-box',
-            '.contact-wrapper',
-            '.modal-content',
-            '.highlight-card',
-            '.impact-card'
-        ];
-
-        if (isMobile && !prefersReducedMotionScroll) {
-            const elements = document.querySelectorAll(hoverTargets.join(','));
-            const scrollObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('scroll-animate');
-                    }
-                });
-            }, { threshold: 0.3 });
-
-            elements.forEach(el => scrollObserver.observe(el));
-        }
-    </script>
-    <script>
-        const glow = document.querySelector('.cursor-glow');
-        const prefersReducedMotionGlow = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        if (glow && !prefersReducedMotionGlow) {
-            window.addEventListener('mousemove', (e) => {
-                glow.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
-            });
-        }
-    </script>
-
-    <script>
-        const sections = Array.from(document.querySelectorAll('section[id]'));
-        const navLinks = Array.from(document.querySelectorAll('.nav-links a[href^=\"#\"]'));
-        const mobileLinks = Array.from(document.querySelectorAll('#mobile-nav-list a[href^=\"#\"]'));
-
-        function setActiveLink(id) {
-            navLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === `#${id}`));
-            mobileLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === `#${id}`));
-        }
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    setActiveLink(entry.target.id);
-                }
-            });
-        }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
-
-        sections.forEach(section => observer.observe(section));
-        window.addEventListener('load', () => {
-            const firstSection = sections[0]?.id;
-            if (firstSection) setActiveLink(firstSection);
-        });
-    </script>
-
-    <script>
-        const sectionTitles = Array.from(document.querySelectorAll('.section-title'));
-        sectionTitles.forEach(title => title.classList.add('scan-title'));
-        const titleObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('scan-active');
-                }
-            });
-        }, { threshold: 0.6 });
-        sectionTitles.forEach(title => titleObserver.observe(title));
-    </script>
-
-    <div vw class="enabled">
-        <div vw-access-button class="active"></div>
-        <div vw-plugin-wrapper>
-            <div class="vw-plugin-top-wrapper"></div>
-        </div>
-    </div>
-    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-    <script>
-        new window.VLibras.Widget('https://vlibras.gov.br/app');
-    </script>
-
-    <script>
-        const terminalModal = document.getElementById('terminal-modal');
-        const terminalInput = document.getElementById('terminal-input');
-        const terminalBody = document.getElementById('terminal-body');
-
-        function toggleTerminal() {
-            terminalModal.classList.toggle('show');
-            if (terminalModal.classList.contains('show')) {
-                terminalInput.focus();
-            }
-        }
-
-        const commands = {
-            help: () => `Disponível: clear, help, about, projects, contact, exit, azure`,
-            clear: () => {
-                terminalBody.innerHTML = '';
-                return '';
-            },
-            exit: () => {
-                toggleTerminal();
-                return 'Fechando...';
-            },
-            about: () => `Sou o Matheus, focado em Back-end e Cloud Azure.`,
-            projects: () => {
-                window.location.hash = '#projects';
-                return 'Navegando para Projetos...';
-            },
-            contact: () => {
-                window.location.hash = '#contact-form-section';
-                return 'Navegando para Contato...';
-            },
-            azure: () => `Certificações Azure obtidas: AZ-900 Fundamentals. Cloud é o futuro!`
-        };
-
-        terminalInput.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter') {
-                const input = terminalInput.value.trim().toLowerCase();
-                const output = commands[input] ? commands[input]() : `Comando não encontrado: ${input}. Digite 'help' para ajuda.`;
-
-                const line = document.createElement('div');
-                line.className = 'terminal-line';
-                line.innerHTML = `<span class="terminal-prompt">matheus@portfolio:~$</span> <span class="terminal-text">${input}</span>`;
-                terminalBody.appendChild(line);
-
-                if (output) {
-                    const result = document.createElement('div');
-                    result.className = 'terminal-line';
-                    result.innerHTML = `<span class="terminal-output">${output}</span>`;
-                    terminalBody.appendChild(result);
-                }
-
-                terminalInput.value = '';
-                terminalBody.scrollTop = terminalBody.scrollHeight;
-            }
-        });
-
-        // Close terminal when clicking outside
-        window.addEventListener('click', (e) => {
-            if (e.target === terminalModal) {
-                toggleTerminal();
-            }
-        });
     </script>
 </body>
 
