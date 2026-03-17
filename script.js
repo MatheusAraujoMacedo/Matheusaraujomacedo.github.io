@@ -87,6 +87,7 @@ let currentLang = localStorage.getItem('portfolio-lang') || 'pt';
 
 function toggleLanguage() {
     const elements = document.querySelectorAll('[data-en]');
+    const placeholders = document.querySelectorAll('[data-en-placeholder]');
     const btn = document.getElementById('lang-btn');
     const btnMobile = document.getElementById('lang-btn-mobile');
 
@@ -95,6 +96,10 @@ function toggleLanguage() {
             el.setAttribute('data-pt', el.innerHTML);
             el.innerHTML = el.getAttribute('data-en');
         });
+        placeholders.forEach(el => {
+            el.setAttribute('data-pt-placeholder', el.placeholder);
+            el.placeholder = el.getAttribute('data-en-placeholder');
+        });
         if (btn) btn.innerHTML = '<i class="fas fa-globe"></i> PT';
         if (btnMobile) btnMobile.innerHTML = 'Português (PT)';
         currentLang = 'en';
@@ -102,12 +107,18 @@ function toggleLanguage() {
         elements.forEach(el => {
             el.innerHTML = el.getAttribute('data-pt');
         });
+        placeholders.forEach(el => {
+            el.placeholder = el.getAttribute('data-pt-placeholder');
+        });
         if (btn) btn.innerHTML = '<i class="fas fa-globe"></i> EN';
         if (btnMobile) btnMobile.innerHTML = 'Inglês (EN)';
         currentLang = 'pt';
     }
     localStorage.setItem('portfolio-lang', currentLang);
     updateToggleStates();
+
+    // Reset typewriter with new language text
+    if (typeof startTypewriter === 'function') startTypewriter();
 }
 
 // =============================================
@@ -210,4 +221,177 @@ if (contactForm) {
             if (submitBtn) submitBtn.disabled = false;
         }
     });
+}
+
+// =============================================
+// GSAP HERO ANIMATION
+// =============================================
+function initHeroAnimation() {
+    if (typeof gsap === 'undefined' || prefersReducedMotion) return;
+
+    // Create timeline with default ease
+    const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
+
+    // Cinematic stagger effect for text content
+    tl.from(".hero-greeting, .hero h1, .hero-role, .hero-desc, .hero-badges, .hero-actions", {
+        y: 40,
+        opacity: 0,
+        duration: 1.2,
+        stagger: 0.15,
+        delay: 0.1
+    })
+    // Dramatic fade + scale down for image container
+    .from(".hero-image", {
+        scale: 1.15,
+        opacity: 0,
+        duration: 1.8,
+        ease: "power3.out"
+    }, "-=1.0") // overlap with text animation
+    // Subtle internal scale down for the photo itself
+    .from(".hero-image img", {
+        scale: 1.2,
+        duration: 2.5,
+        ease: "sine.out"
+    }, "-=1.8"); 
+}
+
+// =============================================
+// TYPEWRITER ANIMATION
+// =============================================
+const typeStringsPt = ["Desenvolvedor Back-end", "Especialista em Azure", "Cloud Computing", "Soluções Escaláveis"];
+const typeStringsEn = ["Back-end Developer", "Azure Specialist", "Cloud Computing", "Scalable Solutions"];
+let typeIndex = 0;
+let charIndex = 0;
+let isDeleting = false;
+let typewriterTimeout;
+
+function startTypewriter() {
+    clearTimeout(typewriterTimeout);
+    typeIndex = 0;
+    charIndex = 0;
+    isDeleting = false;
+    type();
+}
+
+function type() {
+    const el = document.getElementById('typewriter');
+    if (!el) return;
+    
+    const strings = currentLang === 'en' ? typeStringsEn : typeStringsPt;
+    const currentString = strings[typeIndex];
+    
+    if (isDeleting) {
+        el.textContent = currentString.substring(0, charIndex - 1);
+        charIndex--;
+    } else {
+        el.textContent = currentString.substring(0, charIndex + 1);
+        charIndex++;
+    }
+    
+    let typeSpeed = isDeleting ? 40 : 80;
+    
+    if (!isDeleting && charIndex === currentString.length) {
+        typeSpeed = 2000;
+        isDeleting = true;
+    } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        typeIndex = (typeIndex + 1) % strings.length;
+        typeSpeed = 400;
+    }
+    
+    typewriterTimeout = setTimeout(type, typeSpeed);
+}
+
+// =============================================
+// PROJECT FILTERS
+// =============================================
+const filterBtns = document.querySelectorAll('.filter-btn');
+const projectCards = document.querySelectorAll('.project-card[data-category]');
+
+filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        
+        const filter = btn.getAttribute('data-filter');
+        
+        projectCards.forEach(card => {
+            const category = card.getAttribute('data-category');
+            if (filter === 'all' || category.includes(filter)) {
+                card.classList.remove('hidden');
+                if (typeof gsap !== 'undefined') {
+                    gsap.fromTo(card, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4 });
+                }
+            } else {
+                card.classList.add('hidden');
+            }
+        });
+    });
+});
+
+// =============================================
+// AI CHATBOT LOGIC
+// =============================================
+const chatToggle = document.getElementById('chatbot-toggle');
+const chatContainer = document.getElementById('chatbot-container');
+const closeChat = document.getElementById('close-chat');
+const chatInput = document.getElementById('chat-input');
+const sendChat = document.getElementById('send-chat');
+const chatMessages = document.getElementById('chatbot-messages');
+
+if (chatToggle && chatContainer) {
+    chatToggle.addEventListener('click', () => {
+        chatContainer.classList.add('active');
+        chatToggle.classList.add('hidden');
+    });
+
+    closeChat.addEventListener('click', () => {
+        chatContainer.classList.remove('active');
+        chatToggle.classList.remove('hidden');
+    });
+
+    const handleSend = () => {
+        const text = chatInput.value.trim();
+        if (!text) return;
+        
+        const userMsg = document.createElement('div');
+        userMsg.className = 'message user-message';
+        userMsg.innerHTML = `<div class="message-content"><p>${text}</p></div>`;
+        chatMessages.appendChild(userMsg);
+        chatInput.value = '';
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+
+        const aiMsg = document.createElement('div');
+        aiMsg.className = 'message ai-message typing';
+        aiMsg.innerHTML = `<div class="message-content"><div class="typing-dots"><span></span><span></span><span></span></div></div>`;
+        chatMessages.appendChild(aiMsg);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+
+        setTimeout(() => {
+            aiMsg.classList.remove('typing');
+            const isEng = currentLang === 'en';
+            aiMsg.innerHTML = `<div class="message-content"><p>${
+                isEng 
+                ? "This is a frontend demonstration. To enable real answers from Gemini, connect this UI to the Python backend endpoint!" 
+                : "Esta é uma demonstração do front-end. Para obter respostas reais através da API Gemini, podemos conectar esta interface ao seu endpoint backend em Python!"
+            }</p></div>`;
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }, 1500);
+    };
+
+    sendChat.addEventListener('click', handleSend);
+    chatInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') handleSend();
+    });
+}
+
+// Initialize when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+        initHeroAnimation();
+        startTypewriter();
+    });
+} else {
+    initHeroAnimation();
+    startTypewriter();
 }
