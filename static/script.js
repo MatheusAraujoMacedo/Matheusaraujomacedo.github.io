@@ -371,7 +371,7 @@ if (chatToggle && chatContainer) {
             // Use localhost se estiver rodando o Frontend localmente, caso contrário use a URL do Render
             const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
                 ? 'http://127.0.0.1:5000/api/chat' 
-                : 'https://COLOQUE-SUA-URL.onrender.com/api/chat'; // <-- COLOQUE SUA URL DO RENDER AQUI
+                : 'https://matheusaraujomacedo-github-io.onrender.com/api/chat';
 
             const response = await fetch(API_URL, {
                 method: 'POST',
