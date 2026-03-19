@@ -368,7 +368,12 @@ if (chatToggle && chatContainer) {
         chatMessages.scrollTop = chatMessages.scrollHeight;
 
         try {
-            const response = await fetch('/api/chat', {
+            // Use localhost se estiver rodando o Frontend localmente, caso contrário use a URL do Render
+            const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+                ? 'http://127.0.0.1:5000/api/chat' 
+                : 'https://COLOQUE-SUA-URL.onrender.com/api/chat'; // <-- COLOQUE SUA URL DO RENDER AQUI
+
+            const response = await fetch(API_URL, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
