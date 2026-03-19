@@ -350,7 +350,7 @@ if (chatToggle && chatContainer) {
         chatToggle.classList.remove('hidden');
     });
 
-    const handleSend = () => {
+    const handleSend = async () => {
         const text = chatInput.value.trim();
         if (!text) return;
         
@@ -367,16 +367,42 @@ if (chatToggle && chatContainer) {
         chatMessages.appendChild(aiMsg);
         chatMessages.scrollTop = chatMessages.scrollHeight;
 
-        setTimeout(() => {
+        try {
+            const response = await fetch('/api/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ message: text })
+            });
+
+            if (!response.ok) {
+                throw new Error("Erro na solicitação");
+            }
+
+            const data = await response.json();
+            
+            aiMsg.classList.remove('typing');
+            
+            // Verifica se a resposta contém HTML marckdown simples (ex: **negrito**)
+            // O ideal seria usar uma lib como marked.js, mas o Gemini costuma mandar markdown
+            const formattedText = data.response
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\n(.*)/g, '<br>$1');
+                
+            aiMsg.innerHTML = `<div class="message-content"><p>${formattedText}</p></div>`;
+
+        } catch (error) {
             aiMsg.classList.remove('typing');
             const isEng = currentLang === 'en';
             aiMsg.innerHTML = `<div class="message-content"><p>${
                 isEng 
-                ? "This is a frontend demonstration. To enable real answers from Gemini, connect this UI to the Python backend endpoint!" 
-                : "Esta é uma demonstração do front-end. Para obter respostas reais através da API Gemini, podemos conectar esta interface ao seu endpoint backend em Python!"
+                ? "Sorry, I couldn't connect to the backend server. Did you start the Flask application?" 
+                : "Desculpe, não consegui me conectar ao servidor. O backend Flask está rodando?"
             }</p></div>`;
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }, 1500);
+        }
+        
+        chatMessages.scrollTop = chatMessages.scrollHeight;
     };
 
     sendChat.addEventListener('click', handleSend);
