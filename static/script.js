@@ -368,10 +368,8 @@ if (chatToggle && chatContainer) {
         chatMessages.scrollTop = chatMessages.scrollHeight;
 
         try {
-            // Use localhost se estiver rodando o Frontend localmente, caso contrário use a URL do Render
-            const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
-                ? 'http://127.0.0.1:5000/api/chat' 
-                : 'https://matheusaraujomacedo-github-io.onrender.com/api/chat';
+            // O Cloudflare Pages Functions compartilha a mesma origem do site principal
+            const API_URL = '/api/chat';
 
             const response = await fetch(API_URL, {
                 method: 'POST',
@@ -402,8 +400,8 @@ if (chatToggle && chatContainer) {
             const isEng = currentLang === 'en';
             aiMsg.innerHTML = `<div class="message-content"><p>${
                 isEng 
-                ? "Sorry, I couldn't connect to the backend server. Did you start the Flask application?" 
-                : "Desculpe, não consegui me conectar ao servidor. O backend Flask está rodando?"
+                ? "Sorry, I couldn't connect to the AI API. Please verify the Cloudflare setup." 
+                : "Desculpe, não consegui me conectar à API da IA. Verifique as configurações do Cloudflare."
             }</p></div>`;
         }
         
