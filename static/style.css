@@ -1694,10 +1694,69 @@ body.white-contrast .hero-image {
 /* =============================================
    AI CHATBOT
    ============================================= */
-.chatbot-toggle {
+.chatbot-toggle-wrapper {
     position: fixed;
     bottom: 80px;
     right: 24px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: var(--transition);
+}
+.chatbot-tooltip {
+    background: var(--accent);
+    color: #fff;
+    padding: 10px 16px;
+    border-radius: var(--radius-sm);
+    font-size: 0.9rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 15px rgba(77, 124, 255, 0.4);
+    opacity: 0;
+    transform: translateX(20px);
+    pointer-events: none;
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    position: relative;
+}
+.chatbot-tooltip.show {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
+}
+.chatbot-tooltip.bounce {
+    animation: bounce-horizontal 2.5s infinite ease-in-out;
+}
+@keyframes bounce-horizontal {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(-6px); }
+}
+.chatbot-tooltip::after {
+    content: '';
+    position: absolute;
+    right: -6px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-width: 6px 0 6px 6px;
+    border-style: solid;
+    border-color: transparent transparent transparent var(--accent);
+}
+#close-tooltip {
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.8);
+    font-size: 1.2rem;
+    cursor: pointer;
+    line-height: 1;
+    margin-left: 4px;
+    transition: var(--transition);
+}
+#close-tooltip:hover {
+    color: #fff;
+}
+.chatbot-toggle {
     width: 56px;
     height: 56px;
     border-radius: 50%;
@@ -1706,7 +1765,6 @@ body.white-contrast .hero-image {
     border: none;
     box-shadow: 0 4px 20px rgba(77, 124, 255, 0.4);
     cursor: pointer;
-    z-index: 1000;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1717,7 +1775,7 @@ body.white-contrast .hero-image {
     transform: scale(1.1);
     box-shadow: 0 6px 24px rgba(77, 124, 255, 0.6);
 }
-.chatbot-toggle.hidden {
+.chatbot-toggle-wrapper.hidden {
     opacity: 0;
     pointer-events: none;
     transform: scale(0.8);

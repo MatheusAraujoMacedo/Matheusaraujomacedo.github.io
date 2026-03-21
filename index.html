@@ -6,6 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Matheus Araújo | Portfólio</title>
     <meta name="description" content="Portfólio de Matheus Araújo Macedo — Desenvolvedor Back-end, Cloud Azure e SQL.">
+    
+    <!-- Open Graph / LinkedIn / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://matheusaraujomacedo.pages.dev/">
+    <meta property="og:title" content="Matheus Araújo | Portfólio de Desenvolvedor">
+    <meta property="og:description" content="Portfólio de Desenvolvedor Back-end, Integração de IAs e Cloud. Fale com a minha IA diretamente no site!">
+    <meta property="og:image" content="https://matheusaraujomacedo.pages.dev/matheusaraujo.jpeg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://matheusaraujomacedo.pages.dev/">
+    <meta property="twitter:title" content="Matheus Araújo | Portfólio">
+    <meta property="twitter:description" content="Portfólio de Desenvolvedor Back-end, Integração de IAs e Cloud. Fale com a minha IA diretamente no site!">
+    <meta property="twitter:image" content="https://matheusaraujomacedo.pages.dev/matheusaraujo.jpeg">
 
     <link rel="stylesheet" href="static/style.css">
     <link rel="icon"
@@ -84,7 +98,7 @@
             </div>
             <div class="hero-image-wrapper">
                 <div class="hero-image parallax-element" data-speed="0.08">
-                    <img src="matheusaraujo.jpeg" alt="Foto de Matheus Araújo">
+                    <img src="matheusaraujo.jpeg" alt="Foto de Matheus Araújo" loading="lazy">
                 </div>
             </div>
         </div>
@@ -561,11 +575,17 @@
         </div>
     </div>
     
-    <button id="chatbot-toggle" class="chatbot-toggle reveal" aria-label="Open Chat">
-        <div class="chatbot-toggle-icon">
-            <i class="fas fa-robot"></i>
+    <div class="chatbot-toggle-wrapper reveal">
+        <div id="chatbot-tooltip" class="chatbot-tooltip">
+            <span data-en="Ask my AI!">Fale com a minha IA! <i class="fas fa-sparkles"></i></span>
+            <button id="close-tooltip" aria-label="Close tooltip">&times;</button>
         </div>
-    </button>
+        <button id="chatbot-toggle" class="chatbot-toggle" aria-label="Open Chat">
+            <div class="chatbot-toggle-icon">
+                <i class="fas fa-robot"></i>
+            </div>
+        </button>
+    </div>
 
     <!-- VLibras -->
     <div vw class="enabled">

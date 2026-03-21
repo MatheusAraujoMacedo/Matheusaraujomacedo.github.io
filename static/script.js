@@ -338,16 +338,37 @@ const closeChat = document.getElementById('close-chat');
 const chatInput = document.getElementById('chat-input');
 const sendChat = document.getElementById('send-chat');
 const chatMessages = document.getElementById('chatbot-messages');
+const chatToggleWrapper = document.querySelector('.chatbot-toggle-wrapper');
+const chatTooltip = document.getElementById('chatbot-tooltip');
+const closeTooltipBtn = document.getElementById('close-tooltip');
 
 if (chatToggle && chatContainer) {
+    // Tooltip animation logic
+    if (chatTooltip) {
+        setTimeout(() => {
+            if (!chatContainer.classList.contains('active')) {
+                chatTooltip.classList.add('show');
+                setTimeout(() => chatTooltip.classList.add('bounce'), 600);
+            }
+        }, 5000); // Show popup 5 seconds after page load
+
+        if (closeTooltipBtn) {
+            closeTooltipBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                chatTooltip.classList.remove('show', 'bounce');
+            });
+        }
+    }
+
     chatToggle.addEventListener('click', () => {
         chatContainer.classList.add('active');
-        chatToggle.classList.add('hidden');
+        if (chatToggleWrapper) chatToggleWrapper.classList.add('hidden');
+        if (chatTooltip) chatTooltip.classList.remove('show', 'bounce');
     });
 
     closeChat.addEventListener('click', () => {
         chatContainer.classList.remove('active');
-        chatToggle.classList.remove('hidden');
+        if (chatToggleWrapper) chatToggleWrapper.classList.remove('hidden');
     });
 
     const handleSend = async () => {
