@@ -26,11 +26,18 @@
         href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💻</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
+
+    <!-- Cursor Following Glow -->
+    <div class="cursor-glow" id="cursor-glow"></div>
+
+    <!-- Particle Background Canvas -->
+    <canvas id="particle-bg"></canvas>
+
     <a class="skip-link" href="#about" data-en="Skip to content">Pular para conteúdo</a>
 
     <!-- Header -->
@@ -74,6 +81,11 @@
 
     <!-- Hero -->
     <section class="hero">
+        <!-- Floating Gradient Orbs -->
+        <div class="hero-orb hero-orb-1"></div>
+        <div class="hero-orb hero-orb-2"></div>
+        <div class="hero-orb hero-orb-3"></div>
+
         <div class="container hero-content">
             <div class="hero-text">
                 <p class="hero-greeting" data-en="Hello, I'm">Olá, eu sou</p>
@@ -89,16 +101,16 @@
                     <span class="badge badge-outline" data-en="Information Systems">Sistemas de Informação</span>
                 </div>
                 <div class="hero-actions">
-                    <a href="Curriculo_Matheus_Araujo_Macedo.pdf" target="_blank" class="btn btn-primary"
+                    <a href="Curriculo_Matheus_Araujo_Macedo.pdf" target="_blank" class="btn btn-primary magnetic-btn"
                         data-en="<i class='fas fa-download'></i> Download CV">
                         <i class="fas fa-download"></i> Baixar CV
                     </a>
-                    <a href="#contact" class="btn btn-secondary" data-en="Contact Me">Falar Comigo</a>
+                    <a href="#contact" class="btn btn-secondary magnetic-btn" data-en="Contact Me">Falar Comigo</a>
                 </div>
             </div>
             <div class="hero-image-wrapper">
-                <div class="hero-image parallax-element" data-speed="0.08">
-                    <img src="matheusaraujo.jpeg" alt="Foto de Matheus Araújo" loading="lazy">
+                <div class="hero-image">
+                    <img src="matheusaraujo.jpeg" alt="Foto de Matheus Araújo" loading="eager">
                 </div>
             </div>
         </div>
@@ -118,22 +130,22 @@
                         Tenho uma base sólida em Desenvolvimento Web (HTML, CSS, JavaScript) e conquistei 3
                         certificações Microsoft Azure. Também apresentei meu TCC no evento Criatech da TOTVS.</p>
                 </div>
-                <div class="about-highlights reveal">
-                    <div class="highlight-item">
+                <div class="about-highlights">
+                    <div class="highlight-item reveal">
                         <i class="fas fa-graduation-cap"></i>
                         <div>
                             <h4 data-en="Education">Formação</h4>
                             <p data-en="Information Systems (Impacta)">Sistemas de Informação (Impacta)</p>
                         </div>
                     </div>
-                    <div class="highlight-item">
+                    <div class="highlight-item reveal">
                         <i class="fas fa-award"></i>
                         <div>
                             <h4 data-en="Highlight">Destaque</h4>
                             <p data-en="TCC at Criatech (TOTVS)">TCC no Criatech (TOTVS)</p>
                         </div>
                     </div>
-                    <div class="highlight-item">
+                    <div class="highlight-item reveal">
                         <i class="fas fa-certificate"></i>
                         <div>
                             <h4 data-en="Certifications">Certificações</h4>
@@ -151,35 +163,35 @@
             <h2 class="section-title" data-en="My <span class='accent'>Stack</span>">Minha <span
                     class="accent">Stack</span></h2>
             <div class="stack-grid">
-                <div class="stack-card reveal">
+                <div class="stack-card gsap-reveal">
                     <i class="fab fa-microsoft" style="color: #0078d4;"></i>
                     <span>Azure</span>
                 </div>
-                <div class="stack-card reveal">
+                <div class="stack-card gsap-reveal">
                     <i class="fas fa-database" style="color: #00758f;"></i>
                     <span>SQL Server</span>
                 </div>
-                <div class="stack-card reveal">
+                <div class="stack-card gsap-reveal">
                     <i class="fab fa-js" style="color: #f7df1e;"></i>
                     <span>JavaScript</span>
                 </div>
-                <div class="stack-card reveal">
+                <div class="stack-card gsap-reveal">
                     <i class="fab fa-python" style="color: #3776ab;"></i>
                     <span>Python</span>
                 </div>
-                <div class="stack-card reveal">
+                <div class="stack-card gsap-reveal">
                     <i class="fab fa-html5" style="color: #e34f26;"></i>
                     <span>HTML/CSS</span>
                 </div>
-                <div class="stack-card reveal">
+                <div class="stack-card gsap-reveal">
                     <i class="fab fa-git-alt" style="color: #f05032;"></i>
                     <span>Git</span>
                 </div>
-                <div class="stack-card reveal">
+                <div class="stack-card gsap-reveal">
                     <i class="fab fa-docker" style="color: #2496ed;"></i>
                     <span>DevOps</span>
                 </div>
-                <div class="stack-card reveal">
+                <div class="stack-card gsap-reveal">
                     <i class="fab fa-linux" style="color: #fff;"></i>
                     <span>Linux</span>
                 </div>
@@ -202,8 +214,9 @@
 
             <div class="projects-grid">
 
-                <div class="project-card reveal" data-category="frontend">
-                    <div class="project-visual parallax-element" data-speed="0.05">
+                <div class="project-card reveal tilt-card" data-category="frontend">
+                    <div class="card-shine"></div>
+                    <div class="project-visual">
                         <i class="fas fa-laptop-code"></i>
                     </div>
                     <div class="project-body">
@@ -216,7 +229,7 @@
                             data-en="Development of the project websites presented at the Criatech event. Focus on responsive, high-impact interfaces.">
                             Desenvolvimento dos sites do projeto apresentado no evento Criatech. Foco em interfaces
                             responsivas e de alto impacto.</p>
-                        <button class="btn btn-sm" onclick="openModal(this)" data-title="TCC - TOTVS/Criatech"
+                        <button class="btn btn-sm magnetic-btn" onclick="openModal(this)" data-title="TCC - TOTVS/Criatech"
                             data-desc="Trabalhei no desenvolvimento Front-end para os sites do projeto apresentado no evento Cria Tech da TOTVS. O foco foi criar uma interface funcional, responsiva e com alto impacto visual."
                             data-link="https://github.com/MatheusAraujoMacedo" data-en-title="TCC - TOTVS/Criatech"
                             data-en-desc="I worked on the front-end development for the project websites presented at the Cria Tech event by TOTVS. The focus was on a functional, responsive interface with strong visual impact.">
@@ -225,8 +238,9 @@
                     </div>
                 </div>
 
-                <div class="project-card reveal" data-category="frontend data">
-                    <div class="project-visual parallax-element" data-speed="0.05">
+                <div class="project-card reveal tilt-card" data-category="frontend data">
+                    <div class="card-shine"></div>
+                    <div class="project-visual">
                         <i class="fas fa-chart-pie"></i>
                     </div>
                     <div class="project-body">
@@ -239,7 +253,7 @@
                             data-en="Personal finance control system with interactive interface, expense categorization, and real-time budget charts.">
                             Sistema de controle financeiro pessoal com interface interativa, categorização de gastos e
                             visualização gráfica de orçamento em tempo real.</p>
-                        <button class="btn btn-sm" onclick="openModal(this)" data-title="Dashboard Financeiro"
+                        <button class="btn btn-sm magnetic-btn" onclick="openModal(this)" data-title="Dashboard Financeiro"
                             data-desc="Uma aplicação SPA focada em controle de gastos. Implementei gráficos interativos com Chart.js e lógica para cálculos em tempo real."
                             data-link="https://github.com/MatheusAraujoMacedo" data-en-title="Finance Dashboard"
                             data-en-desc="A single-page application focused on expense tracking. I implemented interactive charts with Chart.js and array manipulation logic for real-time calculations.">
@@ -248,8 +262,9 @@
                     </div>
                 </div>
 
-                <div class="project-card reveal" data-category="backend">
-                    <div class="project-visual parallax-element" data-speed="0.05">
+                <div class="project-card reveal tilt-card" data-category="backend">
+                    <div class="card-shine"></div>
+                    <div class="project-visual">
                         <i class="fas fa-wallet"></i>
                     </div>
                     <div class="project-body">
@@ -263,7 +278,7 @@
                             data-en="Full-stack application for financial management using Python, Flask and PostgreSQL. Deployed to Render with secure environment variables.">
                             Aplicação full-stack para gestão financeira utilizando Python, Flask e PostgreSQL. Deploy no
                             Render com variáveis de ambiente para segurança.</p>
-                        <button class="btn btn-sm" onclick="openModal(this)" data-title="Gestor Financeiro FOHB"
+                        <button class="btn btn-sm magnetic-btn" onclick="openModal(this)" data-title="Gestor Financeiro FOHB"
                             data-desc="Sistema de controle de finanças construído com Python e Flask. Utiliza PostgreSQL em produção na nuvem (Render) com rotas protegidas e deploy contínuo."
                             data-link="https://gestor-financeiro-fohb.onrender.com/" data-en-title="Finance Manager"
                             data-en-desc="Finance control system built with Python and Flask. Uses PostgreSQL in a cloud production environment (Render) with protected routes and continuous deployment.">
@@ -272,8 +287,9 @@
                     </div>
                 </div>
 
-                <div class="project-card reveal" data-category="backend data">
-                    <div class="project-visual parallax-element" data-speed="0.05">
+                <div class="project-card reveal tilt-card" data-category="backend data">
+                    <div class="card-shine"></div>
+                    <div class="project-visual">
                         <i class="fas fa-chart-line"></i>
                     </div>
                     <div class="project-body">
@@ -285,7 +301,7 @@
                         <p
                             data-en="A robust Python project focused on financial management and data analysis, providing an advanced approach to budget control.">
                             Um projeto robusto em Python focado em gestão financeira e análise de dados, oferecendo uma abordagem avançada para controle de orçamento.</p>
-                        <button class="btn btn-sm" onclick="openModal(this)" data-title="CyberFinance Pro"
+                        <button class="btn btn-sm magnetic-btn" onclick="openModal(this)" data-title="CyberFinance Pro"
                             data-desc="Desenvolvido em Python, este projeto visa criar uma ferramenta robusta para gerenciamento financeiro, utilizando bibliotecas de análise e processamento de dados."
                             data-link="https://github.com/MatheusAraujoMacedo/cyberfinance-pro" data-en-title="CyberFinance Pro"
                             data-en-desc="Developed in Python, this project aims to create a robust tool for financial management, utilizing data analysis and processing libraries.">
@@ -294,8 +310,9 @@
                     </div>
                 </div>
 
-                <div class="project-card reveal" data-category="backend">
-                    <div class="project-visual parallax-element" data-speed="0.05">
+                <div class="project-card reveal tilt-card" data-category="backend">
+                    <div class="card-shine"></div>
+                    <div class="project-visual">
                         <i class="fas fa-terminal"></i>
                     </div>
                     <div class="project-body">
@@ -308,7 +325,7 @@
                         <p
                             data-en="A productivity and study assistant running directly in the terminal, featuring a cyberpunk TUI and Google Gemini AI integration.">
                             Um assistente de estudos e produtividade que roda direto no terminal, com uma interface TUI cyberpunk e integração com a IA do Google Gemini.</p>
-                        <button class="btn btn-sm" onclick="openModal(this)" data-title="Assistente de Estudos CLI"
+                        <button class="btn btn-sm magnetic-btn" onclick="openModal(this)" data-title="Assistente de Estudos CLI"
                             data-desc="Aplicativo de terminal robusto criado com Python e a biblioteca Textual. Permite capturar a tela, enviar para a API de visão do Gemini e receber orientações de estudo em modo TUI completo."
                             data-link="https://github.com/MatheusAraujoMacedo/Programa-estudos" data-en-title="Terminal Study Assistant"
                             data-en-desc="Robust terminal application built with Python and Textual library. It allows screen capturing, sending it to Gemini's vision API, and receiving study guidance in full TUI mode.">
@@ -317,8 +334,9 @@
                     </div>
                 </div>
 
-                <div class="project-card reveal" data-category="frontend">
-                    <div class="project-visual parallax-element" data-speed="0.05">
+                <div class="project-card reveal tilt-card" data-category="frontend">
+                    <div class="card-shine"></div>
+                    <div class="project-visual">
                         <i class="fas fa-qrcode"></i>
                     </div>
                     <div class="project-body">
@@ -330,7 +348,7 @@
                         <p
                             data-en="A web utility to quickly generate custom QR Codes for links, texts, and websites.">
                             Um utilitário web para gerar rapidamente QR Codes personalizados para links, textos e sites diversos.</p>
-                        <button class="btn btn-sm" onclick="openModal(this)" data-title="Criador de QR Code"
+                        <button class="btn btn-sm magnetic-btn" onclick="openModal(this)" data-title="Criador de QR Code"
                             data-desc="Aplicação web simples e direta que recebe uma entrada (URL ou texto) e gera dinamicamente um QR Code pronto para uso e download."
                             data-link="https://github.com/MatheusAraujoMacedo/Criador-de-Qr-code" data-en-title="QR Code Generator"
                             data-en-desc="Simple and straightforward frontend application that inputs a URL or text and dynamically generates a ready-to-use and download QR Code.">
@@ -349,7 +367,7 @@
             <h2 class="section-title" data-en="My <span class='accent'>Journey</span>">Minha <span
                     class="accent">Jornada</span></h2>
             <div class="timeline">
-                <div class="timeline-item timeline-left reveal">
+                <div class="timeline-item timeline-left reveal-right">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
                         <span class="timeline-date">2026 (Atual)</span>
@@ -359,7 +377,7 @@
                             Início da minha jornada profissional como Jovem Aprendiz em TI na SAMI Saúde, aplicando meus conhecimentos em um ambiente corporativo real de healthtech.</p>
                     </div>
                 </div>
-                <div class="timeline-item timeline-right reveal">
+                <div class="timeline-item timeline-right reveal-left">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
                         <span class="timeline-date">2026</span>
@@ -370,7 +388,7 @@
                             cultura DevOps.</p>
                     </div>
                 </div>
-                <div class="timeline-item timeline-left reveal">
+                <div class="timeline-item timeline-left reveal-right">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
                         <span class="timeline-date">2025</span>
@@ -381,7 +399,7 @@
                             manipulação de dados.</p>
                     </div>
                 </div>
-                <div class="timeline-item timeline-right reveal">
+                <div class="timeline-item timeline-right reveal-left">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
                         <span class="timeline-date">2024</span>
@@ -392,7 +410,7 @@
                             evento Cria Tech (TOTVS).</p>
                     </div>
                 </div>
-                <div class="timeline-item timeline-left reveal">
+                <div class="timeline-item timeline-left reveal-right">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
                         <span class="timeline-date">2023</span>
@@ -403,7 +421,7 @@
                             AZ-903).</p>
                     </div>
                 </div>
-                <div class="timeline-item timeline-right reveal">
+                <div class="timeline-item timeline-right reveal-left">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
                         <span class="timeline-date">2022</span>
@@ -424,17 +442,17 @@
             <h2 class="section-title" data-en="Azure <span class='accent'>Certifications</span>">Certificações <span
                     class="accent">Azure</span></h2>
             <div class="certs-grid">
-                <div class="cert-card reveal">
+                <div class="cert-card gsap-reveal">
                     <i class="fab fa-microsoft"></i>
                     <h3>AZ-901</h3>
                     <p>Fundamentals</p>
                 </div>
-                <div class="cert-card reveal">
+                <div class="cert-card gsap-reveal">
                     <i class="fas fa-cloud"></i>
                     <h3>AZ-902</h3>
                     <p>Cloud Computing</p>
                 </div>
-                <div class="cert-card reveal">
+                <div class="cert-card gsap-reveal">
                     <i class="fas fa-network-wired"></i>
                     <h3>AZ-903</h3>
                     <p>Services</p>
@@ -477,7 +495,7 @@
             <h2 class="section-title" data-en="Let's <span class='accent'>Talk</span>">Vamos <span
                     class="accent">Conversar</span></h2>
 
-            <div class="contact-wrapper reveal">
+            <div class="contact-wrapper gsap-reveal">
                 <p class="form-helper" data-en="I usually reply within 24–48 hours.">Costumo responder em até 24–48
                     horas.</p>
 
@@ -494,7 +512,7 @@
                         <textarea name="message" rows="5" required placeholder=" " id="input-message"></textarea>
                         <label for="input-message" data-en="Your Message">Sua Mensagem</label>
                     </div>
-                    <button type="submit" class="btn btn-primary submit-btn"
+                    <button type="submit" class="btn btn-primary submit-btn magnetic-btn"
                         data-en="Send Message <i class='fas fa-paper-plane'></i>">
                         Enviar Mensagem <i class="fas fa-paper-plane"></i>
                     </button>
@@ -546,7 +564,7 @@
             <h2 id="modal-title">Título do Projeto</h2>
             <p id="modal-desc">Descrição completa do projeto...</p>
             <br>
-            <a href="#" id="modal-link" target="_blank" class="btn btn-primary modal-link-btn"
+            <a href="#" id="modal-link" target="_blank" class="btn btn-primary modal-link-btn magnetic-btn"
                 data-en="View on GitHub">Ver no GitHub</a>
         </div>
     </div>
@@ -599,8 +617,11 @@
         new window.VLibras.Widget('https://vlibras.gov.br/app');
     </script>
     
-    <!-- GSAP for Animations -->
+    <!-- GSAP + ScrollTrigger -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
     <script src="static/script.js"></script>
 </body>
 

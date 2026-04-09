@@ -1,29 +1,191 @@
 // =============================================
-// PARALLAX SCROLL ANIMATION
+// INITIALIZATION & PREFERENCES
 // =============================================
-const parallaxElements = document.querySelectorAll('.parallax-element');
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-function updateParallax() {
-    if (prefersReducedMotion) return;
-    parallaxElements.forEach(el => {
-        const rect = el.getBoundingClientRect();
-        const speed = parseFloat(el.dataset.speed) || 0.05;
-        const center = window.innerHeight / 2;
-        const elementCenter = rect.top + rect.height / 2;
-        const offset = (elementCenter - center) * speed;
-        el.style.transform = `translateY(${offset}px)`;
+// =============================================
+// LENIS SMOOTH SCROLL
+// =============================================
+let lenis;
+if (!prefersReducedMotion && typeof Lenis !== 'undefined') {
+    lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        touchMultiplier: 1.5,
+        infinite: false,
+    });
+
+    function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    // Connect Lenis to GSAP ScrollTrigger
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+        lenis.on('scroll', ScrollTrigger.update);
+        gsap.ticker.add((time) => {
+            lenis.raf(time * 1000);
+        });
+        gsap.ticker.lagSmoothing(0);
+    }
+}
+
+// =============================================
+// PARTICLE CANVAS BACKGROUND
+// =============================================
+const particleCanvas = document.getElementById('particle-bg');
+if (particleCanvas) {
+    const ctx = particleCanvas.getContext('2d');
+    let particles = [];
+    let mouseX = 0;
+    let mouseY = 0;
+    let canvasWidth, canvasHeight;
+    const isMobile = window.innerWidth < 768;
+    const particleCount = isMobile ? 30 : 65;
+    const connectionDistance = isMobile ? 100 : 150;
+
+    function resizeCanvas() {
+        canvasWidth = window.innerWidth;
+        canvasHeight = window.innerHeight;
+        particleCanvas.width = canvasWidth;
+        particleCanvas.height = canvasHeight;
+    }
+
+    function createParticles() {
+        particles = [];
+        for (let i = 0; i < particleCount; i++) {
+            particles.push({
+                x: Math.random() * canvasWidth,
+                y: Math.random() * canvasHeight,
+                vx: (Math.random() - 0.5) * 0.4,
+                vy: (Math.random() - 0.5) * 0.4,
+                radius: Math.random() * 1.5 + 0.5,
+                opacity: Math.random() * 0.5 + 0.2,
+            });
+        }
+    }
+
+    function drawParticles() {
+        ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+
+        // Draw connections
+        for (let i = 0; i < particles.length; i++) {
+            for (let j = i + 1; j < particles.length; j++) {
+                const dx = particles[i].x - particles[j].x;
+                const dy = particles[i].y - particles[j].y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+
+                if (dist < connectionDistance) {
+                    const opacity = (1 - dist / connectionDistance) * 0.15;
+                    ctx.beginPath();
+                    ctx.strokeStyle = `rgba(99, 102, 241, ${opacity})`;
+                    ctx.lineWidth = 0.5;
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(particles[j].x, particles[j].y);
+                    ctx.stroke();
+                }
+            }
+        }
+
+        // Draw particles and update
+        particles.forEach(p => {
+            // Mouse repulsion
+            const dx = p.x - mouseX;
+            const dy = p.y - mouseY;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < 120) {
+                const force = (120 - dist) / 120;
+                p.vx += (dx / dist) * force * 0.15;
+                p.vy += (dy / dist) * force * 0.15;
+            }
+
+            // Apply velocity with damping
+            p.vx *= 0.99;
+            p.vy *= 0.99;
+            p.x += p.vx;
+            p.y += p.vy;
+
+            // Wrap around edges
+            if (p.x < 0) p.x = canvasWidth;
+            if (p.x > canvasWidth) p.x = 0;
+            if (p.y < 0) p.y = canvasHeight;
+            if (p.y > canvasHeight) p.y = 0;
+
+            // Draw particle
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(99, 102, 241, ${p.opacity})`;
+            ctx.fill();
+        });
+
+        if (!prefersReducedMotion) {
+            requestAnimationFrame(drawParticles);
+        }
+    }
+
+    resizeCanvas();
+    createParticles();
+    if (!prefersReducedMotion) {
+        drawParticles();
+    }
+
+    window.addEventListener('resize', () => {
+        resizeCanvas();
+        createParticles();
+    });
+
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
     });
 }
 
-window.addEventListener('scroll', updateParallax, { passive: true });
-window.addEventListener('resize', updateParallax, { passive: true });
-updateParallax();
+// =============================================
+// CURSOR FOLLOWING GLOW
+// =============================================
+const cursorGlow = document.getElementById('cursor-glow');
+if (cursorGlow && !prefersReducedMotion && !isMobileDevice()) {
+    let glowX = 0, glowY = 0;
+    let targetX = 0, targetY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+        targetX = e.clientX;
+        targetY = e.clientY;
+        cursorGlow.classList.add('active');
+    });
+
+    function animateGlow() {
+        glowX += (targetX - glowX) * 0.08;
+        glowY += (targetY - glowY) * 0.08;
+        cursorGlow.style.left = glowX + 'px';
+        cursorGlow.style.top = glowY + 'px';
+        requestAnimationFrame(animateGlow);
+    }
+    animateGlow();
+}
+
+function isMobileDevice() {
+    return window.innerWidth < 768 || 'ontouchstart' in window;
+}
+
+
 
 // =============================================
-// REVEAL ON SCROLL (subtle fade in)
+// HEADER SCROLL STATE
 // =============================================
-const revealElements = document.querySelectorAll('.reveal');
+const header = document.getElementById('header');
+if (header) {
+    window.addEventListener('scroll', () => {
+        header.classList.toggle('scrolled', window.scrollY > 50);
+    }, { passive: true });
+}
+
+// =============================================
+// REVEAL ON SCROLL (IntersectionObserver)
+// =============================================
+const revealSelectors = '.reveal, .reveal-left, .reveal-right, .reveal-scale';
+const revealElements = document.querySelectorAll(revealSelectors);
 
 if (!prefersReducedMotion) {
     const revealObserver = new IntersectionObserver((entries) => {
@@ -33,9 +195,19 @@ if (!prefersReducedMotion) {
                 revealObserver.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    }, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
 
-    revealElements.forEach(el => revealObserver.observe(el));
+    revealElements.forEach((el, i) => {
+        // Add stagger delay for cards in grids
+        const parent = el.parentElement;
+        if (parent && (parent.classList.contains('stack-grid') || parent.classList.contains('certs-grid') || parent.classList.contains('wave-grid') || parent.classList.contains('projects-grid'))) {
+            const siblings = Array.from(parent.children);
+            const index = siblings.indexOf(el);
+            el.style.setProperty('--reveal-delay', `${index * 0.08}s`);
+            el.style.transitionDelay = `${index * 0.08}s`;
+        }
+        revealObserver.observe(el);
+    });
 } else {
     revealElements.forEach(el => el.classList.add('revealed'));
 }
@@ -44,9 +216,11 @@ if (!prefersReducedMotion) {
 // BACK TO TOP
 // =============================================
 const backToTopButton = document.getElementById('backToTop');
-window.addEventListener('scroll', () => {
-    backToTopButton.classList.toggle('show', window.scrollY > 300);
-});
+if (backToTopButton) {
+    window.addEventListener('scroll', () => {
+        backToTopButton.classList.toggle('show', window.scrollY > 400);
+    }, { passive: true });
+}
 
 // =============================================
 // ACTIVE NAV LINK
@@ -169,7 +343,7 @@ function openModal(trigger) {
     modal.classList.add('show');
 }
 
-closeModalBtn.onclick = () => modal.classList.remove('show');
+if (closeModalBtn) closeModalBtn.onclick = () => modal.classList.remove('show');
 window.onclick = (e) => { if (e.target === modal) modal.classList.remove('show'); };
 
 // =============================================
@@ -224,35 +398,291 @@ if (contactForm) {
 }
 
 // =============================================
-// GSAP HERO ANIMATION
+// GSAP HERO ANIMATION — Cinematic Entry
 // =============================================
 function initHeroAnimation() {
     if (typeof gsap === 'undefined' || prefersReducedMotion) return;
 
-    // Create timeline with default ease
     const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
 
-    // Cinematic stagger effect for text content
-    tl.from(".hero-greeting, .hero h1, .hero-role, .hero-desc, .hero-badges, .hero-actions", {
-        y: 40,
+    // Cinematic stagger for text
+    tl.from(".hero-greeting", {
+        x: -40,
+        opacity: 0,
+        duration: 1,
+        delay: 0.2
+    })
+    .from(".hero h1", {
+        y: 60,
         opacity: 0,
         duration: 1.2,
-        stagger: 0.15,
-        delay: 0.1
-    })
-    // Dramatic fade + scale down for image container
-    .from(".hero-image", {
-        scale: 1.15,
-        opacity: 0,
-        duration: 1.8,
         ease: "power3.out"
-    }, "-=1.0") // overlap with text animation
-    // Subtle internal scale down for the photo itself
+    }, "-=0.6")
+    .from(".hero-role", {
+        y: 30,
+        opacity: 0,
+        duration: 0.8
+    }, "-=0.7")
+    .from(".hero-desc", {
+        y: 30,
+        opacity: 0,
+        duration: 0.8
+    }, "-=0.5")
+    .from(".hero-badges .badge", {
+        scale: 0.8,
+        opacity: 0,
+        duration: 0.6,
+        stagger: 0.1,
+        ease: "back.out(1.7)"
+    }, "-=0.4")
+    .from(".hero-actions .btn", {
+        y: 20,
+        opacity: 0,
+        duration: 0.6,
+        stagger: 0.1
+    }, "-=0.3")
+    // Hero image — dramatic scale + glow
+    .from(".hero-image", {
+        scale: 0.8,
+        opacity: 0,
+        duration: 1.5,
+        ease: "power3.out"
+    }, "-=1.2")
     .from(".hero-image img", {
-        scale: 1.2,
+        scale: 1.3,
         duration: 2.5,
         ease: "sine.out"
-    }, "-=1.8"); 
+    }, "-=1.5")
+    // Orbs fade in
+    .from(".hero-orb", {
+        scale: 0,
+        opacity: 0,
+        duration: 2,
+        stagger: 0.2,
+        ease: "power2.out"
+    }, "-=2");
+}
+
+// =============================================
+// GSAP SCROLL TRIGGER ANIMATIONS
+// =============================================
+function initScrollAnimations() {
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined' || prefersReducedMotion) return;
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Section titles — clip reveal
+    gsap.utils.toArray('.section-title').forEach(title => {
+        gsap.from(title, {
+            y: 40,
+            opacity: 0,
+            duration: 1,
+            ease: "power3.out",
+            scrollTrigger: {
+                trigger: title,
+                start: "top 85%",
+                toggleActions: "play none none none"
+            }
+        });
+    });
+
+    // Stack cards — bounce stagger
+    const stackCards = gsap.utils.toArray('.stack-card');
+    if (stackCards.length) {
+        gsap.fromTo(stackCards, 
+            { y: 50, opacity: 0, scale: 0.9 },
+            {
+                y: 0,
+                opacity: 1,
+                scale: 1,
+                duration: 0.7,
+                stagger: 0.08,
+                ease: "back.out(1.4)",
+                scrollTrigger: {
+                    trigger: '.stack-grid',
+                    start: "top 80%",
+                    toggleActions: "play none none none"
+                }
+            }
+        );
+    }
+
+    // Cert cards — scale in
+    const certCards = gsap.utils.toArray('.cert-card');
+    if (certCards.length) {
+        gsap.fromTo(certCards,
+            { scale: 0.8, opacity: 0 },
+            {
+                scale: 1,
+                opacity: 1,
+                duration: 0.8,
+                stagger: 0.12,
+                ease: "back.out(1.5)",
+                scrollTrigger: {
+                    trigger: '.certs-grid',
+                    start: "top 80%",
+                    toggleActions: "play none none none"
+                }
+            }
+        );
+    }
+
+    // Timeline items — alternate slide
+    gsap.utils.toArray('.timeline-item').forEach((item, i) => {
+        const isLeft = item.classList.contains('timeline-left');
+        gsap.from(item.querySelector('.timeline-content'), {
+            x: isLeft ? -60 : 60,
+            opacity: 0,
+            duration: 0.9,
+            ease: "power3.out",
+            scrollTrigger: {
+                trigger: item,
+                start: "top 82%",
+                toggleActions: "play none none none"
+            }
+        });
+
+        gsap.from(item.querySelector('.timeline-dot'), {
+            scale: 0,
+            duration: 0.5,
+            ease: "back.out(2)",
+            scrollTrigger: {
+                trigger: item,
+                start: "top 82%",
+                toggleActions: "play none none none"
+            }
+        });
+    });
+
+    // Contact form — subtle rise
+    const contactWrapper = document.querySelector('.contact-wrapper');
+    if (contactWrapper) {
+        gsap.fromTo(contactWrapper,
+            { y: 50, opacity: 0 },
+            {
+                y: 0,
+                opacity: 1,
+                duration: 1,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: contactWrapper,
+                    start: "top 85%",
+                    toggleActions: "play none none none"
+                }
+            }
+        );
+    }
+}
+
+// =============================================
+// 3D TILT EFFECT — Project Cards
+// =============================================
+function initTiltCards() {
+    if (prefersReducedMotion || isMobileDevice()) return;
+
+    const tiltCards = document.querySelectorAll('.tilt-card');
+
+    tiltCards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const cardCenterX = rect.left + rect.width / 2;
+            const cardCenterY = rect.top + rect.height / 2;
+
+            const mouseX = e.clientX - cardCenterX;
+            const mouseY = e.clientY - cardCenterY;
+
+            const rotateX = (-mouseY / (rect.height / 2)) * 6;
+            const rotateY = (mouseX / (rect.width / 2)) * 6;
+
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+
+            // Update shine position
+            const shine = card.querySelector('.card-shine');
+            if (shine) {
+                const percentX = ((e.clientX - rect.left) / rect.width) * 100;
+                const percentY = ((e.clientY - rect.top) / rect.height) * 100;
+                shine.style.setProperty('--mouse-x', percentX + '%');
+                shine.style.setProperty('--mouse-y', percentY + '%');
+            }
+        });
+
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+            card.style.transition = 'transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)';
+        });
+
+        card.addEventListener('mouseenter', () => {
+            card.style.transition = 'transform 0.1s ease-out';
+        });
+    });
+}
+
+// =============================================
+// MAGNETIC BUTTONS
+// =============================================
+function initMagneticButtons() {
+    if (prefersReducedMotion || isMobileDevice()) return;
+
+    const magneticBtns = document.querySelectorAll('.magnetic-btn');
+
+    magneticBtns.forEach(btn => {
+        btn.addEventListener('mousemove', (e) => {
+            const rect = btn.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+
+            btn.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+        });
+
+        btn.addEventListener('mouseleave', () => {
+            btn.style.transform = 'translate(0, 0)';
+            btn.style.transition = 'transform 0.4s cubic-bezier(0.22, 1, 0.36, 1)';
+        });
+
+        btn.addEventListener('mouseenter', () => {
+            btn.style.transition = 'transform 0.1s ease-out';
+        });
+
+        // Ripple effect on click
+        btn.addEventListener('click', (e) => {
+            const rect = btn.getBoundingClientRect();
+            const ripple = document.createElement('span');
+            ripple.className = 'btn-ripple';
+            const size = Math.max(rect.width, rect.height);
+            ripple.style.width = ripple.style.height = size + 'px';
+            ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
+            ripple.style.top = (e.clientY - rect.top - size / 2) + 'px';
+            btn.appendChild(ripple);
+            ripple.addEventListener('animationend', () => ripple.remove());
+        });
+    });
+}
+
+// =============================================
+// HERO MOUSE PARALLAX (Orbs)
+// =============================================
+function initHeroParallax() {
+    if (prefersReducedMotion || isMobileDevice()) return;
+
+    const orbs = document.querySelectorAll('.hero-orb');
+    const heroSection = document.querySelector('.hero');
+
+    if (!heroSection || !orbs.length) return;
+
+    heroSection.addEventListener('mousemove', (e) => {
+        const rect = heroSection.getBoundingClientRect();
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const mouseX = e.clientX - rect.left - centerX;
+        const mouseY = e.clientY - rect.top - centerY;
+
+        orbs.forEach((orb, i) => {
+            const speed = (i + 1) * 0.015;
+            const x = mouseX * speed;
+            const y = mouseY * speed;
+            orb.style.transform = `translate(${x}px, ${y}px)`;
+        });
+    });
 }
 
 // =============================================
@@ -288,15 +718,15 @@ function type() {
         charIndex++;
     }
     
-    let typeSpeed = isDeleting ? 40 : 80;
+    let typeSpeed = isDeleting ? 35 : 70;
     
     if (!isDeleting && charIndex === currentString.length) {
-        typeSpeed = 2000;
+        typeSpeed = 2200;
         isDeleting = true;
     } else if (isDeleting && charIndex === 0) {
         isDeleting = false;
         typeIndex = (typeIndex + 1) % strings.length;
-        typeSpeed = 400;
+        typeSpeed = 500;
     }
     
     typewriterTimeout = setTimeout(type, typeSpeed);
@@ -320,7 +750,10 @@ filterBtns.forEach(btn => {
             if (filter === 'all' || category.includes(filter)) {
                 card.classList.remove('hidden');
                 if (typeof gsap !== 'undefined') {
-                    gsap.fromTo(card, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4 });
+                    gsap.fromTo(card, 
+                        { opacity: 0, y: 30, scale: 0.95 }, 
+                        { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "back.out(1.2)" }
+                    );
                 }
             } else {
                 card.classList.add('hidden');
@@ -350,7 +783,7 @@ if (chatToggle && chatContainer) {
                 chatTooltip.classList.add('show');
                 setTimeout(() => chatTooltip.classList.add('bounce'), 600);
             }
-        }, 5000); // Show popup 5 seconds after page load
+        }, 5000);
 
         if (closeTooltipBtn) {
             closeTooltipBtn.addEventListener('click', (e) => {
@@ -389,7 +822,6 @@ if (chatToggle && chatContainer) {
         chatMessages.scrollTop = chatMessages.scrollHeight;
 
         try {
-            // O Cloudflare Pages Functions compartilha a mesma origem do site principal
             const API_URL = '/api/chat';
 
             const response = await fetch(API_URL, {
@@ -408,8 +840,6 @@ if (chatToggle && chatContainer) {
             
             aiMsg.classList.remove('typing');
             
-            // Verifica se a resposta contém HTML marckdown simples (ex: **negrito**)
-            // O ideal seria usar uma lib como marked.js, mas o Gemini costuma mandar markdown
             const formattedText = data.response
                 .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
                 .replace(/\n(.*)/g, '<br>$1');
@@ -435,13 +865,27 @@ if (chatToggle && chatContainer) {
     });
 }
 
-// Initialize when DOM is ready
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-        initHeroAnimation();
-        startTypewriter();
-    });
-} else {
+// =============================================
+// INITIALIZE EVERYTHING
+// =============================================
+function initAll() {
     initHeroAnimation();
     startTypewriter();
+    initScrollAnimations();
+    initTiltCards();
+    initMagneticButtons();
+    initHeroParallax();
+
+    // Fallback: if GSAP/ScrollTrigger didn't load, make gsap-reveal elements visible
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined' || prefersReducedMotion) {
+        document.querySelectorAll('.gsap-reveal').forEach(el => {
+            el.style.opacity = '1';
+        });
+    }
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAll);
+} else {
+    initAll();
 }
