@@ -1,3 +1,10 @@
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+ehthumbs.db
+
 # Environments
 .env
 .env.*
@@ -8,8 +15,25 @@ __pycache__/
 *.pyc
 *.pyo
 *.pyd
+*.pyc
+.pytest_cache/
 
 # Virtual environments
 venv/
 env/
 .venv/
+
+# Node.js & Cloudflare
+node_modules/
+npm-debug.log
+yarn-error.log
+.wrangler/
+
+# IDE and Editors
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
