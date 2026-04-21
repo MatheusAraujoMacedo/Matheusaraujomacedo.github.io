@@ -909,6 +909,178 @@ if (chatToggle && chatContainer) {
 }
 
 // =============================================
+// MOBILE ANIMATIONS (max-width: 768px only)
+// =============================================
+
+/**
+ * 1. MOBILE SCROLL REVEAL
+ * Adds .mob-reveal to sections and .mob-reveal-child to their children.
+ * Uses IntersectionObserver to add .mob-visible on enter.
+ */
+function initMobileScrollReveal() {
+    if (!isMobileDevice() || prefersReducedMotion) return;
+
+    const targetSections = document.querySelectorAll(
+        '#about, #stack, #projects, #journey, #certs, #skills, #contact'
+    );
+
+    targetSections.forEach(section => {
+        // Mark section container for reveal
+        const container = section.querySelector('.container');
+        if (!container) return;
+        container.classList.add('mob-reveal');
+
+        // Find direct meaningful children to stagger
+        const children = container.querySelectorAll(
+            '.about-text, .highlight-item, .stack-card, .project-card, ' +
+            '.timeline-item, .cert-card, .wave-card, .contact-wrapper, ' +
+            '.section-title, .project-filters'
+        );
+        children.forEach((child, i) => {
+            child.classList.add('mob-reveal-child');
+            child.style.setProperty('--mob-delay', `${i * 0.1}s`);
+        });
+    });
+
+    const mobObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('mob-visible');
+                mobObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+
+    document.querySelectorAll('.mob-reveal').forEach(el => {
+        mobObserver.observe(el);
+    });
+}
+
+/**
+ * 2. HERO TYPEWRITER — one-shot CSS animation on mobile
+ */
+function initMobileHeroTypewriter() {
+    if (!isMobileDevice() || prefersReducedMotion) return;
+
+    const heroH1 = document.querySelector('.hero h1');
+    if (!heroH1) return;
+
+    heroH1.classList.add('mob-typewriter');
+
+    // After animation ends, clean up cursor
+    heroH1.addEventListener('animationend', (e) => {
+        if (e.animationName === 'mob-typing') {
+            heroH1.classList.remove('mob-typewriter');
+            heroH1.classList.add('mob-typewriter-done');
+        }
+    });
+}
+
+/**
+ * 3. STACK PROGRESS BARS — animate width on viewport enter
+ */
+function initMobileStackBars() {
+    if (!isMobileDevice() || prefersReducedMotion) return;
+
+    const stackSection = document.getElementById('stack');
+    if (!stackSection) return;
+
+    const stackCards = stackSection.querySelectorAll('.stack-card[data-level]');
+    let animated = false;
+
+    const barObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !animated) {
+                animated = true;
+                stackCards.forEach((card, i) => {
+                    const level = card.getAttribute('data-level') || '50';
+                    const bar = card.querySelector('.stack-progress-bar');
+                    if (bar) {
+                        setTimeout(() => {
+                            bar.style.width = level + '%';
+                            card.classList.add('bar-animated');
+                        }, i * 120);
+                    }
+                });
+                barObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.2 });
+
+    barObserver.observe(stackSection);
+}
+
+/**
+ * 4. CARD FLIP — tap to flip project cards on mobile
+ */
+function initMobileCardFlip() {
+    if (!isMobileDevice() || prefersReducedMotion) return;
+
+    const cards = document.querySelectorAll('.project-card');
+
+    cards.forEach(card => {
+        // Wrap existing content in flip structure
+        const existingContent = card.innerHTML;
+
+        // Extract data for back face from the button's data attributes
+        const btn = card.querySelector('.btn[onclick]');
+        const title = btn ? (btn.getAttribute('data-title') || '') : '';
+        const desc = btn ? (btn.getAttribute('data-desc') || '') : '';
+        const link = btn ? (btn.getAttribute('data-link') || '#') : '#';
+        const tags = card.querySelector('.tags');
+        const tagsHTML = tags ? tags.outerHTML : '';
+
+        card.innerHTML = `
+            <div class="card-flip-inner">
+                <div class="card-flip-front">${existingContent}</div>
+                <div class="card-flip-back">
+                    <h3>${title}</h3>
+                    <p>${desc}</p>
+                    ${tagsHTML}
+                    <a href="${link}" target="_blank" class="btn btn-primary btn-sm" aria-label="Ver no GitHub">
+                        <i class="fas fa-external-link-alt"></i> GitHub
+                    </a>
+                </div>
+            </div>
+        `;
+
+        // Toggle flip on touch/click
+        card.addEventListener('click', (e) => {
+            // Don't flip if they clicked/tapped a link directly
+            if (e.target.closest('a')) return;
+            card.classList.toggle('flipped');
+        });
+    });
+}
+
+/**
+ * 5. AVATAR PULSE GLOW — CSS-only (no JS needed), but we ensure class exists
+ */
+function initMobileAvatarPulse() {
+    // Pulse is handled purely via CSS @media (max-width: 768px)
+    // This function exists for modularity
+}
+
+/**
+ * 6. FLOATING CTA BUTTON — hide when #contact is visible
+ */
+function initMobileFloatingCTA() {
+    if (!isMobileDevice()) return;
+
+    const cta = document.getElementById('mobile-float-cta');
+    const contactSection = document.getElementById('contact');
+    if (!cta || !contactSection) return;
+
+    const ctaObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            cta.classList.toggle('mob-cta-hidden', entry.isIntersecting);
+        });
+    }, { threshold: 0.15 });
+
+    ctaObserver.observe(contactSection);
+}
+
+// =============================================
 // INITIALIZE EVERYTHING
 // =============================================
 function initAll() {
@@ -918,6 +1090,14 @@ function initAll() {
     initTiltCards();
     initMagneticButtons();
     initHeroParallax();
+
+    // Mobile-only animations
+    initMobileScrollReveal();
+    initMobileHeroTypewriter();
+    initMobileStackBars();
+    initMobileCardFlip();
+    initMobileAvatarPulse();
+    initMobileFloatingCTA();
 
     // Fallback: if GSAP/ScrollTrigger didn't load, make gsap-reveal elements visible
     if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined' || prefersReducedMotion) {

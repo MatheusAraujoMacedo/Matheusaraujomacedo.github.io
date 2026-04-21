@@ -2400,3 +2400,255 @@ body.white-contrast #particle-bg {
         bottom: 80px;
     }
 }
+
+/* =============================================
+   MOBILE ANIMATIONS — max-width: 768px ONLY
+   ============================================= */
+
+/* --- Progress bars (hidden on desktop) --- */
+.stack-progress {
+    display: none;
+}
+
+/* --- Floating CTA (hidden on desktop) --- */
+.mobile-float-cta {
+    display: none;
+}
+
+@media (max-width: 768px) {
+
+    /* ===========================================
+       1. MOBILE SCROLL REVEAL
+       =========================================== */
+    .mob-reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .mob-reveal.mob-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* Stagger delay for children (set via JS --mob-delay) */
+    .mob-reveal-child {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+        transition-delay: var(--mob-delay, 0s);
+    }
+
+    .mob-visible .mob-reveal-child {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* ===========================================
+       2. HERO TYPEWRITER (one-shot on mobile)
+       =========================================== */
+    .hero h1.mob-typewriter {
+        overflow: hidden;
+        white-space: nowrap;
+        border-right: 3px solid var(--accent);
+        width: 0;
+        animation:
+            mob-typing 1.8s steps(18, end) 0.5s forwards,
+            mob-blink-caret 0.7s step-end 6;
+    }
+
+    @keyframes mob-typing {
+        from { width: 0; }
+        to   { width: 100%; }
+    }
+
+    @keyframes mob-blink-caret {
+        from, to { border-color: transparent; }
+        50% { border-color: var(--accent); }
+    }
+
+    /* After animation ends (handled in JS removing border) */
+    .hero h1.mob-typewriter-done {
+        border-right: none;
+        width: 100%;
+    }
+
+    /* ===========================================
+       3. STACK PROGRESS BARS (mobile only)
+       =========================================== */
+    .stack-progress {
+        display: block;
+        width: 100%;
+        height: 6px;
+        background: rgba(148, 163, 184, 0.1);
+        border-radius: 3px;
+        overflow: hidden;
+        margin-top: 8px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .stack-progress-bar {
+        height: 100%;
+        width: 0;
+        background: var(--accent-gradient);
+        border-radius: 3px;
+        transition: width 1s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .stack-card.bar-animated .stack-progress-bar {
+        /* Width is set inline by JS */
+    }
+
+    /* ===========================================
+       4. CARD FLIP (project cards, mobile only)
+       =========================================== */
+    .project-card {
+        perspective: 1000px;
+    }
+
+    .project-card .card-flip-inner {
+        position: relative;
+        width: 100%;
+        transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+        transform-style: preserve-3d;
+    }
+
+    .project-card.flipped .card-flip-inner {
+        transform: rotateY(180deg);
+    }
+
+    .card-flip-front,
+    .card-flip-back {
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+    }
+
+    .card-flip-front {
+        position: relative;
+        z-index: 2;
+    }
+
+    .card-flip-back {
+        position: absolute;
+        inset: 0;
+        transform: rotateY(180deg);
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 24px;
+        background: var(--bg-card);
+        border-radius: var(--radius);
+    }
+
+    .card-flip-back p {
+        color: var(--text-muted);
+        font-size: 0.88rem;
+        line-height: 1.7;
+        margin-bottom: 14px;
+    }
+
+    .card-flip-back .tags {
+        margin-bottom: 16px;
+    }
+
+    .card-flip-back .btn {
+        align-self: flex-start;
+    }
+
+    /* ===========================================
+       5. AVATAR PULSE GLOW
+       =========================================== */
+    .hero-image {
+        animation: mob-avatar-pulse 3s ease-in-out infinite, gradient-rotate 6s ease-in-out infinite;
+    }
+
+    @keyframes mob-avatar-pulse {
+        0%, 100% {
+            box-shadow:
+                0 0 40px rgba(99, 102, 241, 0.15),
+                0 20px 60px rgba(0, 0, 0, 0.4),
+                0 0 0 0 rgba(99, 102, 241, 0.2);
+        }
+        50% {
+            box-shadow:
+                0 0 50px rgba(99, 102, 241, 0.25),
+                0 20px 60px rgba(0, 0, 0, 0.4),
+                0 0 0 16px rgba(99, 102, 241, 0);
+        }
+    }
+
+    /* ===========================================
+       6. FLOATING CTA BUTTON
+       =========================================== */
+    .mobile-float-cta {
+        display: flex;
+        position: fixed;
+        bottom: 20px;
+        right: 80px;
+        z-index: 998;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 22px;
+        background: var(--accent-gradient);
+        color: #fff;
+        font-family: var(--font-heading);
+        font-size: 0.88rem;
+        font-weight: 600;
+        border-radius: 999px;
+        box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+        text-decoration: none;
+        transition: opacity 0.4s ease, transform 0.4s ease;
+        animation: mob-float-bob 2s ease-in-out infinite;
+    }
+
+    .mobile-float-cta i {
+        font-size: 1rem;
+    }
+
+    .mobile-float-cta.mob-cta-hidden {
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(20px);
+    }
+
+    @keyframes mob-float-bob {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-4px); }
+    }
+}
+
+/* --- Reduced motion: disable mobile animations --- */
+@media (max-width: 768px) and (prefers-reduced-motion: reduce) {
+    .mob-reveal,
+    .mob-reveal-child {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+
+    .hero h1.mob-typewriter {
+        animation: none !important;
+        width: 100% !important;
+        border-right: none !important;
+        white-space: normal !important;
+        overflow: visible !important;
+    }
+
+    .stack-progress-bar {
+        transition: none !important;
+    }
+
+    .project-card .card-flip-inner {
+        transition: none !important;
+    }
+
+    .hero-image {
+        animation: gradient-rotate 6s ease-in-out infinite !important;
+    }
+
+    .mobile-float-cta {
+        animation: none !important;
+    }
+}
