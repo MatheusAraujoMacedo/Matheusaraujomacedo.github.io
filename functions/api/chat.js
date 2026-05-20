@@ -1,18 +1,4 @@
-export async function onRequestPost({ request, env }) {
-  try {
-    const data = await request.json();
-    const userMessage = data.message || "";
-    
-    if (!userMessage) {
-        return new Response(JSON.stringify({ error: "Mensagem vazia" }), { status: 400 });
-    }
-
-    const apiKey = env.GEMINI_API_KEY;
-    if (!apiKey) {
-        return new Response(JSON.stringify({ error: "A API do Gemini não está configurada no servidor Cloudflare." }), { status: 500 });
-    }
-
-    const SYSTEM_INSTRUCTION = `Você é o assistente virtual executivo do portfólio de Matheus Araújo Macedo.
+const SYSTEM_INSTRUCTION = `Você é o assistente virtual executivo do portfólio de Matheus Araújo Macedo.
 Seu objetivo principal é atuar como uma ponte estratégica entre o Matheus e os recrutadores de tecnologia (Tech Recruiters, Tech Leads e CTOs), destacando de forma persuasiva, objetiva e muito educada o valor técnico e comportamental que ele pode agregar às empresas.
 
 PERFIL PROFISSIONAL DO MATHEUS:
@@ -44,41 +30,65 @@ DIRETRIZES DE COMPORTAMENTO E TOM DE VOZ DE IA:
 - Lidando com Limites: Se perguntarem algo fora da sua base de contexto, não invente. Diga de forma elegante que essa especificidade pode ser confirmada diretamente com ele nos contatos fornecidos.
 - Demonstre o "Fit Cultural": Sempre que possível, atrele as hard skills dele à capacidade de solucionar problemas reais de negócios.`;
 
-    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
-    
-    const requestBody = {
+const GEMINI_MODEL = 'gemini-2.5-flash';
+const DEFAULT_REPLY = 'Desculpe, não consegui gerar uma resposta.';
+
+export async function onRequestPost({ request, env }) {
+  try {
+    const { message: userMessage = '' } = await request.json();
+
+    if (!userMessage) {
+      return jsonResponse({ error: 'Mensagem vazia' }, 400);
+    }
+
+    const apiKey = env.GEMINI_API_KEY;
+    if (!apiKey) {
+      return jsonResponse(
+        { error: 'A API do Gemini não está configurada no servidor Cloudflare.' },
+        500
+      );
+    }
+
+    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${apiKey}`;
+
+    const response = await fetch(geminiUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
         system_instruction: { parts: [{ text: SYSTEM_INSTRUCTION }] },
         contents: [{ parts: [{ text: userMessage }] }],
         generationConfig: {
-            temperature: 0.7,
-            topP: 0.95,
-            topK: 40,
-            maxOutputTokens: 1024,
-        }
-    };
-
-    const response = await fetch(geminiUrl, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(requestBody)
+          temperature: 0.7,
+          topP: 0.95,
+          topK: 40,
+          maxOutputTokens: 1024,
+        },
+      }),
     });
 
     if (!response.ok) {
-        const err = await response.text();
-        return new Response(JSON.stringify({ error: "Erro na API do Gemini", details: err }), { status: 500 });
+      const details = await response.text();
+      return jsonResponse({ error: 'Erro na API do Gemini', details }, 500);
     }
 
     const result = await response.json();
-    let replyText = "Desculpe, não consegui gerar uma resposta.";
-    if (result.candidates && result.candidates.length > 0) {
-        replyText = result.candidates[0].content.parts[0].text;
-    }
+    const replyText = extractReplyText(result);
 
-    return new Response(JSON.stringify({ response: replyText }), {
-        headers: { "Content-Type": "application/json" }
-    });
-
+    return jsonResponse({ response: replyText });
   } catch (err) {
-    return new Response(JSON.stringify({ error: err.message }), { status: 500 });
+    return jsonResponse({ error: err.message }, 500);
   }
+}
+
+function extractReplyText(result) {
+  const candidate = result.candidates?.[0];
+  const text = candidate?.content?.parts?.[0]?.text;
+  return text || DEFAULT_REPLY;
+}
+
+function jsonResponse(body, status = 200) {
+  return new Response(JSON.stringify(body), {
+    status,
+    headers: { 'Content-Type': 'application/json' },
+  });
 }

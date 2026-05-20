@@ -1,0 +1,7 @@
+name = "portfolio-matheus"
+compatibility_date = "2024-08-01"
+pages_build_output_dir = "."
+
+# A função /api/chat está em functions/api/chat.js (Cloudflare Pages Functions).
+# Defina GEMINI_API_KEY como secret no painel da Cloudflare ou via:
+#   npx wrangler pages secret put GEMINI_API_KEY
