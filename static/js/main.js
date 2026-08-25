@@ -76,7 +76,19 @@ function openModal(trigger) {
     const isEnglish = currentLang === 'en';
     modalTitle.innerText = isEnglish ? trigger.dataset.enTitle : trigger.dataset.title;
     modalDesc.innerText = isEnglish ? trigger.dataset.enDesc : trigger.dataset.desc;
-    modalLink.href = trigger.dataset.link;
+
+    // Work projects have no public repository — hide the link instead of pointing nowhere
+    const link = trigger.dataset.link;
+    if (link) {
+        modalLink.href = link;
+        modalLink.textContent = isEnglish
+            ? (trigger.dataset.enLinkLabel || 'View on GitHub')
+            : (trigger.dataset.linkLabel || 'Ver no GitHub');
+        modalLink.style.display = '';
+    } else {
+        modalLink.style.display = 'none';
+    }
+
     modal.classList.add('show');
 }
 

@@ -1,6 +1,9 @@
 # Portfólio — Matheus Araújo Macedo
 
-Site pessoal com animações, formulário de contato (Formspree), chatbot com Gemini e deploy em **Cloudflare Pages**.
+Site pessoal de **ITOps e automação de processos**: resolução de incidentes técnicos e automação
+dos chamados recorrentes (n8n, scripts, APIs e banco de dados).
+
+Animações, formulário de contato (Formspree), chatbot com Gemini e deploy em **Cloudflare Pages**.
 
 **Produção:** https://matheusaraujomacedo.pages.dev/
 
