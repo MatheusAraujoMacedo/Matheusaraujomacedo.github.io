@@ -271,8 +271,8 @@ function initHeroParallax() {
     });
 }
 
-const typeStringsPt = ["Desenvolvedor Back-end", "Especialista em Azure", "Cloud Computing", "Soluções Escaláveis"];
-const typeStringsEn = ["Back-end Developer", "Azure Specialist", "Cloud Computing", "Scalable Solutions"];
+const typeStringsPt = ["Analista de TI · ITOps", "Automação de processos com n8n", "Resolução de incidentes", "Scripts que devolvem horas ao time"];
+const typeStringsEn = ["IT Analyst · ITOps", "Process automation with n8n", "Incident resolution", "Scripts that give hours back"];
 let typeIndex = 0;
 let charIndex = 0;
 let isDeleting = false;
@@ -429,9 +429,17 @@ function initMobileCardFlip() {
         const btn = card.querySelector('.btn[onclick]');
         const title = btn ? (btn.getAttribute('data-title') || '') : '';
         const desc = btn ? (btn.getAttribute('data-desc') || '') : '';
-        const link = btn ? (btn.getAttribute('data-link') || '#') : '#';
+        const link = btn ? (btn.getAttribute('data-link') || '') : '';
+        const linkLabel = btn ? (btn.getAttribute('data-link-label') || 'GitHub') : 'GitHub';
         const tags = card.querySelector('.tags');
         const tagsHTML = tags ? tags.outerHTML : '';
+
+        // Work projects have no public repository — render no link at all
+        const linkHTML = link
+            ? `<a href="${link}" target="_blank" rel="noopener" class="btn btn-primary btn-sm">
+                    <i class="fas fa-external-link-alt"></i> ${linkLabel}
+                </a>`
+            : '';
 
         card.innerHTML = `
             <div class="card-flip-inner">
@@ -440,9 +448,7 @@ function initMobileCardFlip() {
                     <h3>${title}</h3>
                     <p>${desc}</p>
                     ${tagsHTML}
-                    <a href="${link}" target="_blank" class="btn btn-primary btn-sm" aria-label="Ver no GitHub">
-                        <i class="fas fa-external-link-alt"></i> GitHub
-                    </a>
+                    ${linkHTML}
                 </div>
             </div>
         `;
