@@ -1,0 +1,40 @@
+# Verificação de PR.
+#
+# Existe para dar ao bot de notificações do Slack um evento workflow_run em pull
+# request — o deploy do site roda em push para main e nunca em PR, então sem este
+# arquivo os caminhos de falha de pipeline e de CI verde nunca são exercitados.
+#
+# O passo lê o arquivo .github/estado-do-teste. Trocar o conteúdo entre "falhar" e
+# "passar" muda o resultado sem mexer neste workflow.
+
+name: verificacao
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  verificar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Conferir arquivos essenciais do site
+        run: |
+          for arquivo in index.html static/style.css; do
+            if [ ! -f "$arquivo" ]; then
+              echo "faltando: $arquivo"
+              exit 1
+            fi
+          done
+          echo "arquivos essenciais presentes"
+
+      - name: Resultado controlado do teste
+        run: |
+          estado="$(cat .github/estado-do-teste 2>/dev/null || echo passar)"
+          echo "estado: $estado"
+          if [ "$estado" = "falhar" ]; then
+            echo "falha proposital, para exercitar o caminho de pipeline vermelho"
+            exit 1
+          fi
+          echo "verificacao concluida"
