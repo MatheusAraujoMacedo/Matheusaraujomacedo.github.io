@@ -53,6 +53,29 @@ const sections = Array.from(document.querySelectorAll('section[id]'));
 const navLinks = Array.from(document.querySelectorAll('.nav-links a[href^="#"]'));
 const mobileLinks = Array.from(document.querySelectorAll('#mobile-nav-list a[href^="#"]'));
 
+// Navegacao por ancora passa pelo Lenis. Sem isso seria preciso
+// scroll-behavior: smooth no CSS, que anima de novo cada posicao escrita pelo
+// Lenis e deixa a rolagem travada.
+const headerOffset = -76;
+document.querySelectorAll('a[href^="#"]:not(.skip-link):not(.back-to-top)').forEach(link => {
+    link.addEventListener('click', (event) => {
+        const href = link.getAttribute('href');
+        if (!href || href === '#') return;
+
+        const target = document.querySelector(href);
+        if (!target) return;
+
+        event.preventDefault();
+
+        if (typeof lenis !== 'undefined' && lenis && typeof lenis.scrollTo === 'function') {
+            lenis.scrollTo(target, { offset: headerOffset, immediate: prefersReducedMotion });
+        } else {
+            const top = target.getBoundingClientRect().top + window.scrollY + headerOffset;
+            window.scrollTo({ top, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+        }
+    });
+});
+
 function setActiveLink(id) {
     navLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === `#${id}`));
     mobileLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === `#${id}`));

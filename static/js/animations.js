@@ -1,64 +1,16 @@
 function initHeroAnimation() {
     if (typeof gsap === 'undefined' || prefersReducedMotion) return;
 
-    const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
+    const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
-    // Cinematic stagger for text
-    tl.from(".hero-greeting", {
-        x: -40,
-        opacity: 0,
-        duration: 1,
-        delay: 0.2
-    })
-    .from(".hero h1", {
-        y: 60,
-        opacity: 0,
-        duration: 1.2,
-        ease: "power3.out"
-    }, "-=0.6")
-    .from(".hero-role", {
-        y: 30,
-        opacity: 0,
-        duration: 0.8
-    }, "-=0.7")
-    .from(".hero-desc", {
-        y: 30,
-        opacity: 0,
-        duration: 0.8
-    }, "-=0.5")
-    .from(".hero-badges .badge", {
-        scale: 0.8,
-        opacity: 0,
-        duration: 0.6,
-        stagger: 0.1,
-        ease: "back.out(1.7)"
-    }, "-=0.4")
-    .from(".hero-actions .btn", {
-        y: 20,
-        opacity: 0,
-        duration: 0.6,
-        stagger: 0.1
-    }, "-=0.3")
-    // Hero image — dramatic scale + glow
-    .from(".hero-image", {
-        scale: 0.8,
-        opacity: 0,
-        duration: 1.5,
-        ease: "power3.out"
-    }, "-=1.2")
-    .from(".hero-image img", {
-        scale: 1.3,
-        duration: 2.5,
-        ease: "sine.out"
-    }, "-=1.5")
-    // Orbs fade in
-    .from(".hero-orb", {
-        scale: 0,
-        opacity: 0,
-        duration: 2,
-        stagger: 0.2,
-        ease: "power2.out"
-    }, "-=2");
+    tl.from(".hero-greeting", { y: 12, opacity: 0, duration: 0.6, delay: 0.15 })
+        .from(".hero h1", { y: 28, opacity: 0, duration: 0.8 }, "-=0.35")
+        .from(".hero-desc", { y: 16, opacity: 0, duration: 0.6 }, "-=0.5")
+        .from(".hero-badges .badge", { y: 10, opacity: 0, duration: 0.45, stagger: 0.08 }, "-=0.35")
+        .from(".hero-actions .btn", { y: 10, opacity: 0, duration: 0.45, stagger: 0.08 }, "-=0.3")
+        // O terminal abre como janela e as linhas entram na ordem em que foram executadas
+        .from(".hero-terminal", { y: 24, opacity: 0, duration: 0.7 }, "-=0.9")
+        .from(".term-body > *", { opacity: 0, duration: 0.28, stagger: 0.09 }, "-=0.3");
 }
 
 function initScrollAnimations() {
@@ -66,7 +18,7 @@ function initScrollAnimations() {
 
     gsap.registerPlugin(ScrollTrigger);
 
-    // Section titles — clip reveal
+    // Titulos de secao
     gsap.utils.toArray('.section-title').forEach(title => {
         gsap.from(title, {
             y: 40,
@@ -81,18 +33,17 @@ function initScrollAnimations() {
         });
     });
 
-    // Stack cards — bounce stagger
+    // Linhas da stack — entram em cascata curta
     const stackCards = gsap.utils.toArray('.stack-card');
     if (stackCards.length) {
         gsap.fromTo(stackCards, 
-            { y: 50, opacity: 0, scale: 0.9 },
+            { y: 16, opacity: 0 },
             {
                 y: 0,
                 opacity: 1,
-                scale: 1,
-                duration: 0.7,
-                stagger: 0.08,
-                ease: "back.out(1.4)",
+                duration: 0.5,
+                stagger: 0.05,
+                ease: "power2.out",
                 scrollTrigger: {
                     trigger: '.stack-grid',
                     start: "top 80%",
@@ -102,17 +53,17 @@ function initScrollAnimations() {
         );
     }
 
-    // Cert cards — scale in
+    // Certificacoes
     const certCards = gsap.utils.toArray('.cert-card');
     if (certCards.length) {
         gsap.fromTo(certCards,
-            { scale: 0.8, opacity: 0 },
+            { y: 16, opacity: 0 },
             {
-                scale: 1,
+                y: 0,
                 opacity: 1,
-                duration: 0.8,
-                stagger: 0.12,
-                ease: "back.out(1.5)",
+                duration: 0.6,
+                stagger: 0.08,
+                ease: "power2.out",
                 scrollTrigger: {
                     trigger: '.certs-grid',
                     start: "top 80%",
@@ -122,28 +73,16 @@ function initScrollAnimations() {
         );
     }
 
-    // Timeline items — alternate slide
+    // Linhas do log — sobem na ordem de leitura
     gsap.utils.toArray('.timeline-item').forEach((item) => {
-        const isLeft = item.classList.contains('timeline-left');
-        gsap.from(item.querySelector('.timeline-content'), {
-            x: isLeft ? -60 : 60,
+        gsap.from(item, {
+            y: 24,
             opacity: 0,
-            duration: 0.9,
+            duration: 0.7,
             ease: "power3.out",
             scrollTrigger: {
                 trigger: item,
-                start: "top 82%",
-                toggleActions: "play none none none"
-            }
-        });
-
-        gsap.from(item.querySelector('.timeline-dot'), {
-            scale: 0,
-            duration: 0.5,
-            ease: "back.out(2)",
-            scrollTrigger: {
-                trigger: item,
-                start: "top 82%",
+                start: "top 88%",
                 toggleActions: "play none none none"
             }
         });
@@ -167,108 +106,6 @@ function initScrollAnimations() {
             }
         );
     }
-}
-
-function initTiltCards() {
-    if (prefersReducedMotion || isMobileDevice()) return;
-
-    const tiltCards = document.querySelectorAll('.tilt-card');
-
-    tiltCards.forEach(card => {
-        card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const cardCenterX = rect.left + rect.width / 2;
-            const cardCenterY = rect.top + rect.height / 2;
-
-            const mouseX = e.clientX - cardCenterX;
-            const mouseY = e.clientY - cardCenterY;
-
-            const rotateX = (-mouseY / (rect.height / 2)) * 6;
-            const rotateY = (mouseX / (rect.width / 2)) * 6;
-
-            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
-
-            // Update shine position
-            const shine = card.querySelector('.card-shine');
-            if (shine) {
-                const percentX = ((e.clientX - rect.left) / rect.width) * 100;
-                const percentY = ((e.clientY - rect.top) / rect.height) * 100;
-                shine.style.setProperty('--mouse-x', percentX + '%');
-                shine.style.setProperty('--mouse-y', percentY + '%');
-            }
-        });
-
-        card.addEventListener('mouseleave', () => {
-            card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
-            card.style.transition = 'transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)';
-        });
-
-        card.addEventListener('mouseenter', () => {
-            card.style.transition = 'transform 0.1s ease-out';
-        });
-    });
-}
-
-function initMagneticButtons() {
-    if (prefersReducedMotion || isMobileDevice()) return;
-
-    const magneticBtns = document.querySelectorAll('.magnetic-btn');
-
-    magneticBtns.forEach(btn => {
-        btn.addEventListener('mousemove', (e) => {
-            const rect = btn.getBoundingClientRect();
-            const x = e.clientX - rect.left - rect.width / 2;
-            const y = e.clientY - rect.top - rect.height / 2;
-
-            btn.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
-        });
-
-        btn.addEventListener('mouseleave', () => {
-            btn.style.transform = 'translate(0, 0)';
-            btn.style.transition = 'transform 0.4s cubic-bezier(0.22, 1, 0.36, 1)';
-        });
-
-        btn.addEventListener('mouseenter', () => {
-            btn.style.transition = 'transform 0.1s ease-out';
-        });
-
-        // Ripple effect on click
-        btn.addEventListener('click', (e) => {
-            const rect = btn.getBoundingClientRect();
-            const ripple = document.createElement('span');
-            ripple.className = 'btn-ripple';
-            const size = Math.max(rect.width, rect.height);
-            ripple.style.width = ripple.style.height = size + 'px';
-            ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
-            ripple.style.top = (e.clientY - rect.top - size / 2) + 'px';
-            btn.appendChild(ripple);
-            ripple.addEventListener('animationend', () => ripple.remove());
-        });
-    });
-}
-
-function initHeroParallax() {
-    if (prefersReducedMotion || isMobileDevice()) return;
-
-    const orbs = document.querySelectorAll('.hero-orb');
-    const heroSection = document.querySelector('.hero');
-
-    if (!heroSection || !orbs.length) return;
-
-    heroSection.addEventListener('mousemove', (e) => {
-        const rect = heroSection.getBoundingClientRect();
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        const mouseX = e.clientX - rect.left - centerX;
-        const mouseY = e.clientY - rect.top - centerY;
-
-        orbs.forEach((orb, i) => {
-            const speed = (i + 1) * 0.015;
-            const x = mouseX * speed;
-            const y = mouseY * speed;
-            orb.style.transform = `translate(${x}px, ${y}px)`;
-        });
-    });
 }
 
 const typeStringsPt = ["Analista de TI · ITOps", "Automação de processos com n8n", "Resolução de incidentes", "Scripts que devolvem horas ao time"];
@@ -360,35 +197,20 @@ function initMobileScrollReveal() {
 }
 
 /**
- * 2. HERO TYPEWRITER — one-shot CSS animation on mobile
+ * Medidor de frequencia da stack — preenche ao entrar na viewport
  */
-function initMobileHeroTypewriter() {
-    if (!isMobileDevice() || prefersReducedMotion) return;
-
-    const heroH1 = document.querySelector('.hero h1');
-    if (!heroH1) return;
-
-    heroH1.classList.add('mob-typewriter');
-
-    // After animation ends, clean up cursor
-    heroH1.addEventListener('animationend', (e) => {
-        if (e.animationName === 'mob-typing') {
-            heroH1.classList.remove('mob-typewriter');
-            heroH1.classList.add('mob-typewriter-done');
-        }
-    });
-}
-
-/**
- * 3. STACK PROGRESS BARS — animate width on viewport enter
- */
-function initMobileStackBars() {
-    if (!isMobileDevice() || prefersReducedMotion) return;
+function initStackBars() {
+    if (prefersReducedMotion) return;
 
     const stackSection = document.getElementById('stack');
     if (!stackSection) return;
 
     const stackCards = stackSection.querySelectorAll('.stack-card[data-level]');
+    // Zera antes de observar; o CSS ja garante o nivel final sem JS
+    stackCards.forEach(card => {
+        const bar = card.querySelector('.stack-progress-bar');
+        if (bar) bar.style.width = '0';
+    });
     let animated = false;
 
     const barObserver = new IntersectionObserver((entries) => {
@@ -411,55 +233,6 @@ function initMobileStackBars() {
     }, { threshold: 0.2 });
 
     barObserver.observe(stackSection);
-}
-
-/**
- * 4. CARD FLIP — tap to flip project cards on mobile
- */
-function initMobileCardFlip() {
-    if (!isMobileDevice() || prefersReducedMotion) return;
-
-    const cards = document.querySelectorAll('.project-card');
-
-    cards.forEach(card => {
-        // Wrap existing content in flip structure
-        const existingContent = card.innerHTML;
-
-        // Extract data for back face from the button's data attributes
-        const btn = card.querySelector('.btn[onclick]');
-        const title = btn ? (btn.getAttribute('data-title') || '') : '';
-        const desc = btn ? (btn.getAttribute('data-desc') || '') : '';
-        const link = btn ? (btn.getAttribute('data-link') || '') : '';
-        const linkLabel = btn ? (btn.getAttribute('data-link-label') || 'GitHub') : 'GitHub';
-        const tags = card.querySelector('.tags');
-        const tagsHTML = tags ? tags.outerHTML : '';
-
-        // Work projects have no public repository — render no link at all
-        const linkHTML = link
-            ? `<a href="${link}" target="_blank" rel="noopener" class="btn btn-primary btn-sm">
-                    <i class="fas fa-external-link-alt"></i> ${linkLabel}
-                </a>`
-            : '';
-
-        card.innerHTML = `
-            <div class="card-flip-inner">
-                <div class="card-flip-front">${existingContent}</div>
-                <div class="card-flip-back">
-                    <h3>${title}</h3>
-                    <p>${desc}</p>
-                    ${tagsHTML}
-                    ${linkHTML}
-                </div>
-            </div>
-        `;
-
-        // Toggle flip on touch/click
-        card.addEventListener('click', (e) => {
-            // Don't flip if they clicked/tapped a link directly
-            if (e.target.closest('a')) return;
-            card.classList.toggle('flipped');
-        });
-    });
 }
 
 function initMobileFloatingCTA() {

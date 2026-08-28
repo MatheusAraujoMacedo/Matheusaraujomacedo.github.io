@@ -27,9 +27,8 @@ Animações, formulário de contato (Formspree), chatbot com Gemini e deploy em 
 │   └── js/
 │       ├── utils.js       # Helpers e constantes
 │       ├── scroll.js      # Lenis (smooth scroll)
-│       ├── effects.js     # Partículas e cursor glow
 │       ├── i18n.js        # Idioma PT/EN e contraste
-│       ├── animations.js  # GSAP, typewriter, mobile
+│       ├── animations.js  # GSAP, typewriter do terminal, mobile
 │       ├── chat.js        # Chatbot
 │       └── main.js        # Navegação, modal, formulário, init
 ├── functions/api/chat.js  # API do chatbot (Gemini)

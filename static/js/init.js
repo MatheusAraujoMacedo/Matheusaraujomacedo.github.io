@@ -2,14 +2,9 @@ function initAll() {
     initHeroAnimation();
     startTypewriter();
     initScrollAnimations();
-    initTiltCards();
-    initMagneticButtons();
-    initHeroParallax();
 
     initMobileScrollReveal();
-    initMobileHeroTypewriter();
-    initMobileStackBars();
-    initMobileCardFlip();
+    initStackBars();
     initMobileFloatingCTA();
 
     if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined' || prefersReducedMotion) {

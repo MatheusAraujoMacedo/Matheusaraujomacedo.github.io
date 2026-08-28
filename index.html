@@ -4,39 +4,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Matheus Araújo | TI & Automação</title>
+    <title>Matheus Araújo | ITOps & Automação</title>
     <meta name="description" content="Portfólio de Matheus Araújo Macedo — ITOps na SAMI Saúde. Resolução de incidentes e automação de processos com n8n, scripts, APIs e banco de dados.">
 
     <!-- Open Graph / LinkedIn / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://matheusaraujomacedo.pages.dev/">
-    <meta property="og:title" content="Matheus Araújo | TI, Automação & Suporte Técnico">
+    <meta property="og:title" content="Matheus Araújo | ITOps, Automação & Suporte Técnico">
     <meta property="og:description" content="Resolvo incidentes — e transformo os que se repetem em automações. n8n, scripts, APIs e banco de dados. Fale com a minha IA diretamente no site!">
     <meta property="og:image" content="https://matheusaraujomacedo.pages.dev/matheusaraujo.jpeg">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://matheusaraujomacedo.pages.dev/">
-    <meta property="twitter:title" content="Matheus Araújo | TI & Automação">
+    <meta property="twitter:title" content="Matheus Araújo | ITOps & Automação">
     <meta property="twitter:description" content="Resolvo incidentes — e transformo os que se repetem em automações. n8n, scripts, APIs e banco de dados. Fale com a minha IA diretamente no site!">
     <meta property="twitter:image" content="https://matheusaraujomacedo.pages.dev/matheusaraujo.jpeg">
 
     <link rel="stylesheet" href="static/style.css">
     <link rel="icon"
-        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💻</text></svg>">
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⌘</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
-
-    <!-- Cursor Following Glow -->
-    <div class="cursor-glow" id="cursor-glow"></div>
-
-    <!-- Particle Background Canvas -->
-    <canvas id="particle-bg"></canvas>
 
     <a class="skip-link" href="#about" data-en="Skip to content">Pular para conteúdo</a>
 
@@ -44,139 +39,185 @@
     <header id="header">
         <nav class="container navbar">
             <div class="logo">
-                <a href="index.html">&lt;Matheus<span class="accent">.Dev</span>/&gt;</a>
+                <a href="index.html">Matheus Araújo <span class="logo-path">~/itops</span></a>
             </div>
 
             <ul class="nav-links">
-                <li><a href="#about" data-en="About">Sobre</a></li>
-                <li><a href="#stack" data-en="Stack">Stack</a></li>
-                <li><a href="#projects" data-en="Projects">Projetos</a></li>
-                <li><a href="#journey" data-en="Journey">Jornada</a></li>
-                <li><a href="#certs" data-en="Certifications">Certificações</a></li>
-                <li><a href="javascript:void(0)" onclick="toggleLanguage()" id="lang-btn"
+                <li><a href="#about" data-en="about">sobre</a></li>
+                <li><a href="#stack" data-en="stack">stack</a></li>
+                <li><a href="#projects" data-en="projects">projetos</a></li>
+                <li><a href="#journey" data-en="journey">jornada</a></li>
+                <li><a href="#certs" data-en="certifications">certificações</a></li>
+                <li><a href="javascript:void(0)" class="icon-btn" onclick="toggleLanguage()" id="lang-btn"
                         aria-label="Toggle Language"><i class="fas fa-globe"></i> EN</a></li>
-                <li><a href="javascript:void(0)" onclick="toggleContrast()" id="contrast-btn"
-                        data-en="<i class='fas fa-adjust'></i> Contrast" aria-label="Toggle Contrast"><i
-                            class="fas fa-adjust"></i> Contraste</a></li>
-                <li><a href="#contact" class="nav-btn" data-en="Contact">Contato</a></li>
+                <li><a href="javascript:void(0)" class="icon-btn" onclick="toggleContrast()" id="contrast-btn"
+                        data-en="<i class='fas fa-circle-half-stroke'></i> contrast" aria-label="Toggle Contrast"><i
+                            class="fas fa-circle-half-stroke"></i> contraste</a></li>
+                <li><a href="#contact" class="nav-btn" data-en="contact">contato</a></li>
             </ul>
 
-            <div class="menu-toggle" id="mobile-menu">
+            <div class="menu-toggle" id="mobile-menu" role="button" tabindex="0" aria-label="Menu">
                 <i class="fas fa-bars"></i>
             </div>
         </nav>
 
         <div class="mobile-nav" id="mobile-nav-list">
-            <a href="#about" onclick="toggleMenu()" data-en="About">Sobre</a>
-            <a href="#stack" onclick="toggleMenu()" data-en="Stack">Stack</a>
-            <a href="#projects" onclick="toggleMenu()" data-en="Projects">Projetos</a>
-            <a href="#journey" onclick="toggleMenu()" data-en="Journey">Jornada</a>
-            <a href="#certs" onclick="toggleMenu()" data-en="Certifications">Certificações</a>
+            <a href="#about" onclick="toggleMenu()" data-en="about">sobre</a>
+            <a href="#stack" onclick="toggleMenu()" data-en="stack">stack</a>
+            <a href="#projects" onclick="toggleMenu()" data-en="projects">projetos</a>
+            <a href="#journey" onclick="toggleMenu()" data-en="journey">jornada</a>
+            <a href="#certs" onclick="toggleMenu()" data-en="certifications">certificações</a>
             <a href="javascript:void(0)" onclick="toggleLanguage(); toggleMenu();" id="lang-btn-mobile">Inglês (EN)</a>
             <a href="javascript:void(0)" onclick="toggleContrast(); toggleMenu();" id="contrast-btn-mobile"
-                data-en="Contrast">Contraste</a>
-            <a href="#contact" onclick="toggleMenu()" data-en="Contact">Contato</a>
+                data-en="contrast">contraste</a>
+            <a href="#contact" onclick="toggleMenu()" data-en="contact">contato</a>
         </div>
     </header>
 
     <!-- Hero -->
     <section class="hero">
-        <!-- Floating Gradient Orbs -->
-        <div class="hero-orb hero-orb-1"></div>
-        <div class="hero-orb hero-orb-2"></div>
-
         <div class="container hero-content">
             <div class="hero-text">
-                <p class="hero-greeting" data-en="Hello, I'm">Olá, eu sou</p>
-                <h1>Matheus Araújo<span class="accent">.</span></h1>
-                <div class="hero-role" aria-live="polite">
-                    <span id="typewriter"></span><span class="typewriter-cursor">|</span>
-                </div>
+                <p class="hero-greeting" data-en="IT Analyst · ITOps · São Paulo">Analista de TI · ITOps · São Paulo</p>
+                <h1>Matheus Araújo</h1>
                 <p class="hero-desc"
                     data-en="I resolve technical incidents at SAMI Saúde — and turn the recurring ones into automations that give hours back to the team.">
-                    Resolvo incidentes técnicos na SAMI Saúde — e transformo os que se repetem em automações que devolvem horas ao time.</p>
+                    Resolvo incidentes técnicos na SAMI Saúde — e transformo os que se repetem em automações que
+                    devolvem horas ao time.</p>
                 <div class="hero-badges">
-                    <span class="badge" data-en="Open to opportunities">Aberto a oportunidades</span>
+                    <span class="badge badge-live" data-en="Open to opportunities">Aberto a oportunidades</span>
                     <span class="badge badge-outline" data-en="ITOps @ SAMI Saúde">ITOps @ SAMI Saúde</span>
                 </div>
                 <div class="hero-actions">
-                    <a href="Curriculo_Matheus_Araujo_Macedo.pdf" target="_blank" class="btn btn-primary magnetic-btn"
+                    <a href="Curriculo_Matheus_Araujo_Macedo.pdf" target="_blank" class="btn btn-primary"
                         data-en="<i class='fas fa-download'></i> Download CV">
                         <i class="fas fa-download"></i> Baixar CV
                     </a>
-                    <a href="#contact" class="btn btn-secondary magnetic-btn" data-en="Contact Me">Falar Comigo</a>
+                    <a href="#contact" class="btn btn-secondary" data-en="Contact me">Falar comigo</a>
                 </div>
             </div>
-            <div class="hero-image-wrapper">
-                <div class="hero-image">
-                    <img src="matheusaraujo.jpeg" alt="Foto de Matheus Araújo" loading="eager">
+
+            <div class="hero-terminal">
+                <div class="term-bar">
+                    <span>bash — matheus@sami</span>
+                    <span class="term-status" data-en="live session">sessão ao vivo</span>
+                </div>
+                <div class="term-body">
+                    <span class="term-line term-cmd">tail -n 3 /var/log/chamados.log</span>
+                    <span class="term-log">
+                        <span class="term-time">09:42</span>
+                        <span class="term-tkt">TCK-1184</span>
+                        <span class="term-out"
+                            data-en="sync stopped — <span class='term-warn'>3rd time this week</span>">a
+                            sincronização parou — <span class="term-warn">3ª vez esta semana</span></span>
+                    </span>
+                    <span class="term-log">
+                        <span class="term-time">09:58</span>
+                        <span class="term-tkt">TCK-1184</span>
+                        <span class="term-out" data-en="root cause: consumer stuck on the queue">causa raiz: consumer
+                            travado na fila</span>
+                    </span>
+                    <span class="term-log">
+                        <span class="term-time">10:11</span>
+                        <span class="term-tkt">TCK-1184</span>
+                        <span class="term-out" data-en="fix applied · ticket closed">correção aplicada · chamado
+                            fechado</span>
+                    </span>
+
+                    <span class="term-gap"></span>
+
+                    <span class="term-line term-cmd">n8n workflow:activate reprocessa-fila</span>
+                    <span class="term-line term-ok" data-en="active — this ticket does not come back tomorrow">ativo —
+                        esse chamado não volta amanhã</span>
+
+                    <span class="term-gap"></span>
+
+                    <span class="term-line term-cmd">whoami</span>
+                    <span class="hero-role" aria-live="polite">
+                        <span id="typewriter"></span><span class="typewriter-cursor" aria-hidden="true">|</span>
+                    </span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- About -->
+    <!-- Sobre -->
     <section id="about">
         <div class="container">
-            <h2 class="section-title" data-en="About <span class='accent'>Me</span>">Sobre <span
-                    class="accent">Mim</span></h2>
-            <div class="about-grid">
-                <div class="about-text reveal">
-                    <p
-                        data-en="I work in ITOps at SAMI Saúde, a healthtech. My day starts in the ticket queue: reproduce the problem, read the logs, query the database, test the API — until the real cause shows up. The part I like most comes next. When the same ticket arrives for the third time, I stop treating it as a ticket and start treating it as a process to automate: an n8n workflow, a script, a fix at the source. What used to take a technician's whole afternoon starts running on its own.">
-                        Trabalho com ITOps na SAMI Saúde, uma healthtech. Meu dia começa na fila de chamados:
-                        reproduzir o problema, ler o log, consultar o banco, testar a API — até a causa real aparecer.
-                        A parte que eu mais gosto vem depois. Quando o mesmo chamado chega pela terceira vez, eu paro
-                        de tratar como chamado e passo a tratar como processo a automatizar: um fluxo no n8n, um
-                        script, uma correção na origem. O que consumia a tarde inteira de um técnico passa a rodar
-                        sozinho.</p>
+            <div class="section-head">
+                <span class="rail-tag" data-en="~/about">~/sobre</span>
+                <div>
+                    <h2 class="section-title" data-en="About <span class='accent'>me</span>">Sobre <span
+                            class="accent">mim</span></h2>
                 </div>
-                <div class="about-highlights">
-                    <div class="highlight-item reveal">
-                        <i class="fas fa-headset"></i>
-                        <div>
-                            <h4 data-en="Current role">Atuação</h4>
-                            <p data-en="ITOps at SAMI Saúde">ITOps na SAMI Saúde</p>
+            </div>
+
+            <div class="section-body">
+                <span class="rail-note" data-en="ITOps · SAMI Saúde<br>Healthtech · São Paulo">ITOps · SAMI
+                    Saúde<br>Healthtech · São Paulo</span>
+
+                <div class="about-grid">
+                    <figure class="about-photo reveal">
+                        <img src="matheusaraujo.jpeg" alt="Foto de Matheus Araújo" loading="lazy" width="480"
+                            height="600">
+                        <figcaption data-en="Matheus Araújo — ITOps and process automation">Matheus Araújo — ITOps e
+                            automação de processos</figcaption>
+                    </figure>
+
+                    <div>
+                        <div class="about-text reveal">
+                            <p
+                                data-en="I work in ITOps at SAMI Saúde, a healthtech. My day starts in the ticket queue: reproduce the problem, read the logs, query the database, test the API — until the real cause shows up. The part I like most comes next. When the same ticket arrives for the third time, I stop treating it as a ticket and start treating it as a process to automate: an n8n workflow, a script, a fix at the source. What used to take a technician's whole afternoon starts running on its own.">
+                                Trabalho com ITOps na SAMI Saúde, uma healthtech. Meu dia começa na fila de chamados:
+                                reproduzir o problema, ler o log, consultar o banco, testar a API — até a causa real
+                                aparecer. A parte que eu mais gosto vem depois. Quando o mesmo chamado chega pela
+                                terceira vez, eu paro de tratar como chamado e passo a tratar como processo a
+                                automatizar: um fluxo no n8n, um script, uma correção na origem. O que consumia a tarde
+                                inteira de um técnico passa a rodar sozinho.</p>
                         </div>
-                    </div>
-                    <div class="highlight-item reveal">
-                        <i class="fas fa-diagram-project"></i>
-                        <div>
-                            <h4 data-en="Focus">Foco</h4>
-                            <p data-en="Process automation (n8n + scripts)">Automação de processos (n8n + scripts)</p>
-                        </div>
-                    </div>
-                    <div class="highlight-item reveal">
-                        <i class="fas fa-graduation-cap"></i>
-                        <div>
-                            <h4 data-en="Education">Formação</h4>
-                            <p data-en="Information Systems (Impacta)">Sistemas de Informação (Impacta)</p>
+
+                        <div class="about-highlights">
+                            <div class="highlight-item reveal">
+                                <h4 data-en="Current role">Atuação</h4>
+                                <p data-en="ITOps at SAMI Saúde">ITOps na SAMI Saúde</p>
+                            </div>
+                            <div class="highlight-item reveal">
+                                <h4 data-en="Focus">Foco</h4>
+                                <p data-en="Process automation (n8n + scripts)">Automação de processos (n8n + scripts)
+                                </p>
+                            </div>
+                            <div class="highlight-item reveal">
+                                <h4 data-en="Education">Formação</h4>
+                                <p data-en="Information Systems (Impacta)">Sistemas de Informação (Impacta)</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Signature element: the real loop from ticket to automation -->
+            <!-- Elemento-assinatura: o caminho real do chamado até a automação -->
             <div class="process-strip reveal" role="img"
-                aria-label="Fluxo de trabalho: chega o chamado no ClickUp, diagnóstico técnico, automação do que se repete, horas devolvidas ao time">
+                aria-label="Fluxo de trabalho: chega o chamado no ClickUp, diagnóstico técnico, automação do que se repete, o chamado deixa de reincidir">
                 <div class="process-step">
-                    <div class="process-icon" aria-hidden="true"><i class="fas fa-inbox"></i></div>
-                    <span data-en="Ticket arrives<br>(ClickUp)">Chega o chamado<br>(ClickUp)</span>
+                    <span class="process-stage" data-en="entry">entrada</span>
+                    <span data-en="The ticket arrives in ClickUp">Chega o chamado no ClickUp</span>
+                    <span class="state state-open" data-en="open">aberto</span>
                 </div>
-                <i class="fas fa-arrow-right process-arrow" aria-hidden="true"></i>
                 <div class="process-step">
-                    <div class="process-icon" aria-hidden="true"><i class="fas fa-magnifying-glass-chart"></i></div>
-                    <span data-en="Diagnosis<br>(logs, DB, API)">Diagnóstico<br>(log, banco, API)</span>
+                    <span class="process-stage" data-en="diagnosis">diagnóstico</span>
+                    <span data-en="Logs, database, queue and API">Log, banco, fila e API</span>
+                    <span class="state state-crit" data-en="under analysis">em análise</span>
                 </div>
-                <i class="fas fa-arrow-right process-arrow" aria-hidden="true"></i>
-                <div class="process-step process-step-ai">
-                    <div class="process-icon" aria-hidden="true"><i class="fas fa-bolt"></i></div>
-                    <span data-en="I automate the repeat<br>(n8n / script)">Automatizo o que repete<br>(n8n / script)</span>
+                <div class="process-step">
+                    <span class="process-stage" data-en="automation">automação</span>
+                    <span data-en="n8n or a script replaces the manual step">n8n ou script no lugar do passo
+                        manual</span>
+                    <span class="state state-ok" data-en="automated">automatizado</span>
                 </div>
-                <i class="fas fa-arrow-right process-arrow" aria-hidden="true"></i>
                 <div class="process-step process-step-done">
-                    <div class="process-icon" aria-hidden="true"><i class="fas fa-clock-rotate-left"></i></div>
-                    <span data-en="Hours back<br>to the team">Horas devolvidas<br>ao time</span>
+                    <span class="process-stage" data-en="result">resultado</span>
+                    <span data-en="Hours back to the team">Horas devolvidas ao time</span>
+                    <span class="state state-ok" data-en="no repeat">não reincide</span>
                 </div>
             </div>
         </div>
@@ -185,333 +226,382 @@
     <!-- Stack -->
     <section id="stack">
         <div class="container">
-            <h2 class="section-title" data-en="My <span class='accent'>Stack</span>">Minha <span
-                    class="accent">Stack</span></h2>
-            <p class="section-subtitle" data-en="The tools I actually open every day — automation and diagnosis first.">
-                As ferramentas que eu realmente abro todo dia — automação e diagnóstico em primeiro lugar.</p>
+            <div class="section-head">
+                <span class="rail-tag" data-en="~/stack">~/stack</span>
+                <div>
+                    <h2 class="section-title" data-en="The <span class='accent'>toolbox</span>">A caixa de <span
+                            class="accent">ferramentas</span></h2>
+                    <p class="section-subtitle"
+                        data-en="The tools I actually open every day — automation and diagnosis first. The bar shows how often each one shows up in the week, not a self-assigned score.">
+                        As ferramentas que eu realmente abro todo dia — automação e diagnóstico em primeiro lugar. A
+                        barra mostra a frequência de uso na semana, não uma nota que eu mesmo me dei.</p>
+                </div>
+            </div>
+
             <div class="stack-grid">
-                <div class="stack-card gsap-reveal" data-level="90">
-                    <i class="fas fa-diagram-project" style="color: #ea4b71;"></i>
-                    <span>n8n</span>
-                    <div class="stack-progress" aria-hidden="true"><div class="stack-progress-bar"></div></div>
+                <div class="stack-card gsap-reveal" data-level="90" style="--level: 90%">
+                    <span class="stack-name">n8n</span>
+                    <span class="stack-note" data-en="Orchestrates the workflows that replace manual steps">Orquestra os
+                        fluxos que substituem passo manual</span>
+                    <div class="stack-progress" aria-hidden="true">
+                        <div class="stack-progress-bar"></div>
+                    </div>
+                    <span class="stack-freq" data-en="daily">diário</span>
                 </div>
-                <div class="stack-card gsap-reveal" data-level="90">
-                    <i class="fas fa-list-check" style="color: #7b68ee;"></i>
-                    <span>ClickUp</span>
-                    <div class="stack-progress" aria-hidden="true"><div class="stack-progress-bar"></div></div>
+                <div class="stack-card gsap-reveal" data-level="90" style="--level: 90%">
+                    <span class="stack-name">ClickUp</span>
+                    <span class="stack-note" data-en="Ticket queue — where the day starts">Fila de chamados — onde o dia
+                        começa</span>
+                    <div class="stack-progress" aria-hidden="true">
+                        <div class="stack-progress-bar"></div>
+                    </div>
+                    <span class="stack-freq" data-en="daily">diário</span>
                 </div>
-                <div class="stack-card gsap-reveal" data-level="85">
-                    <i class="fas fa-satellite-dish" style="color: #ff6c37;"></i>
-                    <span>Postman</span>
-                    <div class="stack-progress" aria-hidden="true"><div class="stack-progress-bar"></div></div>
+                <div class="stack-card gsap-reveal" data-level="85" style="--level: 85%">
+                    <span class="stack-name">Postman</span>
+                    <span class="stack-note" data-en="Reproducing API behaviour during triage">Reproduzir o
+                        comportamento da API na triagem</span>
+                    <div class="stack-progress" aria-hidden="true">
+                        <div class="stack-progress-bar"></div>
+                    </div>
+                    <span class="stack-freq" data-en="daily">diário</span>
                 </div>
-                <div class="stack-card gsap-reveal" data-level="85">
-                    <i class="fas fa-database" style="color: #00758f;"></i>
-                    <span>DBeaver / SQL</span>
-                    <div class="stack-progress" aria-hidden="true"><div class="stack-progress-bar"></div></div>
+                <div class="stack-card gsap-reveal" data-level="85" style="--level: 85%">
+                    <span class="stack-name">DBeaver / SQL</span>
+                    <span class="stack-note" data-en="Investigating the incident straight from the data">Investigar o
+                        incidente direto no dado</span>
+                    <div class="stack-progress" aria-hidden="true">
+                        <div class="stack-progress-bar"></div>
+                    </div>
+                    <span class="stack-freq" data-en="daily">diário</span>
                 </div>
-                <div class="stack-card gsap-reveal" data-level="70">
-                    <i class="fas fa-inbox" style="color: #ff6600;"></i>
-                    <span>RabbitMQ</span>
-                    <div class="stack-progress" aria-hidden="true"><div class="stack-progress-bar"></div></div>
+                <div class="stack-card gsap-reveal" data-level="80" style="--level: 80%">
+                    <span class="stack-name">Git</span>
+                    <span class="stack-note" data-en="Versioning the fixes that go to production">Versionar as correções
+                        que vão para produção</span>
+                    <div class="stack-progress" aria-hidden="true">
+                        <div class="stack-progress-bar"></div>
+                    </div>
+                    <span class="stack-freq" data-en="weekly">semanal</span>
                 </div>
-                <div class="stack-card gsap-reveal" data-level="70">
-                    <i class="fas fa-shield-halved" style="color: #4e9bcd;"></i>
-                    <span>SonarQube</span>
-                    <div class="stack-progress" aria-hidden="true"><div class="stack-progress-bar"></div></div>
+                <div class="stack-card gsap-reveal" data-level="75" style="--level: 75%">
+                    <span class="stack-name">Python</span>
+                    <span class="stack-note" data-en="Scripts for the tickets that keep coming back">Scripts para os
+                        chamados que voltam sempre</span>
+                    <div class="stack-progress" aria-hidden="true">
+                        <div class="stack-progress-bar"></div>
+                    </div>
+                    <span class="stack-freq" data-en="weekly">semanal</span>
                 </div>
-                <div class="stack-card gsap-reveal" data-level="70">
-                    <i class="fab fa-google" style="color: #4285f4;"></i>
-                    <span>Google Cloud</span>
-                    <div class="stack-progress" aria-hidden="true"><div class="stack-progress-bar"></div></div>
+                <div class="stack-card gsap-reveal" data-level="75" style="--level: 75%">
+                    <span class="stack-name">JavaScript</span>
+                    <span class="stack-note" data-en="Integrations and front-end fixes">Integrações e correções no
+                        front</span>
+                    <div class="stack-progress" aria-hidden="true">
+                        <div class="stack-progress-bar"></div>
+                    </div>
+                    <span class="stack-freq" data-en="weekly">semanal</span>
                 </div>
-                <div class="stack-card gsap-reveal" data-level="75">
-                    <i class="fab fa-python" style="color: #3776ab;"></i>
-                    <span>Python</span>
-                    <div class="stack-progress" aria-hidden="true"><div class="stack-progress-bar"></div></div>
+                <div class="stack-card gsap-reveal" data-level="75" style="--level: 75%">
+                    <span class="stack-name">Azure</span>
+                    <span class="stack-note" data-en="Cloud groundwork from the 2023 certifications">Base de cloud vinda
+                        das certificações de 2023</span>
+                    <div class="stack-progress" aria-hidden="true">
+                        <div class="stack-progress-bar"></div>
+                    </div>
+                    <span class="stack-freq" data-en="weekly">semanal</span>
                 </div>
-                <div class="stack-card gsap-reveal" data-level="75">
-                    <i class="fab fa-js" style="color: #f7df1e;"></i>
-                    <span>JavaScript</span>
-                    <div class="stack-progress" aria-hidden="true"><div class="stack-progress-bar"></div></div>
+                <div class="stack-card gsap-reveal" data-level="70" style="--level: 70%">
+                    <span class="stack-name">Linux</span>
+                    <span class="stack-note" data-en="Terminal, logs and services on the machine">Terminal, log e
+                        serviço na máquina</span>
+                    <div class="stack-progress" aria-hidden="true">
+                        <div class="stack-progress-bar"></div>
+                    </div>
+                    <span class="stack-freq" data-en="occasional">pontual</span>
                 </div>
-                <div class="stack-card gsap-reveal" data-level="80">
-                    <i class="fab fa-git-alt" style="color: #f05032;"></i>
-                    <span>Git</span>
-                    <div class="stack-progress" aria-hidden="true"><div class="stack-progress-bar"></div></div>
+                <div class="stack-card gsap-reveal" data-level="70" style="--level: 70%">
+                    <span class="stack-name">RabbitMQ</span>
+                    <span class="stack-note" data-en="Reading the queue when a message never arrives">Ler a fila quando
+                        a mensagem não chega</span>
+                    <div class="stack-progress" aria-hidden="true">
+                        <div class="stack-progress-bar"></div>
+                    </div>
+                    <span class="stack-freq" data-en="occasional">pontual</span>
                 </div>
-                <div class="stack-card gsap-reveal" data-level="70">
-                    <i class="fab fa-linux" style="color: #e8ecf4;"></i>
-                    <span>Linux</span>
-                    <div class="stack-progress" aria-hidden="true"><div class="stack-progress-bar"></div></div>
+                <div class="stack-card gsap-reveal" data-level="70" style="--level: 70%">
+                    <span class="stack-name">SonarQube</span>
+                    <span class="stack-note" data-en="Code quality before the fix is merged">Qualidade do código antes
+                        da correção entrar</span>
+                    <div class="stack-progress" aria-hidden="true">
+                        <div class="stack-progress-bar"></div>
+                    </div>
+                    <span class="stack-freq" data-en="occasional">pontual</span>
                 </div>
-                <div class="stack-card gsap-reveal" data-level="75">
-                    <i class="fab fa-microsoft" style="color: #0078d4;"></i>
-                    <span>Azure</span>
-                    <div class="stack-progress" aria-hidden="true"><div class="stack-progress-bar"></div></div>
+                <div class="stack-card gsap-reveal" data-level="70" style="--level: 70%">
+                    <span class="stack-name">Google Cloud</span>
+                    <span class="stack-note" data-en="Services and credentials behind the integrations">Serviços e
+                        credenciais por trás das integrações</span>
+                    <div class="stack-progress" aria-hidden="true">
+                        <div class="stack-progress-bar"></div>
+                    </div>
+                    <span class="stack-freq" data-en="occasional">pontual</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Projects -->
+    <!-- Projetos -->
     <section id="projects">
         <div class="container">
-            <h2 class="section-title" data-en="My <span class='accent'>Projects</span>">Meus <span
-                    class="accent">Projetos</span></h2>
-
-            <p class="section-subtitle"
-                data-en="What I build at work, and what I build to keep learning.">
-                O que eu construo no trabalho, e o que eu construo para continuar aprendendo.</p>
+            <div class="section-head">
+                <span class="rail-tag" data-en="~/projects">~/projetos</span>
+                <div>
+                    <h2 class="section-title" data-en="What I <span class='accent'>ship</span>">O que eu <span
+                            class="accent">entrego</span></h2>
+                    <p class="section-subtitle" data-en="What I build at work, and what I build to keep learning.">O que
+                        eu construo no trabalho, e o que eu construo para continuar aprendendo.</p>
+                </div>
+            </div>
 
             <div class="project-filters reveal">
-                <button class="filter-btn active" data-filter="all" data-en="All">Todos</button>
-                <button class="filter-btn" data-filter="automacao" data-en="Automation">Automação</button>
-                <button class="filter-btn" data-filter="itops" data-en="ITOps">ITOps</button>
-                <button class="filter-btn" data-filter="pessoal" data-en="Side projects">Projetos pessoais</button>
+                <button class="filter-btn active" data-filter="all" data-en="all">todos</button>
+                <button class="filter-btn" data-filter="automacao" data-en="automation">automação</button>
+                <button class="filter-btn" data-filter="itops" data-en="itops">itops</button>
+                <button class="filter-btn" data-filter="pessoal" data-en="side projects">projetos pessoais</button>
             </div>
 
             <div class="projects-grid">
 
-                <div class="project-card reveal tilt-card" data-category="automacao">
-                    <div class="card-shine"></div>
-                    <div class="project-visual">
-                        <i class="fas fa-diagram-project"></i>
+                <div class="project-card reveal" data-category="automacao">
+                    <div class="card-meta">
+                        <span>AUT-01 · n8n</span>
+                        <span class="state state-ok" data-en="in production">em produção</span>
                     </div>
-                    <div class="project-body">
-                        <h3 data-en="Process automation with n8n">Automação de processos com n8n</h3>
-                        <div class="tags">
-                            <span class="tag">n8n</span>
-                            <span class="tag" data-en="Integrations">Integrações</span>
-                            <span class="tag">APIs</span>
-                        </div>
-                        <p
-                            data-en="Workflows that connect the team's internal tools and take the manual step out of the middle. Data that used to be copied by hand now moves between systems on its own.">
-                            Fluxos que conectam as ferramentas internas e tiram o passo manual do meio. Dados que antes
-                            eram copiados à mão passam a circular sozinhos entre os sistemas.</p>
-                        <button class="btn btn-sm magnetic-btn" onclick="openModal(this)"
-                            data-title="Automação de processos com n8n"
-                            data-desc="Construo workflows no n8n para ligar as ferramentas que o time usa todo dia. Cada fluxo substitui uma sequência de passos manuais — ler o dado, transformar, entregar no sistema seguinte — por uma execução automática e rastreável. O ganho aparece duas vezes: some o trabalho repetitivo e some também o erro de digitação que vinha junto com ele."
-                            data-en-title="Process automation with n8n"
-                            data-en-desc="I build n8n workflows that connect the tools the team uses every day. Each flow replaces a sequence of manual steps — read the data, transform it, deliver it to the next system — with an automatic, traceable run. The gain shows up twice: the repetitive work disappears, and so does the typo that used to come with it.">
-                            <span data-en="View Details">Ver Detalhes</span>
-                        </button>
+                    <h3 data-en="Process automation with n8n">Automação de processos com n8n</h3>
+                    <div class="tags">
+                        <span class="tag">n8n</span>
+                        <span class="tag" data-en="Integrations">Integrações</span>
+                        <span class="tag">APIs</span>
                     </div>
+                    <p
+                        data-en="Workflows that connect the team's internal tools and take the manual step out of the middle. Data that used to be copied by hand now moves between systems on its own.">
+                        Fluxos que conectam as ferramentas internas e tiram o passo manual do meio. Dados que antes eram
+                        copiados à mão passam a circular sozinhos entre os sistemas.</p>
+                    <button class="btn btn-sm" onclick="openModal(this)"
+                        data-title="Automação de processos com n8n"
+                        data-desc="Construo workflows no n8n para ligar as ferramentas que o time usa todo dia. Cada fluxo substitui uma sequência de passos manuais — ler o dado, transformar, entregar no sistema seguinte — por uma execução automática e rastreável. O ganho aparece duas vezes: some o trabalho repetitivo e some também o erro de digitação que vinha junto com ele."
+                        data-en-title="Process automation with n8n"
+                        data-en-desc="I build n8n workflows that connect the tools the team uses every day. Each flow replaces a sequence of manual steps — read the data, transform it, deliver it to the next system — with an automatic, traceable run. The gain shows up twice: the repetitive work disappears, and so does the typo that used to come with it.">
+                        <span data-en="View details">Ver detalhes</span>
+                    </button>
                 </div>
 
-                <div class="project-card reveal tilt-card" data-category="automacao">
-                    <div class="card-shine"></div>
-                    <div class="project-visual">
-                        <i class="fas fa-bolt"></i>
+                <div class="project-card reveal" data-category="automacao">
+                    <div class="card-meta">
+                        <span>AUT-02 · Python</span>
+                        <span class="state state-ok" data-en="in production">em produção</span>
                     </div>
-                    <div class="project-body">
-                        <h3 data-en="Scripts for recurring tickets">Scripts para chamados recorrentes</h3>
-                        <div class="tags">
-                            <span class="tag">Python</span>
-                            <span class="tag">SQL</span>
-                            <span class="tag" data-en="Automation">Automação</span>
-                        </div>
-                        <p
-                            data-en="When the same ticket shows up for the third time, it becomes a script. What used to be a long manual task now runs in seconds.">
-                            Quando o mesmo chamado aparece pela terceira vez, ele vira script. O que era uma tarefa
-                            manual longa passa a rodar em segundos.</p>
-                        <button class="btn btn-sm magnetic-btn" onclick="openModal(this)"
-                            data-title="Scripts para chamados recorrentes"
-                            data-desc="Identifico os chamados que mais consomem tempo do time, mapeio o passo a passo da resolução manual e transformo isso em script. A velocidade é o ganho óbvio; o que importa tanto quanto é a padronização — a resolução para de depender de quem pegou o chamado e passa a sair igual toda vez."
-                            data-en-title="Scripts for recurring tickets"
-                            data-en-desc="I find the tickets that eat the most of the team's time, map the manual resolution step by step, and turn it into a script. Speed is the obvious win; what matters just as much is consistency — the fix stops depending on who picked up the ticket and comes out the same every time.">
-                            <span data-en="View Details">Ver Detalhes</span>
-                        </button>
+                    <h3 data-en="Scripts for recurring tickets">Scripts para chamados recorrentes</h3>
+                    <div class="tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">SQL</span>
+                        <span class="tag" data-en="Automation">Automação</span>
                     </div>
+                    <p
+                        data-en="When the same ticket shows up for the third time, it becomes a script. What used to be a long manual task now runs in seconds.">
+                        Quando o mesmo chamado aparece pela terceira vez, ele vira script. O que era uma tarefa manual
+                        longa passa a rodar em segundos.</p>
+                    <button class="btn btn-sm" onclick="openModal(this)"
+                        data-title="Scripts para chamados recorrentes"
+                        data-desc="Identifico os chamados que mais consomem tempo do time, mapeio o passo a passo da resolução manual e transformo isso em script. A velocidade é o ganho óbvio; o que importa tanto quanto é a padronização — a resolução para de depender de quem pegou o chamado e passa a sair igual toda vez."
+                        data-en-title="Scripts for recurring tickets"
+                        data-en-desc="I find the tickets that eat the most of the team's time, map the manual resolution step by step, and turn it into a script. Speed is the obvious win; what matters just as much is consistency — the fix stops depending on who picked up the ticket and comes out the same every time.">
+                        <span data-en="View details">Ver detalhes</span>
+                    </button>
                 </div>
 
-                <div class="project-card reveal tilt-card" data-category="itops">
-                    <div class="card-shine"></div>
-                    <div class="project-visual">
-                        <i class="fas fa-magnifying-glass-chart"></i>
+                <div class="project-card reveal" data-category="itops">
+                    <div class="card-meta">
+                        <span>OPS-01 · Triagem</span>
+                        <span class="state state-open" data-en="daily">diário</span>
                     </div>
-                    <div class="project-body">
-                        <h3 data-en="Incident diagnosis and triage">Diagnóstico e triagem de incidentes</h3>
-                        <div class="tags">
-                            <span class="tag">Postman</span>
-                            <span class="tag">DBeaver</span>
-                            <span class="tag">RabbitMQ</span>
-                        </div>
-                        <p
-                            data-en="Reproduce, isolate and prove the cause: a request in Postman, a query in the database, a look at the queue and the logs — until the problem has an explanation, not just a symptom.">
-                            Reproduzir, isolar e provar a causa: request no Postman, consulta no banco, leitura de fila
-                            e de log — até o problema ter explicação, não só sintoma.</p>
-                        <button class="btn btn-sm magnetic-btn" onclick="openModal(this)"
-                            data-title="Diagnóstico e triagem de incidentes"
-                            data-desc="Rotina de investigação técnica em ambiente real: valido o comportamento da API pelo Postman, consulto o banco pelo DBeaver, acompanho as mensagens em fila no RabbitMQ e cruzo tudo com o log. O critério de pronto é sempre causa raiz — contorno resolve o chamado de hoje e devolve o mesmo chamado na semana seguinte."
-                            data-en-title="Incident diagnosis and triage"
-                            data-en-desc="Technical investigation in a real environment: I check API behaviour in Postman, query the database in DBeaver, follow queued messages in RabbitMQ, and cross-reference all of it with the logs. The definition of done is always root cause — a workaround closes today's ticket and hands you the same ticket again next week.">
-                            <span data-en="View Details">Ver Detalhes</span>
-                        </button>
+                    <h3 data-en="Incident diagnosis and triage">Diagnóstico e triagem de incidentes</h3>
+                    <div class="tags">
+                        <span class="tag">Postman</span>
+                        <span class="tag">DBeaver</span>
+                        <span class="tag">RabbitMQ</span>
                     </div>
+                    <p
+                        data-en="Reproduce, isolate and prove the cause: a request in Postman, a query in the database, a look at the queue and the logs — until the problem has an explanation, not just a symptom.">
+                        Reproduzir, isolar e provar a causa: request no Postman, consulta no banco, leitura de fila e de
+                        log — até o problema ter explicação, não só sintoma.</p>
+                    <button class="btn btn-sm" onclick="openModal(this)"
+                        data-title="Diagnóstico e triagem de incidentes"
+                        data-desc="Rotina de investigação técnica em ambiente real: valido o comportamento da API pelo Postman, consulto o banco pelo DBeaver, acompanho as mensagens em fila no RabbitMQ e cruzo tudo com o log. O critério de pronto é sempre causa raiz — contorno resolve o chamado de hoje e devolve o mesmo chamado na semana seguinte."
+                        data-en-title="Incident diagnosis and triage"
+                        data-en-desc="Technical investigation in a real environment: I check API behaviour in Postman, query the database in DBeaver, follow queued messages in RabbitMQ, and cross-reference all of it with the logs. The definition of done is always root cause — a workaround closes today's ticket and hands you the same ticket again next week.">
+                        <span data-en="View details">Ver detalhes</span>
+                    </button>
                 </div>
 
-                <div class="project-card reveal tilt-card" data-category="itops">
-                    <div class="card-shine"></div>
-                    <div class="project-visual">
-                        <i class="fas fa-code-branch"></i>
+                <div class="project-card reveal" data-category="itops">
+                    <div class="card-meta">
+                        <span>OPS-02 · Produção</span>
+                        <span class="state state-ok" data-en="in production">em produção</span>
                     </div>
-                    <div class="project-body">
-                        <h3 data-en="Fixes and improvements in production">Correções e melhorias em produção</h3>
-                        <div class="tags">
-                            <span class="tag">Fixes</span>
-                            <span class="tag">Features</span>
-                            <span class="tag">SonarQube</span>
-                        </div>
-                        <p
-                            data-en="Tickets that turn into code: bug fixes, behaviour adjustments and small features born from what the user actually reported.">
-                            Chamado que vira código: correção de bug, ajuste de comportamento e pequenas features
-                            nascidas do que o usuário relatou.</p>
-                        <button class="btn btn-sm magnetic-btn" onclick="openModal(this)"
-                            data-title="Correções e melhorias em produção"
-                            data-desc="Parte dos chamados termina em alteração de código. Levo o problema do relato até a correção, com atenção a qualidade (SonarQube) e versionamento em Git. Trabalhar colado no suporte tem uma vantagem difícil de replicar: fica muito claro qual mudança resolve a dor real do usuário e qual só mexe no sintoma."
-                            data-en-title="Fixes and improvements in production"
-                            data-en-desc="Some tickets end in a code change. I take the problem from the report through to the fix, watching code quality (SonarQube) and versioning with Git. Working right next to support has an advantage that is hard to replicate: it becomes very clear which change solves the user's real pain and which one only touches the symptom.">
-                            <span data-en="View Details">Ver Detalhes</span>
-                        </button>
+                    <h3 data-en="Fixes and improvements in production">Correções e melhorias em produção</h3>
+                    <div class="tags">
+                        <span class="tag">Fixes</span>
+                        <span class="tag">Features</span>
+                        <span class="tag">SonarQube</span>
                     </div>
+                    <p
+                        data-en="Tickets that turn into code: bug fixes, behaviour adjustments and small features born from what the user actually reported.">
+                        Chamado que vira código: correção de bug, ajuste de comportamento e pequenas features nascidas
+                        do que o usuário relatou.</p>
+                    <button class="btn btn-sm" onclick="openModal(this)"
+                        data-title="Correções e melhorias em produção"
+                        data-desc="Parte dos chamados termina em alteração de código. Levo o problema do relato até a correção, com atenção a qualidade (SonarQube) e versionamento em Git. Trabalhar colado no suporte tem uma vantagem difícil de replicar: fica muito claro qual mudança resolve a dor real do usuário e qual só mexe no sintoma."
+                        data-en-title="Fixes and improvements in production"
+                        data-en-desc="Some tickets end in a code change. I take the problem from the report through to the fix, watching code quality (SonarQube) and versioning with Git. Working right next to support has an advantage that is hard to replicate: it becomes very clear which change solves the user's real pain and which one only touches the symptom.">
+                        <span data-en="View details">Ver detalhes</span>
+                    </button>
                 </div>
 
-                <div class="project-card reveal tilt-card" data-category="pessoal">
-                    <div class="card-shine"></div>
-                    <div class="project-visual">
-                        <i class="fas fa-wallet"></i>
+                <div class="project-card reveal" data-category="pessoal">
+                    <div class="card-meta">
+                        <span>LAB-01 · Flask</span>
+                        <span class="state state-ok" data-en="live">no ar</span>
                     </div>
-                    <div class="project-body">
-                        <h3 data-en="Finance Manager FOHB">Gestor Financeiro FOHB</h3>
-                        <div class="tags">
-                            <span class="tag">Python</span>
-                            <span class="tag">Flask</span>
-                            <span class="tag">PostgreSQL</span>
-                        </div>
-                        <p
-                            data-en="Full-stack application for financial management using Python, Flask and PostgreSQL, deployed to Render with environment variables for secrets.">
-                            Aplicação full-stack para gestão financeira com Python, Flask e PostgreSQL. Deploy no
-                            Render, com variáveis de ambiente para os segredos.</p>
-                        <button class="btn btn-sm magnetic-btn" onclick="openModal(this)"
-                            data-title="Gestor Financeiro FOHB"
-                            data-desc="Sistema de controle de finanças construído com Python e Flask, rodando com PostgreSQL em produção na nuvem (Render), com rotas protegidas e deploy contínuo. Foi onde aprendi na prática a diferença entre um projeto que roda na minha máquina e um que roda para outra pessoa."
-                            data-link="https://gestor-financeiro-fohb.onrender.com/"
-                            data-link-label="Ver aplicação"
-                            data-en-link-label="Open the app"
-                            data-en-title="Finance Manager FOHB"
-                            data-en-desc="Finance control system built with Python and Flask, running on PostgreSQL in cloud production (Render), with protected routes and continuous deployment. This is where I learned first-hand the difference between a project that runs on my machine and one that runs for someone else.">
-                            <span data-en="View Details">Ver Detalhes</span>
-                        </button>
+                    <h3 data-en="Finance Manager FOHB">Gestor Financeiro FOHB</h3>
+                    <div class="tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Flask</span>
+                        <span class="tag">PostgreSQL</span>
                     </div>
+                    <p
+                        data-en="Full-stack application for financial management using Python, Flask and PostgreSQL, deployed to Render with environment variables for secrets.">
+                        Aplicação full-stack para gestão financeira com Python, Flask e PostgreSQL. Deploy no Render,
+                        com variáveis de ambiente para os segredos.</p>
+                    <button class="btn btn-sm" onclick="openModal(this)"
+                        data-title="Gestor Financeiro FOHB"
+                        data-desc="Sistema de controle de finanças construído com Python e Flask, rodando com PostgreSQL em produção na nuvem (Render), com rotas protegidas e deploy contínuo. Foi onde aprendi na prática a diferença entre um projeto que roda na minha máquina e um que roda para outra pessoa."
+                        data-link="https://gestor-financeiro-fohb.onrender.com/"
+                        data-link-label="Ver aplicação"
+                        data-en-link-label="Open the app"
+                        data-en-title="Finance Manager FOHB"
+                        data-en-desc="Finance control system built with Python and Flask, running on PostgreSQL in cloud production (Render), with protected routes and continuous deployment. This is where I learned first-hand the difference between a project that runs on my machine and one that runs for someone else.">
+                        <span data-en="View details">Ver detalhes</span>
+                    </button>
                 </div>
 
-                <div class="project-card reveal tilt-card" data-category="pessoal">
-                    <div class="card-shine"></div>
-                    <div class="project-visual">
-                        <i class="fas fa-terminal"></i>
+                <div class="project-card reveal" data-category="pessoal">
+                    <div class="card-meta">
+                        <span>LAB-02 · Textual</span>
+                        <span class="state state-open" data-en="evolving">em evolução</span>
                     </div>
-                    <div class="project-body">
-                        <h3 data-en="Study Assistant (Terminal TUI)">Assistente de Estudos (Terminal)</h3>
-                        <div class="tags">
-                            <span class="tag">Python</span>
-                            <span class="tag">Textual</span>
-                            <span class="tag">Gemini</span>
-                        </div>
-                        <p
-                            data-en="A study and productivity assistant that runs straight in the terminal, with a full TUI and Google Gemini vision integration.">
-                            Um assistente de estudos e produtividade que roda direto no terminal, com TUI completa e
-                            integração com a visão do Google Gemini.</p>
-                        <button class="btn btn-sm magnetic-btn" onclick="openModal(this)"
-                            data-title="Assistente de Estudos (Terminal)"
-                            data-desc="Aplicação de terminal construída com Python e a biblioteca Textual. Captura a tela, envia para a API de visão do Gemini e devolve orientação de estudo sem sair da TUI. É o projeto onde mais aprendi sobre integração com API externa e sobre desenhar uma interface dentro das limitações do terminal."
-                            data-link="https://github.com/MatheusAraujoMacedo/Programa-estudos"
-                            data-en-title="Study Assistant (Terminal TUI)"
-                            data-en-desc="Terminal application built with Python and the Textual library. It captures the screen, sends it to Gemini's vision API and returns study guidance without leaving the TUI. This is the project where I learned the most about integrating an external API and about designing an interface within the terminal's constraints.">
-                            <span data-en="View Details">Ver Detalhes</span>
-                        </button>
+                    <h3 data-en="Study Assistant (Terminal TUI)">Assistente de Estudos (Terminal)</h3>
+                    <div class="tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Textual</span>
+                        <span class="tag">Gemini</span>
                     </div>
+                    <p
+                        data-en="A study and productivity assistant that runs straight in the terminal, with a full TUI and Google Gemini vision integration.">
+                        Um assistente de estudos e produtividade que roda direto no terminal, com TUI completa e
+                        integração com a visão do Google Gemini.</p>
+                    <button class="btn btn-sm" onclick="openModal(this)"
+                        data-title="Assistente de Estudos (Terminal)"
+                        data-desc="Aplicação de terminal construída com Python e a biblioteca Textual. Captura a tela, envia para a API de visão do Gemini e devolve orientação de estudo sem sair da TUI. É o projeto onde mais aprendi sobre integração com API externa e sobre desenhar uma interface dentro das limitações do terminal."
+                        data-link="https://github.com/MatheusAraujoMacedo/Programa-estudos"
+                        data-en-title="Study Assistant (Terminal TUI)"
+                        data-en-desc="Terminal application built with Python and the Textual library. It captures the screen, sends it to Gemini's vision API and returns study guidance without leaving the TUI. This is the project where I learned the most about integrating an external API and about designing an interface within the terminal's constraints.">
+                        <span data-en="View details">Ver detalhes</span>
+                    </button>
                 </div>
 
-                <div class="project-card reveal tilt-card" data-category="pessoal">
-                    <div class="card-shine"></div>
-                    <div class="project-visual">
-                        <i class="fas fa-robot"></i>
+                <div class="project-card reveal" data-category="pessoal">
+                    <div class="card-meta">
+                        <span>LAB-03 · Cloudflare</span>
+                        <span class="state state-ok" data-en="live">no ar</span>
                     </div>
-                    <div class="project-body">
-                        <h3 data-en="This portfolio and its AI">Este portfólio e a IA dele</h3>
-                        <div class="tags">
-                            <span class="tag">Cloudflare</span>
-                            <span class="tag">Serverless</span>
-                            <span class="tag">Gemini</span>
-                        </div>
-                        <p
-                            data-en="The site you are reading. The assistant in the corner runs on a serverless function so the API key never reaches the browser.">
-                            O site que você está lendo. O assistente ali no canto roda numa função serverless, para que
-                            a chave de API nunca chegue ao navegador.</p>
-                        <button class="btn btn-sm magnetic-btn" onclick="openModal(this)"
-                            data-title="Este portfólio e a IA dele"
-                            data-desc="JavaScript puro no front, sem framework, e uma Cloudflare Pages Function no back para conversar com o Gemini. A decisão que mais importa aqui é de segurança: a chave de API fica no servidor, nunca no cliente. Também tem troca de idioma, modo de contraste e VLibras — acessibilidade não foi deixada para depois."
-                            data-link="https://github.com/MatheusAraujoMacedo/Matheusaraujomacedo.github.io"
-                            data-en-title="This portfolio and its AI"
-                            data-en-desc="Plain JavaScript on the front end, no framework, and a Cloudflare Pages Function on the back end to talk to Gemini. The decision that matters most here is a security one: the API key stays on the server, never on the client. It also has language switching, a contrast mode and VLibras — accessibility was not left for later.">
-                            <span data-en="View Details">Ver Detalhes</span>
-                        </button>
+                    <h3 data-en="This portfolio and its AI">Este portfólio e a IA dele</h3>
+                    <div class="tags">
+                        <span class="tag">Cloudflare</span>
+                        <span class="tag">Serverless</span>
+                        <span class="tag">Gemini</span>
                     </div>
+                    <p
+                        data-en="The site you are reading. The assistant in the corner runs on a serverless function so the API key never reaches the browser.">
+                        O site que você está lendo. O assistente ali no canto roda numa função serverless, para que a
+                        chave de API nunca chegue ao navegador.</p>
+                    <button class="btn btn-sm" onclick="openModal(this)"
+                        data-title="Este portfólio e a IA dele"
+                        data-desc="JavaScript puro no front, sem framework, e uma Cloudflare Pages Function no back para conversar com o Gemini. A decisão que mais importa aqui é de segurança: a chave de API fica no servidor, nunca no cliente. Também tem troca de idioma, modo de contraste e VLibras — acessibilidade não foi deixada para depois."
+                        data-link="https://github.com/MatheusAraujoMacedo/Matheusaraujomacedo.github.io"
+                        data-en-title="This portfolio and its AI"
+                        data-en-desc="Plain JavaScript on the front end, no framework, and a Cloudflare Pages Function on the back end to talk to Gemini. The decision that matters most here is a security one: the API key stays on the server, never on the client. It also has language switching, a contrast mode and VLibras — accessibility was not left for later.">
+                        <span data-en="View details">Ver detalhes</span>
+                    </button>
                 </div>
 
-                <div class="project-card reveal tilt-card" data-category="pessoal">
-                    <div class="card-shine"></div>
-                    <div class="project-visual">
-                        <i class="fas fa-chart-line"></i>
+                <div class="project-card reveal" data-category="pessoal">
+                    <div class="card-meta">
+                        <span>LAB-04 · Dados</span>
+                        <span class="state state-open" data-en="evolving">em evolução</span>
                     </div>
-                    <div class="project-body">
-                        <h3 data-en="CyberFinance Pro">CyberFinance Pro</h3>
-                        <div class="tags">
-                            <span class="tag">Python</span>
-                            <span class="tag" data-en="Data analysis">Análise de dados</span>
-                        </div>
-                        <p
-                            data-en="A Python project focused on financial management and data analysis, with a more advanced take on budget control.">
-                            Projeto em Python focado em gestão financeira e análise de dados, com uma abordagem mais
-                            avançada de controle de orçamento.</p>
-                        <button class="btn btn-sm magnetic-btn" onclick="openModal(this)"
-                            data-title="CyberFinance Pro"
-                            data-desc="Ferramenta de gestão financeira escrita em Python, usando bibliotecas de análise e processamento de dados para transformar lançamentos brutos em leitura útil de orçamento."
-                            data-link="https://github.com/MatheusAraujoMacedo/cyberfinance-pro"
-                            data-en-title="CyberFinance Pro"
-                            data-en-desc="A financial management tool written in Python, using data analysis and processing libraries to turn raw entries into a useful reading of a budget.">
-                            <span data-en="View Details">Ver Detalhes</span>
-                        </button>
+                    <h3 data-en="CyberFinance Pro">CyberFinance Pro</h3>
+                    <div class="tags">
+                        <span class="tag">Python</span>
+                        <span class="tag" data-en="Data analysis">Análise de dados</span>
                     </div>
+                    <p
+                        data-en="A Python project focused on financial management and data analysis, with a more advanced take on budget control.">
+                        Projeto em Python focado em gestão financeira e análise de dados, com uma abordagem mais
+                        avançada de controle de orçamento.</p>
+                    <button class="btn btn-sm" onclick="openModal(this)"
+                        data-title="CyberFinance Pro"
+                        data-desc="Ferramenta de gestão financeira escrita em Python, usando bibliotecas de análise e processamento de dados para transformar lançamentos brutos em leitura útil de orçamento."
+                        data-link="https://github.com/MatheusAraujoMacedo/cyberfinance-pro"
+                        data-en-title="CyberFinance Pro"
+                        data-en-desc="A financial management tool written in Python, using data analysis and processing libraries to turn raw entries into a useful reading of a budget.">
+                        <span data-en="View details">Ver detalhes</span>
+                    </button>
                 </div>
 
             </div>
         </div>
     </section>
 
-    <!-- Journey -->
+    <!-- Jornada -->
     <section id="journey">
         <div class="container">
-            <h2 class="section-title" data-en="My <span class='accent'>Journey</span>">Minha <span
-                    class="accent">Jornada</span></h2>
+            <div class="section-head">
+                <span class="rail-tag" data-en="~/journey">~/jornada</span>
+                <div>
+                    <h2 class="section-title" data-en="The <span class='accent'>log</span>">O <span
+                            class="accent">log</span></h2>
+                    <p class="section-subtitle" data-en="Most recent first, the way you read a log file.">Do mais
+                        recente para o mais antigo, do jeito que se lê um arquivo de log.</p>
+                </div>
+            </div>
+
             <div class="timeline">
-                <div class="timeline-item timeline-left reveal-right">
-                    <div class="timeline-dot"></div>
+                <div class="timeline-item is-current reveal">
+                    <span class="timeline-date">2026 · <span data-en="current">atual</span></span>
                     <div class="timeline-content">
-                        <span class="timeline-date">2026 (Atual)</span>
                         <h3 data-en="ITOps at SAMI Saúde">ITOps na SAMI Saúde</h3>
                         <p
                             data-en="Technical incident resolution in a healthtech: tickets in ClickUp, diagnosis with Postman, DBeaver, RabbitMQ and logs. Along the way I started automating the recurring ones with n8n and scripts, and closing some of them with fixes in the code itself.">
                             Resolução de incidentes técnicos numa healthtech: chamados no ClickUp, diagnóstico com
-                            Postman, DBeaver, RabbitMQ e log. No caminho, comecei a automatizar os recorrentes com n8n
-                            e scripts — e a fechar parte deles com correções no próprio código.</p>
+                            Postman, DBeaver, RabbitMQ e log. No caminho, comecei a automatizar os recorrentes com n8n e
+                            scripts — e a fechar parte deles com correções no próprio código.</p>
                     </div>
                 </div>
-                <div class="timeline-item timeline-right reveal-left">
-                    <div class="timeline-dot"></div>
+                <div class="timeline-item reveal">
+                    <span class="timeline-date">2026</span>
                     <div class="timeline-content">
-                        <span class="timeline-date">2026</span>
                         <h3 data-en="Degree & DevOps">Graduação & DevOps</h3>
                         <p
                             data-en="Starting Bachelor's in Information Systems at Faculdade Impacta and DevOps culture preparatory course.">
@@ -519,10 +609,9 @@
                             cultura DevOps.</p>
                     </div>
                 </div>
-                <div class="timeline-item timeline-left reveal-right">
-                    <div class="timeline-dot"></div>
+                <div class="timeline-item reveal">
+                    <span class="timeline-date">2025</span>
                     <div class="timeline-content">
-                        <span class="timeline-date">2025</span>
                         <h3 data-en="Databases">Aprofundamento em Banco de Dados</h3>
                         <p
                             data-en="Additional SQL and MySQL courses — the foundation I use every day to investigate an incident straight from the data.">
@@ -530,10 +619,9 @@
                             direto no dado.</p>
                     </div>
                 </div>
-                <div class="timeline-item timeline-right reveal-left">
-                    <div class="timeline-dot"></div>
+                <div class="timeline-item reveal">
+                    <span class="timeline-date">2024</span>
                     <div class="timeline-content">
-                        <span class="timeline-date">2024</span>
                         <h3 data-en="Web Dev & Cria Tech">Web Dev & Cria Tech</h3>
                         <p
                             data-en="Conclusion of Web Development technical course (IOS). Highlight with TCC presentation at the Cria Tech event (TOTVS).">
@@ -541,10 +629,9 @@
                             evento Cria Tech (TOTVS).</p>
                     </div>
                 </div>
-                <div class="timeline-item timeline-left reveal-right">
-                    <div class="timeline-dot"></div>
+                <div class="timeline-item reveal">
+                    <span class="timeline-date">2023</span>
                     <div class="timeline-content">
-                        <span class="timeline-date">2023</span>
                         <h3 data-en="Azure Certifications">Certificações Azure</h3>
                         <p
                             data-en="Immersion in Cloud Computing. Earned Microsoft Azure certifications (AZ-901, AZ-902, AZ-903).">
@@ -552,10 +639,9 @@
                             AZ-903).</p>
                     </div>
                 </div>
-                <div class="timeline-item timeline-right reveal-left">
-                    <div class="timeline-dot"></div>
+                <div class="timeline-item reveal">
+                    <span class="timeline-date">2022</span>
                     <div class="timeline-content">
-                        <span class="timeline-date">2022</span>
                         <h3 data-en="English">Inglês</h3>
                         <p
                             data-en="Started English studies, reaching an intermediate level for technical reading and communication.">
@@ -567,54 +653,64 @@
         </div>
     </section>
 
-    <!-- Certifications -->
+    <!-- Certificações -->
     <section id="certs">
         <div class="container">
-            <h2 class="section-title" data-en="Azure <span class='accent'>Certifications</span>">Certificações <span
-                    class="accent">Azure</span></h2>
-            <p class="section-subtitle"
-                data-en="Cloud fundamentals earned in 2023 — the groundwork behind the infrastructure side of the job.">
-                Fundamentos de cloud conquistados em 2023 — a base por trás do lado de infraestrutura do trabalho.</p>
+            <div class="section-head">
+                <span class="rail-tag" data-en="~/certifications">~/certificacoes</span>
+                <div>
+                    <h2 class="section-title" data-en="Azure <span class='accent'>certifications</span>">Certificações
+                        <span class="accent">Azure</span></h2>
+                    <p class="section-subtitle"
+                        data-en="Cloud fundamentals earned in 2023 — the groundwork behind the infrastructure side of the job.">
+                        Fundamentos de cloud conquistados em 2023 — a base por trás do lado de infraestrutura do
+                        trabalho.</p>
+                </div>
+            </div>
+
             <div class="certs-grid">
                 <div class="cert-card gsap-reveal">
-                    <i class="fab fa-microsoft"></i>
+                    <span class="cert-code">Microsoft · 2023</span>
                     <h3>AZ-901</h3>
-                    <p>Fundamentals</p>
+                    <p data-en="Cloud fundamentals">Fundamentos de cloud</p>
                 </div>
                 <div class="cert-card gsap-reveal">
-                    <i class="fas fa-cloud"></i>
+                    <span class="cert-code">Microsoft · 2023</span>
                     <h3>AZ-902</h3>
-                    <p>Cloud Computing</p>
+                    <p data-en="Cloud computing">Computação em nuvem</p>
                 </div>
                 <div class="cert-card gsap-reveal">
-                    <i class="fas fa-network-wired"></i>
+                    <span class="cert-code">Microsoft · 2023</span>
                     <h3>AZ-903</h3>
-                    <p>Services</p>
+                    <p data-en="Azure services">Serviços Azure</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Other Skills -->
+    <!-- Outras competências -->
     <section id="skills">
         <div class="container">
-            <h2 class="section-title" data-en="Other <span class='accent'>Skills</span>">Outras <span
-                    class="accent">Competências</span></h2>
+            <div class="section-head">
+                <span class="rail-tag" data-en="~/skills">~/competencias</span>
+                <div>
+                    <h2 class="section-title" data-en="Other <span class='accent'>skills</span>">Outras <span
+                            class="accent">competências</span></h2>
+                </div>
+            </div>
+
             <div class="wave-grid">
                 <div class="wave-card reveal">
-                    <div class="wave-card-icon"><i class="fas fa-language"></i></div>
                     <h3 data-en="English">Inglês</h3>
-                    <span class="wave-card-level" data-en="Intermediate Level">Nível Intermediário</span>
+                    <span class="wave-card-level" data-en="Intermediate">Nível intermediário</span>
                     <p data-en="Technical reading and documentation">Leitura técnica e documentação</p>
                 </div>
                 <div class="wave-card reveal">
-                    <div class="wave-card-icon"><i class="fas fa-file-excel"></i></div>
-                    <h3 data-en="Office Suite">Pacote Office</h3>
+                    <h3 data-en="Office suite">Pacote Office</h3>
                     <span class="wave-card-level" data-en="Proficient">Competente</span>
-                    <p data-en="Excel, Word, and PowerPoint for management">Excel, Word e PowerPoint para gestão</p>
+                    <p data-en="Excel, Word and PowerPoint for management">Excel, Word e PowerPoint para gestão</p>
                 </div>
                 <div class="wave-card reveal">
-                    <div class="wave-card-icon"><i class="fas fa-comments"></i></div>
                     <h3 data-en="Communication">Comunicação</h3>
                     <span class="wave-card-level" data-en="Technical to non-technical">Técnico para não-técnico</span>
                     <p data-en="Explaining an incident to whoever opened the ticket, without jargon">Explicar o
@@ -624,124 +720,141 @@
         </div>
     </section>
 
-    <!-- Contact -->
+    <!-- Contato -->
     <section id="contact">
         <div class="container">
-            <h2 class="section-title" data-en="Let's <span class='accent'>Talk</span>">Vamos <span
-                    class="accent">Conversar</span></h2>
+            <div class="section-head">
+                <span class="rail-tag" data-en="~/contact">~/contato</span>
+                <div>
+                    <h2 class="section-title" data-en="Open a <span class='accent'>ticket</span>">Abra um <span
+                            class="accent">chamado</span></h2>
+                    <p class="section-subtitle"
+                        data-en="Tell me what is happening. Vacancy, project or a question about automation — it all comes to the same inbox.">
+                        Me conte o que está acontecendo. Vaga, projeto ou dúvida sobre automação — tudo cai na mesma
+                        caixa de entrada.</p>
+                </div>
+            </div>
 
-            <div class="contact-wrapper gsap-reveal">
-                <p class="form-helper" data-en="I usually reply within 24–48 hours.">Costumo responder em até 24–48
-                    horas.</p>
+            <div class="section-body">
+                <span class="rail-note"
+                    data-en="Reply within<br>24–48 hours">Resposta em<br>24–48 horas</span>
 
-                <form action="https://formspree.io/f/xbdyagwp" method="POST" class="contact-form" id="contact-form">
-                    <div class="input-group">
-                        <input type="text" name="name" required placeholder=" " id="input-name">
-                        <label for="input-name" data-en="Your Name">Seu Nome</label>
-                    </div>
-                    <div class="input-group">
-                        <input type="email" name="email" required placeholder=" " id="input-email">
-                        <label for="input-email" data-en="Your Email">Seu E-mail</label>
-                    </div>
-                    <div class="input-group">
-                        <textarea name="message" rows="5" required placeholder=" " id="input-message"></textarea>
-                        <label for="input-message" data-en="Your Message">Sua Mensagem</label>
-                    </div>
-                    <button type="submit" class="btn btn-primary submit-btn magnetic-btn"
-                        data-en="<span>Send Message</span> <i class='fas fa-paper-plane'></i>">
-                        <span>Enviar Mensagem</span> <i class="fas fa-paper-plane"></i>
-                    </button>
-                    <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
-                </form>
+                <div class="contact-wrapper gsap-reveal">
+                    <p class="form-helper" data-en="matheus@sami:~$ ./abrir-chamado.sh">matheus@sami:~$
+                        ./abrir-chamado.sh</p>
+
+                    <form action="https://formspree.io/f/xbdyagwp" method="POST" class="contact-form" id="contact-form">
+                        <div class="input-group">
+                            <input type="text" name="name" required placeholder=" " id="input-name">
+                            <label for="input-name" data-en="Your name">Seu nome</label>
+                        </div>
+                        <div class="input-group">
+                            <input type="email" name="email" required placeholder=" " id="input-email">
+                            <label for="input-email" data-en="Your email">Seu e-mail</label>
+                        </div>
+                        <div class="input-group">
+                            <textarea name="message" rows="5" required placeholder=" " id="input-message"></textarea>
+                            <label for="input-message" data-en="Your message">Sua mensagem</label>
+                        </div>
+                        <button type="submit" class="btn submit-btn"
+                            data-en="<span>Send message</span> <i class='fas fa-paper-plane'></i>">
+                            <span>Enviar mensagem</span> <i class="fas fa-paper-plane"></i>
+                        </button>
+                        <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Rodapé -->
     <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-info">
-                    <h3>&lt;Matheus<span class="accent">.Dev</span>/&gt;</h3>
+                    <h3>Matheus Araújo</h3>
                     <p data-en="ITOps, automation and technical support">ITOps, automação e suporte técnico</p>
                 </div>
                 <div class="footer-contact">
-                    <a href="mailto:matheusaraujoo776@gmail.com"><i class="fas fa-envelope"></i>
-                        matheusaraujoo776@gmail.com</a>
-                    <a href="tel:+5511934069176"><i class="fas fa-phone"></i> (11) 93406-9176</a>
+                    <a href="mailto:matheusaraujoo776@gmail.com">matheusaraujoo776@gmail.com</a>
+                    <a href="tel:+5511934069176">(11) 93406-9176</a>
                 </div>
                 <div class="social-links">
-                    <a href="https://www.linkedin.com/in/matheus-araujoo-" target="_blank" title="LinkedIn"><i
-                            class="fab fa-linkedin"></i></a>
-                    <a href="https://github.com/MatheusAraujoMacedo" target="_blank" title="GitHub"><i
-                            class="fab fa-github"></i></a>
-                    <a href="mailto:matheusaraujoo776@gmail.com" title="E-mail"><i
-                            class="fas fa-envelope-open-text"></i></a>
-                    <a href="https://wa.me/5511934069176" target="_blank" title="WhatsApp"><i
-                            class="fab fa-whatsapp"></i></a>
+                    <a href="https://www.linkedin.com/in/matheus-araujoo-" target="_blank" rel="noopener"
+                        title="LinkedIn" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://github.com/MatheusAraujoMacedo" target="_blank" rel="noopener" title="GitHub"
+                        aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="mailto:matheusaraujoo776@gmail.com" title="E-mail" aria-label="E-mail"><i
+                            class="fas fa-envelope"></i></a>
+                    <a href="https://wa.me/5511934069176" target="_blank" rel="noopener" title="WhatsApp"
+                        aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
                 </div>
             </div>
             <p class="copy">&copy; 2026 Matheus Araújo Macedo</p>
         </div>
     </footer>
 
-    <!-- Back to top -->
-    <a href="#" class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></a>
+    <!-- Voltar ao topo -->
+    <a href="#" class="back-to-top" id="backToTop" aria-label="Voltar ao topo"><i class="fas fa-arrow-up"></i></a>
 
-    <!-- Mobile Floating CTA -->
-    <a href="#contact" class="mobile-float-cta" id="mobile-float-cta" aria-label="Falar Comigo" data-en="Contact Me">
+    <!-- CTA flutuante mobile -->
+    <a href="#contact" class="mobile-float-cta" id="mobile-float-cta" aria-label="Falar comigo" data-en="Contact">
         <i class="fas fa-comment-dots"></i>
         <span data-en="Contact">Contato</span>
     </a>
 
-    <!-- WhatsApp Float -->
+    <!-- WhatsApp -->
     <a href="https://wa.me/5511934069176?text=Olá Matheus, vi seu portfólio e gostaria de conversar!"
-        class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        class="whatsapp-float" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
 
-    <!-- Project Modal -->
+    <!-- Modal de projeto -->
     <div id="project-modal" class="modal">
         <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h2 id="modal-title">Título do Projeto</h2>
+            <span class="close-modal" role="button" tabindex="0" aria-label="Fechar">&times;</span>
+            <h2 id="modal-title">Título do projeto</h2>
             <p id="modal-desc">Descrição completa do projeto...</p>
             <br>
-            <a href="#" id="modal-link" target="_blank" rel="noopener"
-                class="btn btn-primary modal-link-btn magnetic-btn">Ver no GitHub</a>
+            <a href="#" id="modal-link" target="_blank" rel="noopener" class="btn btn-primary modal-link-btn">Ver no
+                GitHub</a>
         </div>
     </div>
 
-    <!-- AI Chatbot UI -->
+    <!-- Chatbot -->
     <div id="chatbot-container" class="chatbot-container">
         <div class="chatbot-header">
             <div class="chatbot-title">
-                <h3>Matheus AI</h3>
+                <h3>matheus-ai</h3>
                 <div>
-                    <span class="status-indicator"></span><span data-en="Online" class="status-text">Online</span>
+                    <span class="status-indicator"></span><span data-en="online" class="status-text">online</span>
                 </div>
             </div>
-            <button id="close-chat" aria-label="Close Chat">&times;</button>
+            <button id="close-chat" aria-label="Fechar chat">&times;</button>
         </div>
         <div class="chatbot-messages" id="chatbot-messages">
             <div class="message ai-message">
                 <div class="message-content">
-                    <p data-en="Hi! I'm Matheus's AI assistant. Ask me what he automates at SAMI, which tools he uses day to day, or how to reach him.">Olá! Sou o assistente de IA do Matheus. Pergunte o que ele automatiza na SAMI, quais ferramentas usa no dia a dia ou como falar com ele.</p>
+                    <p
+                        data-en="Hi! I'm Matheus's AI assistant. Ask me what he automates at SAMI, which tools he uses day to day, or how to reach him.">
+                        Olá! Sou o assistente de IA do Matheus. Pergunte o que ele automatiza na SAMI, quais ferramentas
+                        usa no dia a dia ou como falar com ele.</p>
                 </div>
             </div>
         </div>
         <div class="chatbot-input">
-            <input type="text" id="chat-input" placeholder="Digite sua pergunta..." data-en-placeholder="Type your question...">
-            <button id="send-chat" aria-label="Send message"><i class="fas fa-paper-plane"></i></button>
+            <input type="text" id="chat-input" placeholder="Digite sua pergunta..."
+                data-en-placeholder="Type your question...">
+            <button id="send-chat" aria-label="Enviar mensagem"><i class="fas fa-paper-plane"></i></button>
         </div>
     </div>
-    
+
     <div class="chatbot-toggle-wrapper reveal">
         <div id="chatbot-tooltip" class="chatbot-tooltip">
-            <span data-en="Ask my AI!">Fale com a minha IA! <i class="fas fa-sparkles"></i></span>
-            <button id="close-tooltip" aria-label="Close tooltip">&times;</button>
+            <span data-en="Ask my AI">Fale com a minha IA</span>
+            <button id="close-tooltip" aria-label="Fechar aviso">&times;</button>
         </div>
-        <button id="chatbot-toggle" class="chatbot-toggle" aria-label="Open Chat">
+        <button id="chatbot-toggle" class="chatbot-toggle" aria-label="Abrir chat">
             <div class="chatbot-toggle-icon">
-                <i class="fas fa-robot"></i>
+                <i class="fas fa-terminal"></i>
             </div>
         </button>
     </div>
@@ -757,7 +870,7 @@
     <script>
         new window.VLibras.Widget('https://vlibras.gov.br/app');
     </script>
-    
+
     <!-- GSAP + ScrollTrigger -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
@@ -765,7 +878,6 @@
     <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
     <script src="static/js/utils.js"></script>
     <script src="static/js/scroll.js"></script>
-    <script src="static/js/effects.js"></script>
     <script src="static/js/i18n.js"></script>
     <script src="static/js/animations.js"></script>
     <script src="static/js/main.js"></script>
