@@ -28,11 +28,11 @@ Animações, formulário de contato (Formspree), chatbot com Gemini e deploy em 
 │       ├── utils.js       # Helpers e constantes
 │       ├── scroll.js      # Lenis (smooth scroll)
 │       ├── i18n.js        # Idioma PT/EN e contraste
-│       ├── animations.js  # GSAP, typewriter do terminal, mobile
+│       ├── animations.js  # GSAP, typewriter, mobile
+│       ├── main.js        # Navegação, modal, formulário, reveals
 │       ├── chat.js        # Chatbot
-│       └── main.js        # Navegação, modal, formulário, init
+│       └── init.js        # Bootstrap das animações
 ├── functions/api/chat.js  # API do chatbot (Gemini)
 ├── wrangler.toml
 └── .env.example
 ```
-
