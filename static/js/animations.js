@@ -74,18 +74,23 @@ function initScrollAnimations() {
     }
 
     // Linhas do log — sobem na ordem de leitura
+    // fromTo com destino explicito: os itens ja nascem com .reveal (opacity 0)
+    // no CSS, e um gsap.from() capturaria esse 0 como valor final.
     gsap.utils.toArray('.timeline-item').forEach((item) => {
-        gsap.from(item, {
-            y: 24,
-            opacity: 0,
-            duration: 0.7,
-            ease: "power3.out",
-            scrollTrigger: {
-                trigger: item,
-                start: "top 88%",
-                toggleActions: "play none none none"
+        gsap.fromTo(item,
+            { y: 24, opacity: 0 },
+            {
+                y: 0,
+                opacity: 1,
+                duration: 0.7,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: item,
+                    start: "top 88%",
+                    toggleActions: "play none none none"
+                }
             }
-        });
+        );
     });
 
     // Contact form — subtle rise
