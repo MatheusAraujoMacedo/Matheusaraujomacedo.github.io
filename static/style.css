@@ -885,27 +885,77 @@ section.hero {
    Jornada — linhas de log
    -------------------------------------------------------------------------- */
 
-.timeline {
-    border-top: 1px solid var(--rule-strong);
+/* Cabecalho do arquivo: nome a esquerda, contagem a direita. */
+.log-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-bottom: 0.7rem;
+    border-bottom: 1px solid var(--rule-strong);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.02em;
+    color: var(--muted);
 }
 
+.log-file {
+    color: var(--ink-2);
+}
+
+/* A coluna do ano usa o mesmo trilho do .section-head, entao os titulos
+   do log caem exatamente sob o titulo da secao. */
 .timeline-item {
+    position: relative;
     display: grid;
-    grid-template-columns: 130px minmax(0, 1fr);
-    gap: clamp(1rem, 3vw, 2.5rem);
+    grid-template-columns: var(--rail) minmax(0, 1fr) auto;
+    gap: clamp(1.5rem, 4vw, 3rem);
+    align-items: start;
     padding: 1.4rem 0;
     border-bottom: 1px solid var(--rule);
 }
 
-.timeline-date {
-    font-family: var(--font-mono);
-    font-size: 0.78rem;
-    color: var(--muted);
-    display: block;
+/* Barra de sinal na goteira — so a linha em curso a recebe. */
+.timeline-item.is-current::before {
+    content: "";
+    position: absolute;
+    left: calc(-1 * clamp(0.75rem, 2vw, 1.25rem));
+    top: 1.4rem;
+    bottom: 1.4rem;
+    width: 2px;
+    background: var(--sig-ok);
 }
 
-.timeline-item.is-current .timeline-date {
+/* Anos alinhados a direita: encostam no titulo em vez de flutuar no
+   comeco de um trilho de 190px. */
+.timeline-date {
+    display: block;
+    padding-top: 0.25rem;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    line-height: 1.6;
+    text-align: right;
+    color: var(--muted);
+}
+
+.timeline-state {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding-top: 0.4rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    white-space: nowrap;
     color: var(--sig-ok);
+}
+
+.timeline-state::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    background: var(--sig-ok);
 }
 
 .timeline-content h3 {
@@ -1606,8 +1656,26 @@ body.white-contrast .about-photo img {
     }
 
     .timeline-item {
-        grid-template-columns: minmax(0, 1fr);
-        gap: 0.4rem;
+        grid-template-columns: minmax(0, 1fr) auto;
+        grid-template-areas:
+            "date state"
+            "content content";
+        gap: 0.5rem 1rem;
+    }
+
+    .timeline-date {
+        grid-area: date;
+        padding-top: 0;
+        text-align: left;
+    }
+
+    .timeline-content {
+        grid-area: content;
+    }
+
+    .timeline-state {
+        grid-area: state;
+        padding-top: 0;
     }
 
     .highlight-item {
