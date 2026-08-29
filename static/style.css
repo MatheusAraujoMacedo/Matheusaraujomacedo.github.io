@@ -5,39 +5,68 @@
    ========================================================================== */
 
 :root {
-    /* Superfícies */
-    --paper: #e7e8e2;
-    --paper-2: #dedfd7;
-    --paper-3: #d4d6cc;
-    --rule: #c2c4b8;
-    --rule-strong: #a8aa9d;
+    /* Superfícies — paleta do manual de marca */
+    --paper: #F7F7F5;
+    --paper-2: #EFEFEC;
+    --paper-3: #E4E4E0;
+    --rule: #DEDEDA;
+    --rule-strong: #C3C3BD;
 
     /* Tinta */
-    --ink: #14161a;
-    --ink-2: #34383f;
-    --muted: #6c7066;
+    --ink: #0B0B0C;
+    --ink-2: #3A3D42;
+    --muted: #6B6F76;
 
-    /* Painel de terminal */
-    --term-bg: #14161a;
-    --term-bg-2: #1c1f25;
-    --term-rule: #2e323a;
-    --term-text: #d9dbd3;
-    --term-muted: #83887f;
+    /* Azul sinal: cor de marca. O manual limita a 10% da área de qualquer
+       tela — monograma, links, um destaque por seção. */
+    --brand: #2F5BFF;
+    --brand-deep: #1B3FCC;
 
-    /* Sinais de estado */
-    --sig-open: #c06a12;
-    --sig-crit: #a63428;
-    --sig-ok: #1e6b55;
-    --sig-ok-bright: #4fbf95;
+    /* Painel de terminal — grafite do manual */
+    --term-bg: #0B0B0C;
+    --term-bg-2: #16171A;
+    --term-rule: #26282D;
+    --term-text: #E6E7E4;
+    --term-muted: #8A8F97;
 
-    /* Tipografia */
-    --font-display: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
-    --font-body: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+    /* Estado: família funcional própria. Não é cor de marca — comunica
+       aberto / crítico / automatizado e nunca decora. */
+    --sig-open: #A85B12;
+    --sig-crit: #A3271C;
+    --sig-ok: #157A5B;
+    --sig-ok-bright: #45D19E;
+
+    /* Tipografia — três papéis, conforme o manual mais o mono para dado */
+    --font-display: 'Space Grotesk', 'Trebuchet MS', system-ui, sans-serif;
+    --font-body: 'IBM Plex Sans', 'Segoe UI', system-ui, sans-serif;
     --font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+    /* Escala tipográfica — 9 degraus. Nada entre eles. */
+    --fs-xs: 0.75rem;
+    --fs-sm: 0.8125rem;
+    --fs-md: 0.875rem;
+    --fs-lg: 0.9375rem;
+    --fs-body: 1rem;
+    --fs-h3: 1.1875rem;
+    --fs-h2-sm: clamp(1.4rem, 3vw, 1.9rem);
+    --fs-h2: clamp(1.9rem, 4.2vw, 3.1rem);
+    --fs-h1: clamp(2.75rem, 7vw, 5.25rem);
+
+    /* Escala de espaçamento */
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-5: 1.5rem;
+    --space-6: 2rem;
+    --space-7: 3rem;
+    --space-8: 4rem;
 
     /* Métrica */
     --radius: 3px;
     --rail: 190px;
+    --rail-gap: clamp(1.5rem, 4vw, 3rem);
+    --rail-offset: calc(var(--rail) + var(--rail-gap));
     --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -60,8 +89,8 @@ body {
     background: var(--paper);
     color: var(--ink);
     font-family: var(--font-body);
-    font-size: 1.0625rem;
-    line-height: 1.65;
+    font-size: var(--fs-body);
+    line-height: 1.6;
     font-synthesis-weight: none;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
@@ -86,7 +115,7 @@ textarea {
 }
 
 :focus-visible {
-    outline: 2px solid var(--sig-ok);
+    outline: 2px solid var(--brand);
     outline-offset: 3px;
 }
 
@@ -111,7 +140,7 @@ textarea {
     color: var(--paper);
     padding: 0.75rem 1.25rem;
     font-family: var(--font-mono);
-    font-size: 0.8rem;
+    font-size: var(--fs-sm);
 }
 
 .skip-link:focus {
@@ -149,8 +178,8 @@ h4 {
     right: -0.06em;
     bottom: 0.06em;
     height: 0.24em;
-    background: var(--sig-open);
-    opacity: 0.55;
+    background: var(--brand);
+    opacity: 0.3;
     z-index: -1;
 }
 
@@ -181,23 +210,24 @@ h4 {
 
 .logo a {
     display: inline-flex;
-    align-items: baseline;
-    gap: 0.5rem;
+    align-items: center;
+    gap: 0.6rem;
     font-family: var(--font-display);
     font-weight: 700;
-    font-stretch: 112%;
-    font-size: 1.0625rem;
+    font-size: var(--fs-body);
     letter-spacing: -0.01em;
-    text-transform: uppercase;
 }
 
-.logo .logo-path {
-    font-family: var(--font-mono);
-    font-weight: 400;
-    font-stretch: 100%;
-    font-size: 0.72rem;
-    text-transform: none;
-    color: var(--muted);
+.logo-mark {
+    width: 34px;
+    height: auto;
+    color: var(--ink);
+    fill: currentColor;
+    flex: none;
+}
+
+.logo-word {
+    letter-spacing: 0.01em;
 }
 
 .nav-links {
@@ -208,8 +238,8 @@ h4 {
 }
 
 .nav-links a {
-    font-family: var(--font-mono);
-    font-size: 0.78rem;
+    font-family: var(--font-body);
+    font-size: var(--fs-sm);
     letter-spacing: 0.02em;
     color: var(--ink-2);
     padding-bottom: 2px;
@@ -224,7 +254,7 @@ h4 {
 
 .nav-links a.active {
     color: var(--ink);
-    border-bottom-color: var(--sig-open);
+    border-bottom-color: var(--brand);
 }
 
 .nav-links .nav-btn,
@@ -256,7 +286,7 @@ h4 {
 
 .menu-toggle {
     display: none;
-    font-size: 1.15rem;
+    font-size: var(--fs-h3);
     padding: 0.5rem;
     cursor: pointer;
 }
@@ -273,8 +303,8 @@ h4 {
 }
 
 .mobile-nav a {
-    font-family: var(--font-mono);
-    font-size: 0.9rem;
+    font-family: var(--font-body);
+    font-size: var(--fs-lg);
     padding: 0.95rem clamp(1.25rem, 4vw, 3rem);
     border-bottom: 1px solid var(--rule);
 }
@@ -302,7 +332,7 @@ h4 {
 
 .hero-greeting {
     font-family: var(--font-mono);
-    font-size: 0.74rem;
+    font-size: var(--fs-sm);
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--muted);
@@ -320,26 +350,26 @@ h4 {
 }
 
 .hero h1 {
-    font-size: clamp(2.75rem, 7vw, 5.25rem);
-    font-weight: 800;
-    font-stretch: 118%;
-    line-height: 0.92;
+    font-size: clamp(2.3rem, 5.2vw, 4rem);
+    max-width: 13ch;
+    font-weight: 700;
+    line-height: 0.95;
     letter-spacing: -0.03em;
-    text-transform: uppercase;
 }
 
 .hero-desc {
     margin-top: 1.5rem;
     max-width: 46ch;
     color: var(--ink-2);
-    font-size: 1.0625rem;
+    font-size: var(--fs-body);
 }
 
 .hero-badges {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.6rem;
-    margin-top: 1.75rem;
+    align-items: center;
+    gap: 0.4rem 1.1rem;
+    margin-top: 1.5rem;
 }
 
 .badge {
@@ -347,12 +377,22 @@ h4 {
     align-items: center;
     gap: 0.5rem;
     font-family: var(--font-mono);
-    font-size: 0.72rem;
+    font-size: var(--fs-xs);
     letter-spacing: 0.04em;
-    padding: 0.4rem 0.7rem;
-    border: 1px solid var(--rule-strong);
-    border-radius: var(--radius);
-    background: var(--paper-2);
+    color: var(--muted);
+}
+
+.badge-live {
+    color: var(--ink-2);
+}
+
+/* Separador entre os selos, no lugar da borda que cada um tinha. */
+.badge + .badge::before {
+    content: "";
+    width: 1px;
+    height: 0.9em;
+    margin-right: 1.1rem;
+    background: var(--rule-strong);
 }
 
 .badge-live::before {
@@ -365,7 +405,6 @@ h4 {
 }
 
 .badge-outline {
-    background: transparent;
     color: var(--muted);
 }
 
@@ -383,8 +422,8 @@ h4 {
     align-items: center;
     justify-content: center;
     gap: 0.55rem;
-    font-family: var(--font-mono);
-    font-size: 0.82rem;
+    font-family: var(--font-body);
+    font-size: var(--fs-md);
     letter-spacing: 0.02em;
     padding: 0.8rem 1.4rem;
     border: 1px solid var(--ink);
@@ -396,13 +435,15 @@ h4 {
 }
 
 .btn-primary {
-    background: var(--ink);
-    color: var(--paper);
+    background: var(--brand);
+    border-color: var(--brand);
+    color: #fff;
 }
 
 .btn-primary:hover {
-    background: transparent;
-    color: var(--ink);
+    background: var(--brand-deep);
+    border-color: var(--brand-deep);
+    color: #fff;
 }
 
 .btn-secondary:hover {
@@ -412,7 +453,7 @@ h4 {
 
 .btn-sm {
     padding: 0.55rem 0.95rem;
-    font-size: 0.76rem;
+    font-size: var(--fs-sm);
 }
 
 .btn:active {
@@ -438,7 +479,7 @@ h4 {
     background: var(--term-bg-2);
     border-bottom: 1px solid var(--term-rule);
     font-family: var(--font-mono);
-    font-size: 0.7rem;
+    font-size: var(--fs-xs);
     color: var(--term-muted);
 }
 
@@ -459,7 +500,7 @@ h4 {
 .term-body {
     padding: 1.15rem 1.1rem 1.4rem;
     font-family: var(--font-mono);
-    font-size: 0.78rem;
+    font-size: var(--fs-sm);
     line-height: 1.85;
     color: var(--term-text);
     overflow-x: auto;
@@ -549,14 +590,16 @@ section.hero {
 .section-head {
     display: grid;
     grid-template-columns: var(--rail) minmax(0, 1fr);
-    gap: clamp(1.5rem, 4vw, 3rem);
+    gap: var(--rail-gap);
     align-items: start;
     margin-bottom: clamp(2.25rem, 5vw, 3.5rem);
 }
 
 .rail-tag {
+    position: sticky;
+    top: 6.5rem;
     font-family: var(--font-mono);
-    font-size: 0.74rem;
+    font-size: var(--fs-sm);
     letter-spacing: 0.02em;
     color: var(--muted);
     padding-top: 0.55rem;
@@ -565,10 +608,8 @@ section.hero {
 }
 
 .section-title {
-    font-size: clamp(1.9rem, 4.2vw, 3.1rem);
-    font-weight: 800;
-    font-stretch: 112%;
-    text-transform: uppercase;
+    font-size: var(--fs-h2);
+    font-weight: 700;
     letter-spacing: -0.025em;
 }
 
@@ -585,8 +626,11 @@ section.hero {
 }
 
 .section-body > .rail-note {
+    position: sticky;
+    top: 6.5rem;
+    align-self: start;
     font-family: var(--font-mono);
-    font-size: 0.72rem;
+    font-size: var(--fs-xs);
     line-height: 1.7;
     color: var(--muted);
 }
@@ -618,7 +662,7 @@ section.hero {
 
 .about-photo figcaption {
     font-family: var(--font-mono);
-    font-size: 0.68rem;
+    font-size: var(--fs-xs);
     color: var(--muted);
     padding-top: 0.55rem;
     line-height: 1.5;
@@ -645,7 +689,7 @@ section.hero {
 
 .highlight-item h4 {
     font-family: var(--font-mono);
-    font-size: 0.74rem;
+    font-size: var(--fs-sm);
     font-weight: 400;
     letter-spacing: 0.06em;
     text-transform: uppercase;
@@ -653,7 +697,7 @@ section.hero {
 }
 
 .highlight-item p {
-    font-size: 0.98rem;
+    font-size: var(--fs-lg);
 }
 
 /* Fluxo do chamado — assinatura discreta -------------------------------- */
@@ -677,27 +721,34 @@ section.hero {
     gap: 0.5rem;
 }
 
+/* O chave empurra o estado para o rodape da celula: com textos de tamanhos
+   diferentes os quatro chips ficavam em alturas diferentes. */
+.process-step > .state {
+    margin-top: auto;
+    align-self: start;
+}
+
 .process-step:last-child {
     border-right: 0;
 }
 
 .process-stage {
     font-family: var(--font-mono);
-    font-size: 0.68rem;
+    font-size: var(--fs-xs);
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--muted);
 }
 
 .process-step span:not(.process-stage):not(.state) {
-    font-size: 0.95rem;
+    font-size: var(--fs-lg);
     line-height: 1.45;
 }
 
 .state {
     align-self: flex-start;
     font-family: var(--font-mono);
-    font-size: 0.66rem;
+    font-size: var(--fs-xs);
     letter-spacing: 0.08em;
     text-transform: uppercase;
     padding: 0.2rem 0.45rem;
@@ -740,12 +791,12 @@ section.hero {
 
 .stack-name {
     font-family: var(--font-mono);
-    font-size: 0.95rem;
+    font-size: var(--fs-lg);
     font-weight: 500;
 }
 
 .stack-note {
-    font-size: 0.92rem;
+    font-size: var(--fs-lg);
     color: var(--ink-2);
 }
 
@@ -767,7 +818,7 @@ section.hero {
 
 .stack-freq {
     font-family: var(--font-mono);
-    font-size: 0.7rem;
+    font-size: var(--fs-xs);
     letter-spacing: 0.06em;
     text-transform: uppercase;
     color: var(--muted);
@@ -786,8 +837,8 @@ section.hero {
 }
 
 .filter-btn {
-    font-family: var(--font-mono);
-    font-size: 0.74rem;
+    font-family: var(--font-body);
+    font-size: var(--fs-sm);
     letter-spacing: 0.04em;
     padding: 0.45rem 0.85rem;
     background: transparent;
@@ -841,14 +892,14 @@ section.hero {
     justify-content: space-between;
     gap: 0.75rem;
     font-family: var(--font-mono);
-    font-size: 0.68rem;
+    font-size: var(--fs-xs);
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--muted);
 }
 
 .project-card h3 {
-    font-size: 1.18rem;
+    font-size: var(--fs-h3);
     font-weight: 700;
     letter-spacing: -0.01em;
     line-height: 1.2;
@@ -862,7 +913,7 @@ section.hero {
 
 .tag {
     font-family: var(--font-mono);
-    font-size: 0.66rem;
+    font-size: var(--fs-xs);
     letter-spacing: 0.04em;
     color: var(--ink-2);
     padding: 0.2rem 0.4rem;
@@ -871,7 +922,7 @@ section.hero {
 }
 
 .project-card > p {
-    font-size: 0.95rem;
+    font-size: var(--fs-lg);
     color: var(--ink-2);
     flex: 1;
 }
@@ -887,6 +938,8 @@ section.hero {
 
 /* Cabecalho do arquivo: nome a esquerda, contagem a direita. */
 .log-head {
+    padding-left: 0.9rem;
+    border-left: 2px solid transparent;
     display: flex;
     align-items: baseline;
     justify-content: space-between;
@@ -894,7 +947,7 @@ section.hero {
     padding-bottom: 0.7rem;
     border-bottom: 1px solid var(--rule-strong);
     font-family: var(--font-mono);
-    font-size: 0.72rem;
+    font-size: var(--fs-xs);
     letter-spacing: 0.02em;
     color: var(--muted);
 }
@@ -903,38 +956,29 @@ section.hero {
     color: var(--ink-2);
 }
 
-/* A coluna do ano usa o mesmo trilho do .section-head, entao os titulos
-   do log caem exatamente sob o titulo da secao. */
+/* Linha de log: ano, mensagem, estado. A borda esquerda e a goteira onde a
+   barra de sinal aparece — so a linha em curso a acende. */
 .timeline-item {
-    position: relative;
     display: grid;
-    grid-template-columns: var(--rail) minmax(0, 1fr) auto;
-    gap: clamp(1.5rem, 4vw, 3rem);
+    grid-template-columns: 3.2rem minmax(0, 1fr) auto;
+    gap: 0 1.75rem;
     align-items: start;
-    padding: 1.4rem 0;
+    padding: 1.4rem 0 1.4rem 0.9rem;
+    border-left: 2px solid transparent;
     border-bottom: 1px solid var(--rule);
 }
 
-/* Barra de sinal na goteira — so a linha em curso a recebe. */
-.timeline-item.is-current::before {
-    content: "";
-    position: absolute;
-    left: calc(-1 * clamp(0.75rem, 2vw, 1.25rem));
-    top: 1.4rem;
-    bottom: 1.4rem;
-    width: 2px;
-    background: var(--sig-ok);
+.timeline-item.is-current {
+    border-left-color: var(--sig-ok);
 }
 
-/* Anos alinhados a direita: encostam no titulo em vez de flutuar no
-   comeco de um trilho de 190px. */
+/* O ano abre a linha, como carimbo de tempo em arquivo de log. */
 .timeline-date {
     display: block;
     padding-top: 0.25rem;
     font-family: var(--font-mono);
-    font-size: 0.78rem;
+    font-size: var(--fs-sm);
     line-height: 1.6;
-    text-align: right;
     color: var(--muted);
 }
 
@@ -944,7 +988,7 @@ section.hero {
     gap: 0.45rem;
     padding-top: 0.4rem;
     font-family: var(--font-mono);
-    font-size: 0.7rem;
+    font-size: var(--fs-xs);
     letter-spacing: 0.06em;
     text-transform: uppercase;
     white-space: nowrap;
@@ -959,13 +1003,13 @@ section.hero {
 }
 
 .timeline-content h3 {
-    font-size: 1.15rem;
+    font-size: var(--fs-h3);
     margin-bottom: 0.45rem;
 }
 
 .timeline-content p {
     color: var(--ink-2);
-    font-size: 0.98rem;
+    font-size: var(--fs-lg);
     max-width: 68ch;
 }
 
@@ -994,7 +1038,7 @@ section.hero {
 
 .cert-code {
     font-family: var(--font-mono);
-    font-size: 0.68rem;
+    font-size: var(--fs-xs);
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--muted);
@@ -1002,19 +1046,18 @@ section.hero {
 
 .cert-card h3,
 .wave-card h3 {
-    font-size: 1.35rem;
-    font-stretch: 108%;
+    font-size: var(--fs-h2-sm);
 }
 
 .cert-card p,
 .wave-card p {
-    font-size: 0.92rem;
+    font-size: var(--fs-lg);
     color: var(--ink-2);
 }
 
 .wave-card-level {
     font-family: var(--font-mono);
-    font-size: 0.7rem;
+    font-size: var(--fs-xs);
     letter-spacing: 0.05em;
     text-transform: uppercase;
     color: var(--sig-ok);
@@ -1033,7 +1076,7 @@ section.hero {
 
 .form-helper {
     font-family: var(--font-mono);
-    font-size: 0.76rem;
+    font-size: var(--fs-sm);
     color: var(--term-muted);
     margin-bottom: 1.5rem;
 }
@@ -1041,6 +1084,7 @@ section.hero {
 .contact-form {
     display: grid;
     gap: 1.1rem;
+    max-width: 30rem;
 }
 
 .input-group {
@@ -1054,8 +1098,8 @@ section.hero {
     border: 1px solid var(--term-rule);
     border-radius: var(--radius);
     padding: 1.35rem 0.9rem 0.6rem;
-    font-family: var(--font-mono);
-    font-size: 0.86rem;
+    font-family: var(--font-body);
+    font-size: var(--fs-md);
     color: var(--term-text);
     resize: vertical;
 }
@@ -1071,7 +1115,7 @@ section.hero {
     left: 0.95rem;
     top: 0.95rem;
     font-family: var(--font-mono);
-    font-size: 0.8rem;
+    font-size: var(--fs-sm);
     color: var(--term-muted);
     pointer-events: none;
     transition: transform 0.18s var(--ease), font-size 0.18s var(--ease);
@@ -1105,7 +1149,7 @@ section.hero {
 
 .form-status {
     font-family: var(--font-mono);
-    font-size: 0.78rem;
+    font-size: var(--fs-sm);
     min-height: 1.2em;
     color: var(--term-muted);
 }
@@ -1135,14 +1179,12 @@ footer {
 }
 
 .footer-info h3 {
-    font-size: 1.15rem;
-    font-stretch: 112%;
-    text-transform: uppercase;
+    font-size: var(--fs-h3);
 }
 
 .footer-info p {
     font-family: var(--font-mono);
-    font-size: 0.74rem;
+    font-size: var(--fs-sm);
     color: var(--muted);
     margin-top: 0.4rem;
 }
@@ -1151,7 +1193,7 @@ footer {
     display: grid;
     gap: 0.5rem;
     font-family: var(--font-mono);
-    font-size: 0.8rem;
+    font-size: var(--fs-sm);
 }
 
 .footer-contact a:hover {
@@ -1181,7 +1223,7 @@ footer {
 
 .copy {
     font-family: var(--font-mono);
-    font-size: 0.72rem;
+    font-size: var(--fs-xs);
     color: var(--muted);
     margin-top: 2rem;
     padding-top: 1.25rem;
@@ -1264,22 +1306,21 @@ footer {
 }
 
 .modal-content h2 {
-    font-size: clamp(1.4rem, 3vw, 1.9rem);
-    font-stretch: 108%;
+    font-size: var(--fs-h2-sm);
     padding-right: 2rem;
     margin-bottom: 0.9rem;
 }
 
 #modal-desc {
     color: var(--ink-2);
-    font-size: 0.98rem;
+    font-size: var(--fs-lg);
 }
 
 .close-modal {
     position: absolute;
     top: 0.75rem;
     right: 1rem;
-    font-size: 1.6rem;
+    font-size: var(--fs-h2-sm);
     line-height: 1;
     cursor: pointer;
     color: var(--muted);
@@ -1313,7 +1354,7 @@ footer {
     border: 1px solid var(--ink);
     border-radius: var(--radius);
     cursor: pointer;
-    font-size: 1.1rem;
+    font-size: var(--fs-h3);
 }
 
 .chatbot-toggle:hover {
@@ -1334,7 +1375,7 @@ footer {
     border-radius: var(--radius);
     padding: 0.5rem 0.7rem;
     font-family: var(--font-mono);
-    font-size: 0.74rem;
+    font-size: var(--fs-sm);
     white-space: nowrap;
 }
 
@@ -1381,7 +1422,7 @@ footer {
 
 .chatbot-title h3 {
     font-family: var(--font-mono);
-    font-size: 0.86rem;
+    font-size: var(--fs-md);
     font-weight: 500;
     color: var(--term-text);
 }
@@ -1391,7 +1432,7 @@ footer {
     align-items: center;
     gap: 0.4rem;
     font-family: var(--font-mono);
-    font-size: 0.68rem;
+    font-size: var(--fs-xs);
     color: var(--term-muted);
     margin-top: 0.15rem;
 }
@@ -1406,7 +1447,7 @@ footer {
     background: none;
     border: 0;
     color: var(--term-muted);
-    font-size: 1.4rem;
+    font-size: var(--fs-h2-sm);
     line-height: 1;
     cursor: pointer;
 }
@@ -1425,8 +1466,8 @@ footer {
 }
 
 .message-content {
-    font-family: var(--font-mono);
-    font-size: 0.78rem;
+    font-family: var(--font-body);
+    font-size: var(--fs-sm);
     line-height: 1.65;
     padding: 0.65rem 0.75rem;
     border-radius: var(--radius);
@@ -1467,7 +1508,7 @@ footer {
     border-radius: var(--radius);
     padding: 0.55rem 0.7rem;
     font-family: var(--font-mono);
-    font-size: 0.8rem;
+    font-size: var(--fs-sm);
     color: var(--term-text);
 }
 
@@ -1551,6 +1592,8 @@ body.white-contrast {
     --term-rule: #ffffff;
     --term-text: #ffffff;
     --term-muted: #e0e0e0;
+    --brand: #0033E6;
+    --brand-deep: #0026AD;
     --sig-open: #8a4500;
     --sig-crit: #8a0f00;
     --sig-ok: #00553f;
@@ -1700,7 +1743,7 @@ body.white-contrast .about-photo img {
         color: var(--paper);
         border-radius: var(--radius);
         font-family: var(--font-mono);
-        font-size: 0.78rem;
+        font-size: var(--fs-sm);
         transition: transform 0.3s var(--ease), opacity 0.3s var(--ease);
     }
 
@@ -1714,7 +1757,7 @@ body.white-contrast .about-photo img {
     }
 
     .term-body {
-        font-size: 0.72rem;
+        font-size: var(--fs-xs);
     }
 
     .term-log {
@@ -1724,6 +1767,17 @@ body.white-contrast .about-photo img {
 }
 
 @media (max-width: 560px) {
+    /* Empilhados, o separador vertical cairia no inicio da segunda linha. */
+    .hero-badges {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.35rem;
+    }
+
+    .badge + .badge::before {
+        display: none;
+    }
+
     .process-strip {
         grid-template-columns: minmax(0, 1fr);
     }
@@ -1759,5 +1813,41 @@ body.white-contrast .about-photo img {
     .mob-reveal-child {
         opacity: 1;
         transform: none;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   Eixo unico de conteudo
+   As grades das secoes comecam na mesma coluna do titulo, nao na borda do
+   container. Antes o titulo abria em var(--rail) e a grade em 0 — dois eixos
+   esquerdos na mesma secao.
+   -------------------------------------------------------------------------- */
+
+.stack-grid,
+.projects-grid,
+.project-filters,
+.certs-grid,
+.wave-grid,
+.process-strip,
+.log-head,
+.timeline {
+    margin-left: var(--rail-offset);
+}
+
+@media (max-width: 900px) {
+    .stack-grid,
+    .projects-grid,
+    .project-filters,
+    .certs-grid,
+    .wave-grid,
+    .process-strip,
+    .log-head,
+    .timeline {
+        margin-left: 0;
+    }
+
+    .rail-tag,
+    .section-body > .rail-note {
+        position: static;
     }
 }

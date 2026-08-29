@@ -247,11 +247,19 @@ function initMobileFloatingCTA() {
     const contactSection = document.getElementById('contact');
     if (!cta || !contactSection) return;
 
+    // Esconde tambem no hero: ali o botao "Falar comigo" ja esta na tela e o
+    // flutuante so cobria o painel do terminal.
+    const hero = document.querySelector('.hero');
+    const blockers = new Set();
+
     const ctaObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            cta.classList.toggle('mob-cta-hidden', entry.isIntersecting);
+            if (entry.isIntersecting) blockers.add(entry.target);
+            else blockers.delete(entry.target);
         });
+        cta.classList.toggle('mob-cta-hidden', blockers.size > 0);
     }, { threshold: 0.15 });
 
     ctaObserver.observe(contactSection);
+    if (hero) ctaObserver.observe(hero);
 }
